@@ -7,34 +7,29 @@
 %   \qauthor{--- Johann Wolfgang von Goethe \cite{von_goethe_wilhelm_1829}}
 % \end{savequote}
 
-\chapter{\label{ch:2-draft}Sample Chapter: Active Phase Separation}
+\chapter{\label{ch:2-draft}Active Phase Separation}
 
 \minitoc
 
 \section{Introduction}
 
-\section{Theory of Equilibrium Phase Separation}
-
-\subsection{Free Energy}
-
-\subsection{Phase Separation}
-
-\subsection{}
-
-\section{Catalysis Induced Phase Separation}
-
-\subsection{Reaction Rates and Catalysis}
-
-\subsection{Non-Interacting Phase Separation}
-
-\section{\label{sec:intro}Introduction}
 Aggregation and compartmentalisation within the cellular environment has been observed in a variety of contexts\cite{weber_drops_2021}. Droplet-like compartments can form reactors for certain cellular processes\cite{nott_phase_2015} or buffer noise in the cellular environment\cite{klosin_phase_2020} and aggregation of the $\alpha$-synuclein protein has strong links to the development of Parkinson's Disease\cite{tong_loss_2010}. Understanding the physical processes surrounding this phase separation and aggregation is nessecary to develop techniques to prevent or encourage this formation and may also identify further downstream consequences and effects.
 
 A variety of both equilibrium and non-equilibrium mechanisms have been studied that can cause phase separation\cite{li_non-equilibrium_2020,weber_drops_2021}. Recently, the role chemical activity between the constituent components of a system have been explored and a rich phenomena beyond simple phase separation or aggregation can be observed \cite{agudo-canalejo_active_2019}. A potential limitation of these models may be their relevance to the exact values of system parameters which may not be found in the natural world. Conversely, enzymatic activity is ubiquitous and arguably necessary in living systems and an interesting question is whether this abundant activity can be a mechanism to cause such phase separation and aggregation.
 
-\section{Building a Theoretical Model}
-\subsection{\label{sec:rs_theory}Regular Solution Model}
-The free energy in the of a system A common description of two component fluid mixtures is the regular solution model \cite{jones2002soft}. This is a mean field model that describes a mixture of A molecules and B molecules on a lattice of N sites. The model consists of $n_A$ sites of molecule $A$ and $n_B=N_l-n_A$ sites of molecule $B$ which is described by a volume fraction $\phi_A = n_A/N_l$ and $\phi_B = n_B/N_l = 1-\phi_A$. The model identifies the free energy density of the system as (in units of $k_BT$)
+\section{Equilibrium Phase Separation}
+
+\subsection{Free Energy}
+\subsection{Thermodynamics of Fluid Mixtures}
+
+A good example to explore the theory of phase separating mixtures is to study a fluid made up of two components, say, component $A$ and component $B$. To make this mixture, we mix a $N_A$ molecules of component $A$ and $N_B$ molecules of component $B$ to give a mixture of total volume $V = v_A N_A + v_B N_B$, where $v_i$ is the specific volume of the component, the \textit{size} of each molecule. The volume fraction of a component, $phi_i$, is defined to be $\phi_i = v_i N_i/v$ and for the two component mixture $\phi_A+\phi_B = 1$. To simplify the notation, let $\phi_A=\phi$ and $\phi_B=1-\phi$, and the volume fraction $\phi$ now describes the proportion of the fluid volume that is component $A$. For an incompressible fluid, the total volume is constant and the relevant free energy is the Helmholtz free energy, $F(N_A, N_B, T)$ where $T$ is the temperature of the fluid. The Helmholtz Free energy is an extensive quantity and so in a region of the 
+
+These tools now allow 
+
+
+to give a total fluid mixture of volume $V=V_A + V_B$. The proportion of each component in the mixture defines the volume fraction for the component, $\phi_i = V_i/V$ (where $i$ is $A$ or $B$).
+
+A common description of two component fluid mixtures is the regular solution model \cite{jones2002soft}. This is a mean field model that describes a mixture of A molecules and B molecules on a lattice of N sites. The model consists of $n_A$ sites of molecule $A$ and $n_B=N_l-n_A$ sites of molecule $B$ which is described by a volume fraction $\phi_A = n_A/N_l$ and $\phi_B = n_B/N_l = 1-\phi_A$. The model identifies the free energy density of the system as (in units of $k_BT$)
 \begin{equation}
     f_{RS} = \phi_A\ln\phi_A+\phi_B\ln\phi_B + \chi\phi_A\phi_B + \frac{K}{2}|\nabla\phi_A|^2
 \end{equation}
@@ -63,6 +58,45 @@ The phase behaviour of these regular solution models is often dominated by the v
     \label{f}
 \end{equation}
 
+\subsection{Phase Separation}
+
+In equilibrium, the shape of the free energy density determines whether a liquid mixture phase separates. The system will
+
+As an example we consider the two component mixture described in equation todo ref eq. The mean field free energy density depends on the local volume fraction of component A, $\phi_A$. For a well mixed system of volume $V$, the total free energy is simply $F = V \times f(\phi_A)$. If this system phase separated there would be two separate regions: one taking up a fraction $\alpha$ of the total volume and with volume fraction $\phi_{A,1}$ and the other region taking up a fraction $1-\alpha$ and with volume fraction $\phi_{A,2}$. In this case the free energy of the system will be $F = \alpha V \times f(\phi_{A,1}) + (1-\alpha) V \times f(\phi_{A,2})$.
+
+\section{Approach to Equilibrium}
+
+\section{Model B Dynamics}
+
+\section{Mobilities}
+
+Model B dynamics for a system introduce mobilities, $M_{ij}$ which describe how the $i^{\text{th}}$ component responds to the $j^{\text{th}}$ chemical potential. Prior work has investigated similar quantities, $\widetilde{M}_{ij}$ which describe the responses of the concentrations of components $c_j$ with $c_j = \frac{\phi_j}{v_j}$. $\widetilde{M}_{ij}$ has been shown to be symmetric $\widetilde{M}_{ij} = \widetilde{M}_{ji}$ and positive semi-definite $\widetilde{M}_{ij} \succcurlyeq 0$\cite{onsager_reciprocal_1931}. These concentration mobilities can be related to the volume fraction mobilities by a factor of the volume ${M}_{ij} = v_i\widetilde{M}_{ij}$, or as a matrix equation $M = \text{diag}[v_1, .., v_N]\cdot\widetilde{M}$, and this gives
+\begin{equation}
+    {M}_{ij} = \frac{v_i}{v_j}{M}_{ji}.
+    \label{mobsym}
+\end{equation}
+
+The incompressibility condition can be written as $\sum_i\phi_i = 1$ and so $\sum_i\dot{\phi}_i = 0$. Equations (\ref{modB1}) and (\ref{modB2}) allow this relation to be expanded in the noise free model
+\begin{equation}
+    \sum_i\dot{\phi}_i = \sum_i\;\nabla\cdot\bigg(\sum_j M_{ij}\nabla\mu_j\bigg) = \sum_j\;\nabla\cdot\bigg(\big(\sum_i M_{ij}\big)\nabla\mu_j\bigg) = 0
+\end{equation}
+In order for this to be true in general, for non-uniform systems, i.e. $\nabla\mu_j \neq 0$, it is necessary for the mobilities to satisfy
+\begin{equation}
+    \sum_i M_{ij} = 0
+    \label{mobinc}
+\end{equation}
+which constrains the mobilities and enforces the fluid remains incompressible. For an $N$-component mixture, the self- and cross-mobilities can be described in an $N\times N$ matrix. Equation (\ref{mobinc}) reduces the number of free parameters to $N(N+1)/2$ for a generic system and when the incompressibility condition is also included, equation (\ref{mobinc}), this is further reduced to $N(N-1)/2$ free parameters. There is also the constraint from the reciprocal relations, that $\widetilde{M} = \text{diag}[v_1, .., v_N]^{-1}M \succcurlyeq 0$.
+
+The choice of these free variables is often described by Kramer's form\cite{KRAMER1984473}, that the mobility is $M_{ij}$ is proportional to the volume fractions $\phi_i$ and $\phi_j$. A common choice is to assume $M_{ij} = D(\delta_{ij}\phi_i - \phi_i\phi_j)$ which imposes the necessary  symmetry and incompressibility constraints for components of equal sizes (same $v_i$ for all components). The prefactor diffusion constant, $D$, also indicates that the fluxes of each component are similar in response to potentials, but as discussed, we expect particles of different sizes to respond in different ways. Instead, a more general scheme is to assume that $M_{ij} = -D_{ij}\phi_i\phi_j$ for $i \neq j$ and then $M_{ii}$ is constructed such that the incompressibility condition is satisfied (equation (\ref{mobinc})).
+
+\section{Catalysis Induced Phase Separation}
+
+\subsection{Reaction Rates and Catalysis}
+
+\subsection{Minimal Model}
+
+\subsection{Non-Interacting Phase Separation}
+
 \section{Dynamics of Active Mixtures}
 
 \subsection{Model B}
@@ -89,7 +123,7 @@ which we can find directly for a non interacting system described by equation (\
 \subsection{Active Dynamics}
 
 \subsubsection{Thermodynamics of Chemical Reactions}
-The model described so far considers only equilbirium terms and can be entirely described by a free energy. Here, we want to study the effect of non-equilibrium chemical activity in mixtures. Consider an isolated reaction that converts between two species, $A \rightleftharpoons B$. An immediate consequence of this reaction for an incompressible mixture is that the volume of a $A$ and $B$ must be equal. In general the volume of the reactants must equal the volume of the products which is simple for this 1:1 stoichiometry but could be more complex for non-conserved particle number.
+The model described so far considers only equilibrium terms and can be entirely described by a free energy. Here, we want to study the effect of non-equilibrium chemical activity in mixtures. Consider an isolated reaction that converts between two species, $A \rightleftharpoons B$. An immediate consequence of this reaction for an incompressible mixture is that the volume of a $A$ and $B$ must be equal. In general the volume of the reactants must equal the volume of the products which is simple for this 1:1 stoichiometry but could be more complex for non-conserved particle number.
 
 The total number $A$ and $B$ particles in the system is constant, which allows us to define as $\alpha \equiv \phi_A+\phi_B$. Considering detailed balance for the system constrains the relationship between the forward and backward reaction rates
 \begin{equation}
@@ -133,26 +167,6 @@ where the contribution from chemical reactions is described by $R = r_{spo} + r_
 where the chemical potential given in equation (\ref{chempots}) is used and $\Delta e = e_S - e_P$. The rate constants here have been scaled to better disentangle the effects of the various parameters; $k_{spo} = K_{spo}/\phi_P$ and $k_{cat} = K_{cat}e^{-(\Delta e + \Delta \mu)}/\phi_P$.
 
 \section{Choices for Mobilities}
-\subsection{Incompressible Fluids}
-
-Model B dynamics for a system introduce mobilities, $M_{ij}$ which describe how the $i^{\text{th}}$ component responds to the $j^{\text{th}}$ chemical potential. Prior work has investigated similar quantities, $\widetilde{M}_{ij}$ which describe the responses of the concentrations of components $c_j$ with $c_j = \frac{\phi_j}{v_j}$. $\widetilde{M}_{ij}$ has been shown to be symmetric $\widetilde{M}_{ij} = \widetilde{M}_{ji}$ and positive semi-definite $\widetilde{M}_{ij} \succcurlyeq 0$\cite{onsager_reciprocal_1931}. These concentration mobilities can be related to the volume fraction mobilities by a factor of the volume ${M}_{ij} = v_i\widetilde{M}_{ij}$, or as a matrix equation $M = \text{diag}[v_1, .., v_N]\cdot\widetilde{M}$, and this gives
-\begin{equation}
-    {M}_{ij} = \frac{v_i}{v_j}{M}_{ji}.
-    \label{mobsym}
-\end{equation}
-
-The incompressibility condition can be written as $\sum_i\phi_i = 1$ and so $\sum_i\dot{\phi}_i = 0$. Equations (\ref{modB1}) and (\ref{modB2}) allow this relation to be expanded in the noise free model
-\begin{equation}
-    \sum_i\dot{\phi}_i = \sum_i\;\nabla\cdot\bigg(\sum_j M_{ij}\nabla\mu_j\bigg) = \sum_j\;\nabla\cdot\bigg(\big(\sum_i M_{ij}\big)\nabla\mu_j\bigg) = 0
-\end{equation}
-In order for this to be true in general, for non-uniform systems, i.e. $\nabla\mu_j \neq 0$, it is necessary for the mobilities to satisfy
-\begin{equation}
-    \sum_i M_{ij} = 0
-    \label{mobinc}
-\end{equation}
-which constrains the mobilities and enforces the fluid remains incompressible. For an $N$-component mixture, the self- and cross-mobilities can be described in an $N\times N$ matrix. Equation (\ref{mobinc}) reduces the number of free parameters to $N(N+1)/2$ for a generic system and when the incompressibility condition is also included, equation (\ref{mobinc}), this is further reduced to $N(N-1)/2$ free parameters. There is also the constraint from the reciprocal relations, that $\widetilde{M} = \text{diag}[v_1, .., v_N]^{-1}M \succcurlyeq 0$.
-
-The choice of these free variables is often described by Kramer's form\cite{KRAMER1984473}, that the mobility is $M_{ij}$ is proportional to the volume fractions $\phi_i$ and $\phi_j$. A common choice is to assume $M_{ij} = D(\delta_{ij}\phi_i - \phi_i\phi_j)$ which imposes the necessary  symmetry and incompressibility constraints for components of equal sizes (same $v_i$ for all components). The prefactor diffusion constant, $D$, also indicates that the fluxes of each component are similar in response to potentials, but as discussed, we expect particles of different sizes to respond in different ways. Instead, a more general scheme is to assume that $M_{ij} = -D_{ij}\phi_i\phi_j$ for $i \neq j$ and then $M_{ii}$ is constructed such that the incompressibility condition is satisfied (equation (\ref{mobinc})).
 
 
 \subsection{Mobilities for E, S, P}
