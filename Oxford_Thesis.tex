@@ -54,7 +54,7 @@
 % The science-type option: numerical in-text citation with references in order of appearance.
 \usepackage[style=numeric-comp, sorting=none, backend=biber, doi=false, isbn=false]{biblatex}
 \newcommand*{\bibtitle}{References}
-
+\usepackage{bm}% bold math
 % The humanities-type option: author-year in-text citation with an alphabetical works cited.
 %\usepackage[style=authoryear, sorting=nyt, backend=biber, maxcitenames=2, useprefix, doi=false, isbn=false]{biblatex}
 %\newcommand*{\bibtitle}{Works Cited}
@@ -93,6 +93,56 @@
 
 %%%%% YOUR OWN PERSONAL MACROS
 % This is a good place to dump your own LaTeX macros as they come up.
+\newcommand{\todo}[1]{{\color{red} [#1]}}
+
+% From the CIPS paper
+
+\newcommand{\kcat}[0]{k_{\mathrm{cat}}}
+\newcommand{\kspo}[0]{k_{\mathrm{spo}}}
+\newcommand{\rcat}[0]{r_{\mathrm{cat}}}
+\newcommand{\rspo}[0]{r_{\mathrm{spo}}}
+
+\newcommand{\Rs}[0]{R_\mathrm{s}}
+\newcommand{\Rp}[0]{R_\mathrm{p}}
+
+\newcommand{\phie}[0]{\phi_{\mathrm{e}}}
+\newcommand{\phis}[0]{\phi_{\mathrm{s}}}
+\newcommand{\phip}[0]{\phi_{\mathrm{p}}}
+\newcommand{\phisp}[0]{\phi_{\mathrm{s+p}}}
+\newcommand{\phiw}[0]{\phi_{\mathrm{w}}}
+
+\newcommand{\mue}[0]{\mu_{\mathrm{e}}}
+\newcommand{\muf}[0]{\mu_{\mathrm{f}}}
+\newcommand{\mus}[0]{\mu_{\mathrm{s}}}
+\newcommand{\mup}[0]{\mu_{\mathrm{p}}}
+\newcommand{\muw}[0]{\mu_{\mathrm{w}}}
+
+\newcommand{\Des}[0]{D_{\mathrm{es}}}
+\newcommand{\Dse}[0]{D_{\mathrm{se}}}
+\newcommand{\Dep}[0]{D_{\mathrm{ep}}}
+\newcommand{\Dpe}[0]{D_{\mathrm{pe}}}
+\newcommand{\Dsp}[0]{D_{\mathrm{sp}}}
+\newcommand{\Dps}[0]{D_{\mathrm{ps}}}
+\newcommand{\Dew}[0]{D_{\mathrm{ew}}}
+\newcommand{\Dsw}[0]{D_{\mathrm{sw}}}
+\newcommand{\Dpw}[0]{D_{\mathrm{pw}}}
+
+\newcommand{\Mee}[0]{M_{\mathrm{ee}}}
+\newcommand{\Mes}[0]{M_{\mathrm{es}}}
+\newcommand{\Mep}[0]{M_{\mathrm{ep}}}
+\newcommand{\Mse}[0]{M_{\mathrm{se}}}
+\newcommand{\Mss}[0]{M_{\mathrm{ss}}}
+\newcommand{\Msp}[0]{M_{\mathrm{sp}}}
+\newcommand{\Mpe}[0]{M_{\mathrm{pe}}}
+\newcommand{\Mps}[0]{M_{\mathrm{ps}}}
+\newcommand{\Mpp}[0]{M_{\mathrm{pp}}}
+
+\newcommand{\vp}[0]{v_{\mathrm{p}}}
+\newcommand{\vs}[0]{v_{\mathrm{s}}}
+\newcommand{\ve}[0]{v_{\mathrm{e}}}
+\newcommand{\vw}[0]{v_{\mathrm{w}}}
+
+\newcommand{\ex}[1]{\mathrm{e}^{#1}}
 
 % To make text superscripts shortcuts
 	\renewcommand{\th}{\textsuperscript{th}} % ex: I won 4\th place

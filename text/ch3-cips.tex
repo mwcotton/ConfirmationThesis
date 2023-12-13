@@ -19,119 +19,151 @@ A variety of both equilibrium and non-equilibrium mechanisms have been studied t
 
 \section{Equilibrium Phase Separation}
 
-\subsection{Free Energy}
 \subsection{Thermodynamics of Fluid Mixtures}
 
-A good example to explore the theory of phase separating mixtures is to study a fluid made up of two components, say, component $A$ and component $B$. To make this mixture, we mix a $N_A$ molecules of component $A$ and $N_B$ molecules of component $B$ to give a mixture of total volume $V = v_A N_A + v_B N_B$, where $v_i$ is the specific volume of the component, the \textit{size} of each molecule. The volume fraction of a component, $\phi_i$, is defined to be $\phi_i = v_i N_i/v$ and for the two component mixture $\phi_A+\phi_B = 1$. To simplify the notation, let $\phi_A=\phi$ and $\phi_B=1-\phi$, and the volume fraction $\phi$ now describes the proportion of the fluid volume that is component $A$. For an incompressible fluid, the total volume is constant and the relevant free energy is the Helmholtz free energy, $F(N_A, N_B, T)$ where $T$ is the temperature of the fluid. The Helmholtz Free energy is an extensive quantity and so the $F(N_A, N_B, T) = V f(\phi, T)$ where $f(\phi, T)$ is the free energy density and tthe free energy density determines the phase behaviour of the mixture. If there exist
+A good example to explore the theory of phase separating mixtures is to study a fluid made up of two components, say, component $A$ and component $B$. To make this mixture, we mix a $N_A$ molecules of component $A$ and $N_B$ molecules of component $B$ to give a mixture of total volume $V = v_A N_A + v_B N_B$, where $v_i$ is the specific volume of the component, the \textit{size} of each molecule. The volume fraction of a component, $\phi_i$, is defined to be $\phi_i = v_i N_i/v$ and for the two component mixture $\phi_A+\phi_B = 1$. To simplify the notation, let $\phi_A=\phi$ and $\phi_B=1-\phi$, and the volume fraction $\phi$ now describes the proportion of the fluid volume that is component $A$. For an incompressible fluid, the total volume is constant and the relevant free energy is the Helmholtz free energy, $F(N_A, N_B, T)$ where $T$ is the temperature of the fluid. The Helmholtz Free energy is an extensive quantity and so the $F(N_A, N_B, T) = V f(\phi, T)$ where $f(\phi, T)$ is the free energy density and this free energy density determines the phase behaviour of the mixture. The mixture will phase separate into two regions with different $\phi$s if this lowers the overall free energy. Labelling the two phases $\mathrm{I}$ and $\mathrm{II}$ the reduced free energy condition is $Vf(\phi, T) = V_{\mathrm{I}} f(\phi_{\mathrm{I}}, T)+ V_{\mathrm{II}} f(\phi_{\mathrm{II}}, T)$ with the total volume being conserved $V = V_{\mathrm{I}}+V_{\mathrm{II}}$. This is equivalent to the free energy density being upper convex, $\frac{\partial^2 f}{\partial \phi^2}$, for some value for $\phi$.
 
-These tools now allow 
+In addition to lowering the free energy of the system, any phase separating regions of a mixture must also be in mechanical and chemical equilibrium, otherwise they would exchange components or volume to reach two equilibrated phases. Chemical equilibrium is achieved when the chemical potential, $\mu$ of each component in each phase is constant and so moving a particle across the phase boundary will not change the free energy, $\mu_i^{\mathrm{I}}=\mu_i^{\mathrm{II}}$. The chemical potential for component $i$ is given by
+\begin{equation}
+    \mu_i = \left(\frac{\partial F}{\partial N_i}\right)_{V, T} = \left(\frac{\partial f}{\partial \phi_i}\right)_{T}.
+    \label{eq:mu_def}
+\end{equation}
+\todo{Also need to get the volume dependency in here somehow.}
+The mechanical equilibrium is achieved when the osmotic pressure, $\Pi$ between the two phases is equal, $\Pi^{\mathrm{I}}=\Pi^{\mathrm{II}}$, where the osmotic pressure is given by \todo{difference between osmotic and mechanical pressure}
+\begin{equation}
+    \Pi(\phi) = -\left(\frac{\partial F}{\partial V}\right)_{T, N_A} = -f + \phi \left(\frac{\partial f}{\partial \phi}\right)_{T}.
+    \label{eq:Pi_def}
+\end{equation}
+These conditions have a convenient graphical interpretation. The equation for a tangent to the curve $f(\phi)$ at $\phi=\Tilde{\phi}$ can be written as $y=mx+c$. Equation (\ref{eq:mu_def}) and (\ref{eq:Pi_def}) give $y=\mu_A(\Tilde{\phi})\phi - \Pi(\Tilde{\phi})$ and as these thermodynamic quantities must be the same for two coexisting phases, we find that two phases can only coexist if they have a \textit{common tangent}! Figure \ref{fig:phase_sep_scheme} highlights the graphical interpretation of these conditions, where plotting $f(\phi)$ can illuminate the phase behaviour of a mixture. A well mixed homogeneous system prepared with volume fraction $\phi^*$, will therefore be stable as two phase separated with regions volume fraction $\phi_{\mathrm{I}}$ and $\phi_{\mathrm{II}}$ ($\phi_{\mathrm{I}} < \phi_{\mathrm{II}}$) given that $\phi_{\mathrm{I}} < \phi^* < \phi_{\mathrm{II}}$. The conservation of $N_A$ requires $V\phi^* = V_{\mathrm{I}}\phi_{\mathrm{I}} +V_{\mathrm{II}}\phi_{\mathrm{II}}$ and volume conservation gives $V = V_{\mathrm{I}}+V_{\mathrm{II}}$ which determines the volumes of each phase
+
+\begin{equation}
+    V_{\mathrm{I}} = \frac{\phi_{\mathrm{II}}-\phi^*}{\phi_{\mathrm{II}}-\phi_{\mathrm{I}}}V
+    \quad
+    \textrm{and}
+    \quad
+    V_{\mathrm{II}} = \frac{\phi^*-\phi_{\mathrm{I}}}{\phi_{\mathrm{II}}-\phi_{\mathrm{I}}}V.
+\end{equation}
 
 \begin{figure}
     \centering
-    \includegraphics{figures/thermo_solutions.svg}
+    \includegraphics[width=\textwidth]{figures/thermo_solutions.pdf}
     \caption{Caption}
-    \label{fig:enter-label}
+    \label{fig:phase_sep_scheme}
 \end{figure}
 
-to give a total fluid mixture of volume $V=V_A + V_B$. The proportion of each component in the mixture defines the volume fraction for the component, $\phi_i = V_i/V$ (where $i$ is $A$ or $B$).
+Often, the shape of the free energy density can be controlled by some external parameter, such as temperature.
 
-A common description of two component fluid mixtures is the regular solution model \cite{jones2002soft}. This is a mean field model that describes a mixture of A molecules and B molecules on a lattice of N sites. The model consists of $n_A$ sites of molecule $A$ and $n_B=N_l-n_A$ sites of molecule $B$ which is described by a volume fraction $\phi_A = n_A/N_l$ and $\phi_B = n_B/N_l = 1-\phi_A$. The model identifies the free energy density of the system as (in units of $k_BT$)
+\todo{Comment on the energy barrier, spinodal binodal decomposition.}
+
+\subsection{Regular Solution Model}
+Mean field models of mixtures can describe the free energy density and predict features of the phase behaviour. The free energy density can be calculated from the Hamiltonian of a system and, again, the $A-B$ binary mixture is a useful place to start. Consider a lattice where each lattice site is occupied by either a molecule of $A$ or a molecule of $B$ where $v_A$ and $v_B$ (the size of each molecule) is the same and additionally define the total number of sites in the lattice $N_{lat} = N_A + N_B$. The different molecules can be configured in many different ways on the lattice however the different configurations will have different energies due to interactions between the molecules. The lattice model can include these interactions by having different contributions to the energy for different pairs of molecules on neighbouring lattice sites. For example, two molecules of $A$ on neighbouring sites will contribute $\epsilon_{AA}$ to the energy of a configuration, two molecules of $B$ contribute $\epsilon_{BB}$ and a molecule of $A$ on a neighbouring lattice site to a molecule of $B$ will contribute $\epsilon_{AB}$. The total energy of a configuration $c$ is then the sum of the interaction energy contribution over all neighbouring lattice sites
 \begin{equation}
-    f_{RS} = \phi_A\ln\phi_A+\phi_B\ln\phi_B + \chi\phi_A\phi_B + \frac{K}{2}|\nabla\phi_A|^2
+    E_{c} = N_c^{AA}\epsilon_{AA} + N_c^{AB}\epsilon_{AB} + N_c^{BB}\epsilon_{BB}
 \end{equation}
-where $\chi$ describes the interaction energy between the two components and the gradient term is related to a surface tension of the components. For a $\chi > 0$, there is an energetic cost to $A$ and $B$ occupying nearby sites and as such this drives the two components to separate. The model can be extended to a mixture of N-components and written in terms of the volume fractions, $\phi_i$, for each component
-
+where $N_c^{ij}$ is the number of neighbouring lattice sites, occupied by a molecule of $i$ and molecule of $j$ in the configuration. The free energy desnity can be calculated from the partition function, $Z$, where
 \begin{equation}
-    f_{RS} = \sum_{i=1}^{N}\Bigg[\phi_i\ln\phi_i+\sum_{j=1, j\neq i}^{N}\frac{\chi_{ij}}{2}\phi_i\phi_j + \sum_{j=1}^{N} \frac{K_{ij}}{2}(\nabla\phi_i)\cdot(\nabla\phi_j)\Bigg]
-    \label{rsm_gen}
+    f(\phi, T) = -\frac{1}{\beta V}\ln Z
+    \label{eq:f_ln}
+\end{equation}
+\todo{Put a KB T term into the new commands (and define it here)} and the partition function is directly calculated for a canonical ensemble via
+\begin{equation}
+    Z = \sum_c \exp{-\beta E_c}.
+\end{equation}
+where the sum is over all configurations. In the thermodynamic limit of large $N_{lat}$ the sum can be well approximated by a mean field approximation. The sum is approximated by replacing the energy of each configuration with the average energy, $\bar{E}$, so the sum now becomes
+\begin{equation}
+    Z \approx \sum_c \exp(-\beta \bar{E}) = \Omega \exp(-\beta \bar{E})
+\end{equation}
+where $\Omega$ is the number of unique configurations of molecules on the lattice and is given by
+\begin{equation}
+    \Omega = \frac{N_{lat}!}{N_A! N_B!}.
 \end{equation}
 
-where the scalars $\chi$ and $K$ now become $N \times N$ matrices describing the interactions between components and the surface tensions between domains of different compositions \cite{berry_physical_2018}. The constant number of lattice sites, $N_l$ naturally imposes incompressibility into the model ensuring that $\sum_{i=1}^N\phi_i=1$.
+The free energy density in the mean field model is now, with equation (\ref{eq:f_ln}), $f = -\frac{K_B T}{V} (\ln \Omega + \bar{E})$.
 
-\subsection{\label{sec:multi_fh}Generalised Model}
-The Flory-Huggins model provides an extension to this regular solution model to reflect the different components as being molecules of different sizes. The model originally described polymers of chain length $N_P$ and introduced a correction to the entropic terms since the monomers on the chain are attached to each other which reduces the number of available configurations. We use this principle generally to extend the regular solution model in equation (\ref{rsm_gen}) to describe components of different size. This gives
+The mean energy $\bar{E}$ can be calculated ... The coordination number, $z$, describes the number of nearest neighbours each lattice site, for example $z=4$ in a square lattice. On average $z\phi_i$ of the neighbouring lattice sites will be occupied by a molecule of $i$. For $i \neq j$ the average number of $ij$ neighbour pairs, $\bar{N}^{ij}$, is the number of sites occupied by a molecule of $i$ multiplied by the average the number of neighbouring lattice sites occupied by a molecule of $j$: $\bar{N}^{ij} = N_{lat}\phi_i \times z\phi_j$. When $i=j$ each pair will be double counted (each lattice site occupied by a molecule of $i$ will be considered as both the `main' and `neighbour' site) and so there is an additional factor of 1/2 to prevent double counting. The average energy is therefore
+\begin{equation}
+\begin{split}
+    \bar{E} &= \bar{N}^{AA}\epsilon_{AA} + \bar{N}^
+    {AB}\epsilon_{AB} + \bar{N}^{BB}\epsilon_{BB}\\
+    &= \frac{1}{2}z N_{lat} \phi^2\epsilon_{AA} + z N_{lat} (1-\phi)\phi\epsilon_{AB} + \frac{1}{2}z N_{lat} (1-\phi)^2 \epsilon_{BB}.
+\end{split}
+\end{equation}
+Using equation (\ref{eq:f_ln}) the free energy density is
+\begin{equation}
+    f(\phi, T) = -\frac{1}{\beta V}\left(\ln \left(\frac{N_{lat}!}{N_A! N_B!} \right) - \frac{z N_{lat}}{2} \left(\phi^2\epsilon_{AA} + 2(1-\phi)\phi\epsilon_{AB} + (1-\phi)^2 \epsilon_{BB}\right)\right).
+\end{equation}
+The first term is simplified using Stirling's formula, $\ln N! = N \ln N - N$ for large $N$ to give $\ln\Omega=-N_{lat}(\phi\ln(\phi)+(1-\phi)\ln(1-\phi))$. The average energy term can be simplified as the phase behaviour described in \todo{section reference} was independent of the exact value of $f$, or $\partial f/\partial \phi$ and so the physics of the system is symmetric under a transform $f \rightarrow f + k_1 + k_2\phi$. Specifically, choosing $k_1 = z\epsilon_{BB}/2$ and $k_2 = z(\epsilon_{BB} - \epsilon_{AA})/2$ the free energy now becomes
+\begin{equation}
+    f(\phi, T) = k_B T (\phi\ln(\phi)+(1-\phi)\ln(1-\phi)) + \chi(1-\phi)\phi
+\end{equation}
+since $V = N_{lat}$ and define the Flory-Huggins interaction parameter $\chi = -\frac{z}{2 k_B T}(\epsilon_{AA}+\epsilon_{BB}-2\epsilon_{AB})$. \todo{Phase behaviour discussion for chi}
+
+\todo{\begin{enumerate}
+    \item Generalise to multi component
+    \item Generalise to different volumes
+    \item add in interface terms
+\end{enumerate}}
 \begin{equation}
     f_{FH} = \sum_{i=1}^{N}\Bigg[\frac{\phi_i}{v_i}\ln\phi_i+\sum_{j=1, j\neq i}^{N}\frac{\chi_{ij}}{2}\phi_i\phi_j + \sum_{j=1}^{N} \frac{K_{ij}}{2}(\nabla\phi_i)\cdot(\nabla\phi_j)\Bigg]
     \label{fh_gen}
 \end{equation}
-where $v_i$ describes the relative volumes of the components in the mixture. 
+
+where the scalars $\chi$ and $K$ now become $N \times N$ matrices describing the interactions between components and the surface tensions between domains of different compositions \cite{berry_physical_2018}. The constant number of lattice sites, $N_l$ naturally imposes incompressibility into the model ensuring that $\sum_{i=1}^N\phi_i=1$.
+The Flory-Huggins model provides an extension to this regular solution model to reflect the different components as being molecules of different sizes. The model originally described polymers of chain length $N_P$ and introduced a correction to the entropic terms since the monomers on the chain are attached to each other which reduces the number of available configurations. We use this principle generally to extend the regular solution model in equation (\ref{rsm_gen}) to describe components of different size. This gives where $v_i$ describes the relative volumes of the components in the mixture. 
 
 Another important contribution is from the intrinsic energy, the enthalpy, of each type of molecule which will appear proportionally to the number of molecules of that component in the system, $e_i \phi_i / v_i$. Previous work has often ignored this contribution as in a system of constant overall composition this term is simply an additive constant and so does not affect the behaviour of the solution. However the composition of a chemically active system can change and therefore this contribution may affect the system's behaviour.
 
-The phase behaviour of these regular solution models is often dominated by the value of the interaction parameter, $\chi$. For $\chi > 0 $, there is an energetic cost to having different components mixing and can lead to phase separation. The interplay of entropic effects driving a homogeneous mixed state balanced against these additional terms determines the phase transitions. However all of these terms are derived from a free energy and provide an equilibrium description of the system. In fact, additional terms can be added to this equilibrium free energy density, such as terms from a generic external potential or higher order gradient terms. This project aims to explore the role of activity in these mixtures and as such we set $\chi = 0$, $K = 0$ and ignore all other interaction effects, so that the consequences of the activity are more obvious. It is understood that reintroducing these terms, for example a non-zero $\chi$, will simply make it harder/easier for these active effects to drive phase separation. This results in the free energy density
+The phase behaviour of these regular solution models is often dominated by the value of the interaction parameter, $\chi$. For $\chi > 0 $, there is an energetic cost to having different components mixing and can lead to phase separation. The interplay of entropic effects driving a homogeneous mixed state balanced against these additional terms determines the phase transitions. However all of these terms are derived from a free energy and provide an equilibrium description of the system. In fact, additional terms can be added to this equilibrium free energy density, such as terms from a generic external potential or higher order gradient terms. 
+
+\section{Dynamics of Multi-component mixtures}
+
+\subsection{Conserved Dynamics}
+
+\todo{talk about the fact that $\phi$ can vary spatially?}
+
+\subsubsection{Model B Dynamics}
+\todo{Physics of active emulsions is quite a good reference for this.}
+\todo{Linear response model?}
+\todo{Comment on non momentum conservation}
+The static lattice picture can describe the free energy of a system, but fails to capture associated dynamics. The lattice model can be extended to include the evolution of a system through configuration space by considering exchange of molecules of neighbouring lattice sites. In this picture (and also physically), the number of molecules of each species does not change and so the behaviour of the volume fraction for each component must obey a continuity equation, namely\cite{li_non-equilibrium_2020}
 \begin{equation}
-    f = \sum_{i=1}^{N}\frac{1}{v_i}\Bigg[e_i\phi_i + \phi_i\ln\phi_i\Bigg].
-    \label{f}
+    \dot{\phi}_i = - \nabla \cdot \textbf{J}_i
+    \label{eq:continuityModB}
 \end{equation}
+\todo{keep track of KB Ts} where $i$ labels each component, and $\textbf{J}_i$ is the volume fraction flux. \todo{Tidy the following up. Is Model B phenomenological?} Changes to the distribution of a component will be driven by changes in the free energy and specifically, the associated thermodynamic force, the chemical potential. The canonical Model B dynamics capture this chemical pressure and give the volume fraction flux as
+\begin{equation}
+    \textbf{J}_i = \sum_j M_{ij}\nabla\mu_j + \textbf{J}^N
+    \label{eq:fluxModB}
+\end{equation}
+where $\mu_i$ is the chemical potential of the $i\th$ component, $M_{ij}$ is a set of generalised mobilities (discussed in the \todo{next section}) and the sum runs over all components in the system. The $\textbf{J}^N$ term describes the noise and must obey the appropriate fluctuation dissipation theorems. In the thermodynamic limit of a noise free model considered here the $ \textbf{J}^N$ contribution vanishes. The chemical potential for each component, $\mu_i$, is given by
+\begin{equation}
+    \mu_i = v_i\frac{\delta F}{\delta \phi_i}.
+\end{equation}
+where the additional volume term compared to equation (\ref{eq:mu_def}) is due to the conversion from particle number to volume fraction \todo{clarify this and fit in with the other}.
 
-\subsection{Phase Separation}
-
-In equilibrium, the shape of the free energy density determines whether a liquid mixture phase separates. The system will
-
-As an example we consider the two component mixture described in equation todo ref eq. The mean field free energy density depends on the local volume fraction of component A, $\phi_A$. For a well mixed system of volume $V$, the total free energy is simply $F = V \times f(\phi_A)$. If this system phase separated there would be two separate regions: one taking up a fraction $\alpha$ of the total volume and with volume fraction $\phi_{A,1}$ and the other region taking up a fraction $1-\alpha$ and with volume fraction $\phi_{A,2}$. In this case the free energy of the system will be $F = \alpha V \times f(\phi_{A,1}) + (1-\alpha) V \times f(\phi_{A,2})$.
-
-\section{Approach to Equilibrium}
-
-\section{Model B Dynamics}
-
-\section{Mobilities}
-
-Model B dynamics for a system introduce mobilities, $M_{ij}$ which describe how the $i^{\text{th}}$ component responds to the $j^{\text{th}}$ chemical potential. Prior work has investigated similar quantities, $\widetilde{M}_{ij}$ which describe the responses of the concentrations of components $c_j$ with $c_j = \frac{\phi_j}{v_j}$. $\widetilde{M}_{ij}$ has been shown to be symmetric $\widetilde{M}_{ij} = \widetilde{M}_{ji}$ and positive semi-definite $\widetilde{M}_{ij} \succcurlyeq 0$\cite{onsager_reciprocal_1931}. These concentration mobilities can be related to the volume fraction mobilities by a factor of the volume ${M}_{ij} = v_i\widetilde{M}_{ij}$, or as a matrix equation $M = \text{diag}[v_1, .., v_N]\cdot\widetilde{M}$, and this gives
+\subsubsection{Mobilities for Incompressible Models}
+\todo{Mazur and de Groot reference?}
+The model B dynamics introduce a set of transport coefficients, or mobilities $M_{ij}$, which describe how volume fraction of the $i\th$ component responds to the chemical potential of the $j\th$ component. This is a general form of linear transport relationship found near equilibrium in thermodynamic systems where the flux is proportional $J_i = \sum_{j}L_{ij}\nabla f_{j}$ where the thermodynamic forces are conjugate to the displacements being described. In this generalised description, the transport coefficient matrix described by $L_{ij}$ is both positive semi-definite (positive entropy production rate) and symmetric under exchange of $i, j \rightarrow j, i$. Here however, the flux describes the transport of volume fraction rather than particle number and so the the forces and displacements are not conjugate. As such the reciprocity is broken and $L_{ij} \neq L_{ji}$, however again using the size of individual molecules to convert between volume fraction and number density gives
 \begin{equation}
     {M}_{ij} = \frac{v_i}{v_j}{M}_{ji}.
-    \label{mobsym}
+    \label{eq:mobsym}
 \end{equation}
 
-The incompressibility condition can be written as $\sum_i\phi_i = 1$ and so $\sum_i\dot{\phi}_i = 0$. Equations (\ref{modB1}) and (\ref{modB2}) allow this relation to be expanded in the noise free model
+The lattice model is incompressible when the total number of lattice sites, $N_{lat}$, is constant. The incompressibility condition can be written as $\sum_i\phi_i = 1$ and so $\sum_i\dot{\phi}_i = 0$. Substituting in the Model B dynamics, equations (\ref{eq:continuityModB}) and (\ref{eq:fluxModB}) give
 \begin{equation}
     \sum_i\dot{\phi}_i = \sum_i\;\nabla\cdot\bigg(\sum_j M_{ij}\nabla\mu_j\bigg) = \sum_j\;\nabla\cdot\bigg(\big(\sum_i M_{ij}\big)\nabla\mu_j\bigg) = 0
 \end{equation}
 In order for this to be true in general, for non-uniform systems, i.e. $\nabla\mu_j \neq 0$, it is necessary for the mobilities to satisfy
 \begin{equation}
     \sum_i M_{ij} = 0
-    \label{mobinc}
+    \label{eq:mobinc}
 \end{equation}
-which constrains the mobilities and enforces the fluid remains incompressible. For an $N$-component mixture, the self- and cross-mobilities can be described in an $N\times N$ matrix. Equation (\ref{mobinc}) reduces the number of free parameters to $N(N+1)/2$ for a generic system and when the incompressibility condition is also included, equation (\ref{mobinc}), this is further reduced to $N(N-1)/2$ free parameters. There is also the constraint from the reciprocal relations, that $\widetilde{M} = \text{diag}[v_1, .., v_N]^{-1}M \succcurlyeq 0$.
+which constrains the mobilities and enforces the fluid remains incompressible. An $N$-component mixture,  has a total of $N\times N$ mobilities. The reciprocity-like constraint in equation (\ref{eq:mobsym}) reduces the number of free parameters to $N(N+1)/2$ and the incompressibility condition adds a further $N$ constraints to give $N(N-1)/2$ free mobility parameters.
 
-The choice of these free variables is often described by Kramer's form\cite{KRAMER1984473}, that the mobility is $M_{ij}$ is proportional to the volume fractions $\phi_i$ and $\phi_j$. A common choice is to assume $M_{ij} = D(\delta_{ij}\phi_i - \phi_i\phi_j)$ which imposes the necessary  symmetry and incompressibility constraints for components of equal sizes (same $v_i$ for all components). The prefactor diffusion constant, $D$, also indicates that the fluxes of each component are similar in response to potentials, but as discussed, we expect particles of different sizes to respond in different ways. Instead, a more general scheme is to assume that $M_{ij} = -D_{ij}\phi_i\phi_j$ for $i \neq j$ and then $M_{ii}$ is constructed such that the incompressibility condition is satisfied (equation (\ref{mobinc})).
+\subsection{Non-Conserved Dynamics}
 
-\section{Catalysis Induced Phase Separation}
-
-\subsection{Reaction Rates and Catalysis}
-
-\subsection{Minimal Model}
-
-\subsection{Non-Interacting Phase Separation}
-
-\section{Dynamics of Active Mixtures}
-
-\subsection{Model B}
-Model B dynamics can be used to describe the dynamical approach of a system to equilibrium \cite{li_non-equilibrium_2020}. The model describes the evolution of conserved quantities which describe the response of the volume fractions to the free energy. The model B dynamics are given by \cite{cates_active_2019}
-\begin{equation}
-    \dot{\phi}_i = - \nabla \cdot \textbf{J}_i
-    \label{modB1}
-\end{equation}
-where $i$ runs across the components in the mixture, with $\textbf{J}_i$ given by
-\begin{equation}
-    \textbf{J}_i = \sum_j M_{ij}\nabla\mu_j + \textbf{J}^N
-    \label{modB2}
-\end{equation}
-and where $\textbf{J}^N$ describes the noise, obeying the appropriate fluctuation dissipation theorems. Here, we consider the thermodynamic limit of a noise free model and set the $ \textbf{J}^N$ contribution to zero. The chemical potential for each component, $\mu_i$, is given by
-\begin{equation}
-    \mu_i = \frac{\delta F}{\delta \phi_i}
-\end{equation}
-which we can find directly for a non interacting system described by equation (\ref{f}) to be
-\begin{equation}
-    \mu_i = e_i + \log\phi_i + 1 \quad \text{and so} \quad \nabla\mu_i = \frac{1}{\phi_i}\nabla\phi_i.
-    \label{chempots}
-\end{equation}
-
-\subsection{Active Dynamics}
-
-\subsubsection{Thermodynamics of Chemical Reactions}
-The model described so far considers only equilibrium terms and can be entirely described by a free energy. Here, we want to study the effect of non-equilibrium chemical activity in mixtures. Consider an isolated reaction that converts between two species, $A \rightleftharpoons B$. An immediate consequence of this reaction for an incompressible mixture is that the volume of a $A$ and $B$ must be equal. In general the volume of the reactants must equal the volume of the products which is simple for this 1:1 stoichiometry but could be more complex for non-conserved particle number.
-
-The total number $A$ and $B$ particles in the system is constant, which allows us to define as $\alpha \equiv \phi_A+\phi_B$. Considering detailed balance for the system constrains the relationship between the forward and backward reaction rates
+\subsubsection{Reaction Rates}
+In addition to spatial fluxes of component from the Model B dynamics, chemically active mixtures will also permit fluxes in chemical space, i.e. the conversion of a molecule of $i$ to a molecule of $j$. Putting these dynamics into the binary mixture, we allow the reaction $A \rightleftharpoons B$, and an immediate consequence of incompressibility is that the reaction must conserve volume, so here $v_A = v_B$. In general the volume of the reactants must equal the volume of the products which is simple for this 1:1 stoichiometry but could be more complex for non-conserved molecule number. The change in the free energy due to the reaction is $dF = \mu_A dN_A+\mu_B dN_B = (\mu_A - \mu_B)dN_A$ where $dN_A = -dN_B$ by conservation of total molecule number. There is therefore no net conversation between molecules of $A$ and $B$ when $\mu_A = \mu_B$ and \todo{justify/explain this} the rate of the reaction is given by... Considering detailed balance for the system constrains the relationship between the forward and backward reaction rates
 \begin{equation}
     \frac{r_{A \rightarrow B}}{r_{B \rightarrow A}} = \exp\Bigg(\frac{\mu_A - \mu_B}{k_B T}\Bigg)
     \label{db_constr}
@@ -142,24 +174,33 @@ which allows us to identify the net transfer from $A \rightarrow B$ as
     \label{react_rates}
 \end{equation}
 which makes sense as if $\mu_A > \mu_B$ then we have net $A \rightarrow B$, when $\mu_B > \mu_A$ then we have net $B \rightarrow A$ and at equilibrium $\mu_A = \mu_B$\cite{weber2019physics}.
+\todo{Example of how this reduces to mas action}
 
 \subsubsection{Enzymatic Activity}
-Enzymes act as catalysts in biological reactions and increase the rate of a reaction. This can be achieved by the presence of an active site that allows the reaction to occur with a lower activation energy, however here we model a fuel driven reaction that occurs only in the presence of this \textit{enzyme} component. The reaction that now occurs is
+Enzymes act as catalysts in biological reactions and increase the rate of a reaction. This can be achieved by the presence of an active site that allows the reaction to occur or via some alternative reaction route    fuel driven reaction that occurs only in the presence of this \textit{enzyme} component. The reaction that now occurs is
 \begin{equation}
-    \text{Fuel} + A \rightarrow \text{Waste} + B
+    \text{Enzyme + Fuel} + A \leftrightharpoons \text{Enzyme + Waste} + B
 \end{equation}
-where the system is in contact with a Fuel and Waste reservoir that maintains constant chemical potentials, $\mu_{Fuel}$ and $\mu_{Waste}$ and we define $\Delta\mu \equiv \mu_{Fuel}-\mu_{Waste}$ which is also constant. Using equation (\ref{db_constr}) the rate of $A \rightarrow B$ of this reaction in the presence of the enzyme can be written as
+where the system is in contact with a Fuel and Waste reservoir that maintains constant chemical potentials, $\mu_{Fuel}$ and $\mu_{Waste}$ and define $\Delta\mu \equiv \mu_{Fuel}-\mu_{Waste}$ which is also constant. Using equation (\ref{db_constr}) the rate of $A \rightarrow B$ of this reaction in the presence of the enzyme can be written as
 \begin{equation}
-    r_{A \rightarrow B,E} - r_{B \rightarrow A,E} = K'\phi_E\Bigg(\exp\bigg(\frac{\mu_A - \mu_B + \Delta\mu}{k_B T}\bigg)-1\Bigg)
-    \label{enz_rates}
+    r_{A \rightarrow B,E} - r_{B \rightarrow A,E} = K'\rho_\textrm{E}\Bigg(\exp\bigg(\frac{\mu_A - \mu_B + \Delta\mu}{k_B T}\bigg)-1\Bigg)
+    \label{eq:enz_rates}
 \end{equation}
-where the reaction rate is proportional to the volume fraction of the enzyme component ($\phi_E$) and as such the constants $K$ and $K'$ (in equations (\ref{react_rates}) and (\ref{enz_rates}) respectively) have different units. Often this rate is described using Michaelis–Menten kinetics, which has a more complex form \cite{murray_mathematical_1993}. However to first order in a dilute enzyme system, the rate grows linearly with the volume fraction of enzyme and so we expect this description is able to encapsulate the key behaviour.
+where the reaction rate is proportional to the local concentration of the enzyme component, $\rho_\textrm{E}$ and $K'$ is the modified rate constant. Reaction kinetics of enzymes are often described using Michaelis–Menten kinetics where $r_{A\rightarrow B}\sim\rho_\textrm{E}\rho_\textrm{A}/(K_{M}+\rho_\textrm{A})$ where $K_M$ is the Michaelis constant and $\rho_\textrm{A}$ is the concentration of the substrate, A\cite{murray_mathematical_1993}. In both  descriptions of the kinetics, the rate increases linearly with $\rho_\textrm{E}$ however, equation (\ref{eq:enz_rates}) will additionally capture the effect of interactions on the rate of conversion when compared to the Michalis-Menten rate.
 
-\subsection{\label{sec:min_mix}Minimal Active Mixture}
+\section{Minimal Model of an Active Mixture}
 
-The most simple model that will encapsulate all of these effects requires at least two components for a chemical reaction to occur, e.g. $S \rightleftharpoons P$ (substrate to product) and a third enzyme component (E), that permits the driven, catalytic reaction described in equation (\ref{enz_rates}). The system is therefore described by three volume fractions; $\phi_S$, $\phi_P$ and $\phi_E$. We study incompressible mixtures and so $\phi_S+\phi_P+\phi_E=1$ (giving $\alpha=1-\phi_E$) and this also requires the volume of the substrate and product be the same, $v_S=v_P$. In real catalytic systems, the enzyme is often larger than the substrate and product ad so we expect $v_E > v_S, v_P$\cite{berg_biochemistry_2002}. This increased size is also expected to result in increased damping and the enzyme moving slower through a fluid in response to a potential.
+The most simple model that will encapsulate all of these effects requires at least two components for a chemical reaction to occur, e.g. $S \rightleftharpoons P$ (substrate to product) and a third enzyme component (E), that permits the driven, catalytic reaction described in equation (\ref{eq:enz_rates}). The system is therefore parameterised by three volume fractions; $\phis$, $\phip$ and $\phie$. The mixture is incompressible and so $\phis+\phip+\phie=1$ everywhere in space and the volume of the substrate and product components are equal, $\vs = \vp$. In living systems, enzymes have much more complex structures than reactans and so we expect the size of this component to be much larger $v_E > v_S, v_P$\cite{berg_biochemistry_2002}. This increased size is also expected to result in increased viscous drag and reduced mobility for an enzyme compared to the other components.
 
-In this three component model, all components evolve in response to the Model B dynamics via the mobilities and gradients in chemical potential. Additionally, the substrate and product evolve as a consequence of reactions. This gives
+In this minimal three component model, the distribution of all components evolve in response to gradients in chemical potentials, given by the Model B dynamics, equations (\ref{eq:continuityModB}) and (\ref{eq:fluxModB}). additionally, the substrate and product undergo non-conserved dynamics
+\begin{equation}
+    \begin{split}
+    S \leftrightharpoons P
+    &&
+    \text{Enzyme + Fuel} + S \leftrightharpoons \text{Enzyme + Waste} + P
+    \end{split}
+\end{equation}
+which we label the spontaneous and catalysed reactions respectively. 
 \begin{align}
     \dot{\phi}_E &= \nabla \cdot \big(M_{EE}\nabla\mu_E + M_{ES}\nabla\mu_S + M_{EP}\nabla\mu_P) \label{evoE}\\
     \dot{\phi}_S &= \nabla \cdot \big(M_{SE}\nabla\mu_E + M_{SS}\nabla\mu_S + M_{SP}\nabla\mu_P) - R \label{evoS}\\
@@ -172,10 +213,6 @@ where the contribution from chemical reactions is described by $R = r_{spo} + r_
 \end{align}
 where the chemical potential given in equation (\ref{chempots}) is used and $\Delta e = e_S - e_P$. The rate constants here have been scaled to better disentangle the effects of the various parameters; $k_{spo} = K_{spo}/\phi_P$ and $k_{cat} = K_{cat}e^{-(\Delta e + \Delta \mu)}/\phi_P$.
 
-\section{Choices for Mobilities}
-
-
-\subsection{Mobilities for E, S, P}
 As an example we consider the three component (E, S, P), minimal active mixture. Due to the incompressibility condition, we have $v_S=v_P$ and so we can write the mobility matrix as
 \begin{equation}
 M = 
@@ -194,8 +231,50 @@ M_{PE} & M_{SP} & -(M_{PE}\frac{v_E}{v_P}+M_{SP})\\
 \end{equation}
 The free mobilities to be defined here are $M_{SE}$, $M_{PE}$, and $M_{SP}$, which in general can be a function of $\phi_E$, $\phi_S$, and $\phi_P$.
 
-\section{Stability of the Homogeneous Steady State}
-\subsection{Minimal Active Mixture}
+
+which we can find directly for a non interacting system described by equation (\ref{f}) to be
+\begin{equation}
+    \mu_i = e_i + \log\phi_i + 1 \quad \text{and so} \quad \nabla\mu_i = \frac{1}{\phi_i}\nabla\phi_i.
+    \label{chempots}
+\end{equation}
+
+
+\subsection{\label{sec:min_mix}Minimal Active Mixture (Take 2)}
+
+We consider an incompressible fluid with $N$ components described by the volume fractions $\phi_i(\bm{r},t)$, each corresponding to individual molecules of volume $v_i$ on the microscopic scale. The Flory-Huggins theory of suspensions gives the free energy of the system as $F = \int \mathrm{d}\bm{r} f_\mathrm{FH}$, with the free energy density
+\begin{math}%{equation}
+    f_\mathrm{FH}(\{\phi_i\}) = \sum_{i=1}^{N} \frac{1}{v_i} \big[\varepsilon_i\phi_i + k_\mathrm{B}T \phi_i \big(\log\phi_i-1\big) \big], 
+    \label{eq:fh_gen}
+\end{math} %{equation}
+where $\varepsilon_i$ is the enthalpy of component $i$. Importantly, we do not include any interaction terms in the free energy, in particular $f_\mathrm{FH}$ does not contain terms of the usual form $\chi_{ij}\phi_i \phi_j$. This implies that phase separation in this system would be impossible at equilibrium. We denote $\beta \equiv (k_\mathrm{B}T)^{-1}$. Each $\phi_i$ is governed by conserved dynamics $\dot{\phi}_i +\bm{\nabla}\cdot\bm{J}_i=0$ driven by thermodynamic fluxes $\bm{J}_i = - \sum_{j=1}^N M_{ij}\bm{\nabla}\mu_j$, where $\mu_j=v_j\frac{\delta F}{\delta \phi_j}=\varepsilon_j+k_\mathrm{B}T \log\phi_j$ is the chemical potential of component $j$, and $M_{ij}$ is a mobility matrix \cite{groot_non-equilibrium_1984}. Incompressibility of the suspension requires $\sum_{i=1}^N\phi_i=1$, which implies (via the dynamical equations)
+that the mobilities must satisfy $\sum_i M_{ij} = 0$ \cite{kehr1989mobility}. The Onsager reciprocal relations further constrain the form of the mobilities, namely $v_j M_{ij} = v_i M_{ji}$ \cite{grootNonequilibriumThermodynamics1984}. These constraints mean that a system of $N$ components has $N(N-1)/2$ free mobilities. In the following, we assume the common form of $M_{ij} = -\beta D_{ij}\phi_i\phi_j$ for $i \neq j$, where the constraints just described imply $M_{jj}= - \sum_{i\neq j} M_{ij}$ and $v_j D_{ij} = v_i D_{ji}$ \cite{KRAMER1984473,kehr1989mobility,mao2020designing,bo2021}. We note that the transport coefficients $D_{ij}$ determine the rate at which the components respond to local effective concentration gradients and exchange positions, and as such are inherently related to the phenomena of diffusiophoresis, cross-diffusion and Maxwell-Stefan diffusion \cite{suppmat}.
+
+We make the model active by allowing non-equilibrium (fuelled) conversion between two components, substrate (S) and product (P), catalyzed by an enzyme (E). This can be described by the reaction E+S+F $\rightleftharpoons$ E+P+W, where F and W represent fuel and waste molecules, respectively. We do not model the dynamics of the fuel and waste here, but assume that the system is in contact with a reservoir that maintains constant chemical potentials, $\muf$ and $\muw$, and define $\Delta\mu \equiv \muf-\muw$. Alternatively, $\Delta \mu$ could represent the energy transferred by a photon in a light-activated catalytic reaction. We further allow for spontaneous conversion between S and P, corresponding to the reaction S $\rightleftharpoons$ P. Note that incompressibility implies $\vp = \vs$. Using the definition $\Delta \varepsilon \equiv \varepsilon_\mathrm{s}-\varepsilon_\mathrm{p}$, we can write the net rate of the spontaneous reaction as
+\begin{equation}
+    \rspo = \rspo^{\mathrm{S}\to\mathrm{P}} - \rspo^{\mathrm{P}\to\mathrm{S}} = \kspo[e^{\beta \Delta \varepsilon}\phis - \phip],
+\end{equation}
+which entails detailed balance with $\rspo^{\mathrm{S}\to\mathrm{P}}/\rspo^{\mathrm{P}\to\mathrm{S}} =\mathrm{exp}[\beta (\mus-\mup)]$. The catalyzed reaction rate will have a similar functional form with an additional dependence on $\phie$, namely 
+\begin{equation}
+    \rcat = \rcat^{\mathrm{S}\to\mathrm{P}} - \rcat^{\mathrm{P}\to\mathrm{S}} = \kcat\phie[\phis-\phip e^{-\beta(\Delta \varepsilon+ \Delta\mu)}],
+    \label{r_cat}
+\end{equation}
+which also entails detailed balance with $\rcat^{\mathrm{S}\to\mathrm{P}}/\rcat^{\mathrm{P}\to\mathrm{S}}=\mathrm{exp}[\beta (\mus-\mup+\Delta\mu)]$. We will typically take $\Delta \varepsilon<0$ and $\Delta \varepsilon + \Delta \mu>0$, so that the spontaneous and catalyzed reactions run preferentially in the P$\to$S and S$\to$P directions, respectively; see Fig.~\ref{fig:cartoon-schematic}. Combining the conserved dynamics with the reaction terms and defining $R\equiv\rspo+\rcat$ results in the evolution equations for the three-component system
+\begin{align}
+    \dot{\phie} &= \bm{\nabla} \cdot \big(\Mee\bm{\nabla}\mue + \Mes\bm{\nabla}\mus + \Mep\bm{\nabla}\mup\big), \label{evoE}\\
+    \dot{\phis} &= \bm{\nabla} \cdot \big(\Mse\bm{\nabla}\mue + \Mss\bm{\nabla}\mus + \Msp\bm{\nabla}\mup\big) - R, \label{evoS}\\
+    \dot{\phip} &= \bm{\nabla} \cdot \big(\Mpe\bm{\nabla}\mue + \Mps\bm{\nabla}\mus + \Mpp\bm{\nabla}\mup\big) + R. \label{evoP}
+\end{align}
+
+This project aims to explore the role of activity in these mixtures and as such we set $\chi = 0$, $K = 0$ and ignore all other interaction effects, so that the consequences of the activity are more obvious. It is understood that reintroducing these terms, for example a non-zero $\chi$, will simply make it harder/easier for these active effects to drive phase separation. This results in the free energy density
+\begin{equation}
+    f = \sum_{i=1}^{N}\frac{1}{v_i}\Bigg[e_i\phi_i + \phi_i\ln\phi_i\Bigg].
+    \label{f}
+\end{equation}
+
+The choice of these free variables is often described by Kramer's form\cite{KRAMER1984473}, that the mobility is $M_{ij}$ is proportional to the volume fractions $\phi_i$ and $\phi_j$. A common choice is to assume $M_{ij} = D(\delta_{ij}\phi_i - \phi_i\phi_j)$ which imposes the necessary  symmetry and incompressibility constraints for components of equal sizes (same $v_i$ for all components). The prefactor diffusion constant, $D$, also indicates that the fluxes of each component are similar in response to potentials, but as discussed, we expect particles of different sizes to respond in different ways. Instead, a more general scheme is to assume that $M_{ij} = -D_{ij}\phi_i\phi_j$ for $i \neq j$ and then $M_{ii}$ is constructed such that the incompressibility condition is satisfied (equation (\ref{mobinc})).
+
+\section{Catalysis Induced Phase Separation}
+\subsection{Stability of the Homogeneous Steady State}
 The minimal active mixture described by equations (\ref{evoE})-(\ref{evoP}) can be seen to have a uniform steady state solution when $R=0$. All other terms describing the evolution from gradients in the chemical potentials vanish for a homogeneous system and solving for $R=0$ yields the stationary state with
 \begin{align}
     \phi_S^* = \alpha\frac{(k_{cat}\phi_E^*-k_{spo})}{k_{cat}\phi_E^*(e^{\Delta e + \Delta\mu}+1) - k_{spo}(\text{exp} (\Delta e)+1)} \label{sstar}
@@ -311,7 +390,31 @@ In deriving the stability condition for the minimal active mixture, we note that
     \dot{\delta\phi_S} &= C'_{21}\delta\phi_E + C'_{22}\delta\phi_S = 0 \implies \delta\phi_S &= -\frac{C'_{21}}{C'_{22}}\delta\phi_E \implies \dot{\delta\phi_E} = C'_{11}\delta\phi_E  - C'_{12}\frac{C'_{21}}{C'_{22}}\delta\phi_E
 \end{equation}
 and the instability condition then becomes
+\begin{equation}As an example we consider the three component (E, S, P), minimal active mixture. Due to the incompressibility condition, we have $v_S=v_P$ and so we can write the mobility matrix as
 \begin{equation}
+M = 
+\begin{pmatrix}
+M_{EE} & M_{ES} & M_{EP}\\
+M_{SE} & M_{SS} & M_{SP}\\
+M_{PE} & M_{PS} & M_{PP}\\
+\end{pmatrix}
+=
+\begin{pmatrix}
+-(M_{SE}+M_{PE}) & M_{SE}\frac{v_E}{v_S} & M_{PE}\frac{v_E}{v_P}\\
+M_{SE} & -(M_{SE}\frac{v_E}{v_S}+M_{SP}) & M_{SP}\\
+M_{PE} & M_{SP} & -(M_{PE}\frac{v_E}{v_P}+M_{SP})\\
+\end{pmatrix}
+\label{ESP_mob}
+\end{equation}
+The free mobilities to be defined here are $M_{SE}$, $M_{PE}$, and $M_{SP}$, which in general can be a function of $\phi_E$, $\phi_S$, and $\phi_P$.
+
+
+which we can find directly for a non interacting system described by equation (\ref{f}) to be
+\begin{equation}
+    \mu_i = e_i + \log\phi_i + 1 \quad \text{and so} \quad \nabla\mu_i = \frac{1}{\phi_i}\nabla\phi_i.
+    \label{chempots}
+\end{equation}
+
     C'_{11} - C'_{12}\frac{C'_{21}}{C'_{22}} > 0.
 \end{equation}
 Looking at the form of $C'_{22}$, in the small $\textbf{q}$ limit, $C'_{22}=-(R_S+R_P) < 0 $, which gives
@@ -363,6 +466,19 @@ The determinant of $C_W'$ has many terms and even when truncated to order $\text
 \end{equation}
 where $M'_W = \frac{v_E}{v_P}M_{WE}^*+M_{WS}^*+M_{WP}^* < 0$. Taking $M_{WE} \rightarrow 0$ results in the same stability condition for the dry system with no solvent. Caution must be taken here though, since if we take Kramer's choice for the mobilities then as $\phi_W \rightarrow 0$ the mobilities will no longer be of the same size. If we view the solvent as having even faster dynamics than the substrate and product then this may still be a valid approximation (since $D_{Wi} \gg D_{Si},D_{Pi}$), however care should be taken here and this stability condition should be further investigated.
 
+\subsection{Effective free energy and binodal}
+
+In the macroscopic limit, we expect the substrate-product equilibrium in the bulk of each phase to be governed by the reaction terms that act locally, rather than by spatial diffusion. This implies that the substrate and product concentrations are enslaved to the enzyme concentration by $\phis \approx \phis^*(\phie)$ and $\phip \approx \phip^*(\phie)$, with the functions defined in (\ref{sstar}). Substituting these expressions into (\ref{evoE}), we can recast the dynamics of the enzyme as $\dot{\phie}\approx \bm{\nabla} \cdot (\Mee\bm{\nabla}\mu_\mathrm{eff})$ with an effective chemical potential for the enzyme
+\begin{equation}
+    \frac{\mu_\mathrm{eff}(\phie)}{k_{\rm B} T} =  \log \phie - \frac{\ve}{\vs} \log[\Dse \phis^* (\phie) + \Dpe \phip^*(\phie)].
+\end{equation}
+We can also identify an effective free energy density $f_\mathrm{eff}(\phie)$, such that $\mu_\mathrm{eff}=\ve\frac{\mathrm{d} f_\mathrm{eff}}{\mathrm{d} \phie}$, which can be explicitly calculated by direct integration \cite{suppmat}. 
+By employing the common-tangent construction in unstable cases, we can identify two coexisting phases and define the binodal lines, which show good agreement with our numerical results and meet the spinodal line at a critical point; see Fig.~\ref{fig:bino_spino}(a,b).
+
+\subsection{Enzymatic Autoregulation}
+
+A biologically pertinent question is what happens to the enzymatic activity when the system phase separates. The average rate of catalysis in a region of size $L$ is given by $\bar{r}_\mathrm{cat} = \frac{1}{L}\int_0^L r_\mathrm{cat} \mathrm{d}x$ in a simple 1D case. In a homogeneous state, $r_\mathrm{cat}$ will be constant throughout the system and, using Eq. (\ref{r_cat}), will go as $\bar{r}_\mathrm{cat}^{\mathrm(h)}\sim\phie(1-\phie)$ which is a concave function of $\phie$. In a phase separated state, $\bar{r}_\mathrm{cat}$ is a weighted average of the catalytic rates in each phase, with the weights determined by the lever rule. Due to the concavity of $\bar{r}_\mathrm{cat}^{\mathrm(h)}$, we find that the catalytic rate in the phase separated state is always smaller than in the homogeneous state; see Fig.~\ref{fig:activity}(a). We observe a similar behaviour when we vary a control parameter such as $\Delta\mu$, which is controlled by the concentration of the fuel molecules in an experiment; see Fig.~\ref{fig:activity}(b). In the homogeneous phase, $\bar{r}_\mathrm{cat}$ initially rises and then saturates with increasing $\Delta\mu$. The phase separation reduces $\bar{r}_\mathrm{cat}$ in the whole system and leads to saturation at a lower activity. Through this mechanism, CIPS can act to autoregulate the enzymatic activity of the mixture: once the activity reaches a threshold, the system phase separates and gives rise to a reduced overall catalytic rate. A similar saturation effect is seen when other system parameters, such as $\kcat$, are varied causing the system to phase separate.
+
 \section{Numerical and Long Time Behaviour}
 The instability condition for the dry system equation (\ref{vol_ins}) can be satisfied under specific parameter choices. Often, setting $\Delta e$ to be very negative and $\Delta \mu + \Delta e$ to be very positive resulted in an unstable system. This setup corresponds to mainly product near the enzyme and mainly substrate away from the enzyme which is the system with the largest effect from the enzyme. This makes sense since the system is unstable due to the enzyme activity so the choice of parameters which maximises this effect is likely to aid the instability. The system is also particularly unstable for large values of $\alpha$ (substrate + product) which further supports the idea that the instability is driven by the substrate and product volume fractions being able to change significantly.
 
@@ -393,7 +509,30 @@ Another extension to this model would be to consider more complex reaction netwo
 
 Here, we considered only a noise free system with deterministic governing equations. The introduction of noise can often lead to additional behaviour, for example this might sustain multiple dense-dilute regions in the system. To add these terms back in, care must be taken to ensure the appropriate mobility symmetries and incompressibility conditions are respect. For example, simply adding in a noise term to $\textbf{J}_i$ as done in equation (\ref{modB2}) would break this and so a suggested scheme would be to introduce a term with the necessary mobility prefactors, for example  adding in a $\sum_i M_{ij}\zeta_j$ to the $i^{\text{th}}$ current, where $\zeta_j$ is a noise term.
 
-\section{Outlook}
+\section{Discussion and Outlook}
+
+Using a thermodynamically-consistent description of a multicomponent fluid based on linear response theory constructed from a Flory-Huggins free energy, we have identified a new, purely non-equilibrium mechanism for phase separation as a consequence of the catalytic, fuelled conversion between two components (substrate and product) by a third component (enzyme). Besides the catalytic activity, a necessary ingredient for catalysis-induced phase separation (CIPS) is an asymmetry in the off-diagonal response coefficients (mobilities) that couple enzyme-substrate and enzyme-product thermodynamic forces and fluxes in the non-equilibrium conserved dynamics. Using a mapping of the three-component system to a single-component system with an effective free energy, equilibrium-like features of CIPS such as binodal lines were obtained.
+
+
+We argue that the substrate-vs-product mobility asymmetry required for CIPS to operate can plausibly exist in realistic systems. For a typical biological catalytic process, we expect both the spontaneous and catalyzed reactions to be strongly driven, and the enzyme protein to be much larger than the small molecular substrate and product. In this biologically realistic limit, we find \cite{suppmat} that CIPS occurs at low enzyme concentrations whenever ${(\Dpe-\Dse)}/{\Dse} > {\kspo}/{\kcat}$. Given that the kinetics of catalyzed reactions are generally much faster than those of spontaneous ones (reduced energy barrier, with $\kcat\gg\kspo$), this implies that the threshold mobility asymmetry required for CIPS can become vanishingly small. While measurements of the off-diagonal Onsager mobilities for biologically relevant enzyme-substrate-product systems do not exist at present to the best of our knowledge, measurements of the functionally equivalent (see \cite{suppmat}) Maxwell-Stefan diffusivities of various multicomponent mixtures suggest that even small changes in molecular structure (e.g.~shape, polarity, etc.) of the mixture components can result in substantial changes to the mobilities \cite{taylor1993multicomponent,guevara2016mutual,guevara2018interplay,ramm2021diffusiophoretic,vanag2009cross}.
+
+
+
+
+The mechanism behind CIPS is reminiscent of mechanisms for chemotactic or phoretic aggregation previously described in the literature in the context of interacting microorganisms or catalytically-active colloids \cite{saha2014clusters,golestanian2019phoretic,agudo-canalejoActivePhaseSeparation2019,keller1970initiation}. However, these studies were based on microscopic descriptions of the chemotactic or phoretic response, typically valid only under dilute conditions. We expect that such microscopic descriptions and the thermodynamic-phenomenological description presented here are two sides of the same coin, the former being applicable arbitrarily far from equilibrium in dilute conditions, the latter near equilibrium at arbitrary densities.
+Indeed, a connection can be formally established between the off-diagonal Onsager mobilities and phoretic mobilities \cite{golestanian2019phoretic,anderson1989colloid} or, equivalently, the Fickian cross-diffusion coefficients \cite{vanag2009cross} (see \cite{suppmat} for details). The existing experimental observations \cite{agudo2018enhanced,zhang2021chemically} of unequal response of enzymes to gradients of substrate and product thus further corroborate the assertion that an asymmetry may generically exist between the enzyme-substrate and enzyme-product Onsager mobilities.
+
+
+
+
+
+When the enzymatic activity in the homogeneous system is increased beyond a critical threshold, for example via external factors such as the availability of fuel molecules, the system phase separates, causing the overall enzymatic activity of the system to suddenly decrease and then plateau.
+In multi-step metabolic pathways, the production of intermediate metabolites is known to regulate other reactions in the networks and thus act as a feedback mechanism that inhibits overall metabolic activity \cite{o2012dynamic,alam2017self}. CIPS provides a novel mechanism for this complex control of metabolism which, somewhat uniquely, autoregulates a single-step catalytic reaction and provides a simpler mechanism, potentially more amenable to fine-tuned synthetic control.
+It remains to be seen how CIPS affects catalytic activity in multi-step metabolic reactions involving several distinct enzymes. We speculate that, in a system with several enzyme components, CIPS may allow for colocalization of distinct enzymes within the same aggregate, allowing for substrate channelling as in cellular metabolons \cite{poshyvailoDoesMetaboliteChanneling2017,sweetloveRoleDynamicEnzyme2018}. Indeed, we previously showed that this behaviour is possible in mixtures of phoretic active colloids \cite{agudo-canalejoActivePhaseSeparation2019}.
+
+Owing to its nonequilibrium nature, CIPS results in phase separated states with non-vanishing fluxes, and is distinct from equilibrium mechanisms for phase separation. The latter rely on the presence of interaction terms (e.g.~$\chi_{ij}\phi_i\phi_j$ and $\kappa_{ij}\bm{\nabla} \phi_i \cdot \bm{\nabla} \phi_j$) in the free energy density $f_\mathrm{FH}$, which may be of enthalpic (temperature-independent) or entropic (temperature-dependent) origin. In particular, despite also requiring a size difference between components, CIPS is distinct from the entropic phase separation induced by depletion effects that is observed in binary hard-core mixtures \cite{frenkel1992phase}, which results in equilibrium phase separated states with vanishing fluxes.
+Future work may explore the competition or cooperation between equilibrium interactions and non-equilibrium catalytic effective interactions in phase separation.
+In particular, we note that we have focused here on effective interactions that are attractive, i.e.~those with $(1-e^{-\beta \Delta \mu})(\Dpe-\Dse)>0$ so that the right hand side of (\ref{eq:bi_stab}) is positive. One may also consider repulsive effective interactions, with $(1-e^{-\beta \Delta \mu})(\Dpe-\Dse)<0$. In this case, we expect that an enzyme-rich condensate held together by equilibrium interactions may be {\it dissolved} by sufficiently strong non-equilibrium catalytic activity. This further highlights how the mechanism we have uncovered goes well beyond the prototypical example presented here, and may prove an important player in the description of phase separation in out-of-equilibrium systems.
 
 -Add interaction terms
 -Couple to elastic terms
