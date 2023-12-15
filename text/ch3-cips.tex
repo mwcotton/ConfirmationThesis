@@ -329,6 +329,13 @@ where we consider perturbations of the form $\delta\phi_i = |\delta\phi_i|e^{i\t
 \end{equation}
 where $\widetilde{M}$ is known to be positive semi-definite from Onsager reciprocal relations and we have defined $\hat{v} = \text{diag}(v_1, v_2, ...v_N)$ and $\hat{G} = \text{diag}(\phi_1^{-1}, ..., \phi_N^{-1})$. This system is not unstable if and only if all of the eigenvalues of the matrix $\hat{v}\widetilde{M}\hat{G}$ are non-negative, which is equivalent to $\textbf{x}^T\hat{v}\widetilde{M}\hat{G}\textbf{x} \geq 0$ and $\textbf{x}^T\hat{G}\widetilde{M}\hat{v}\textbf{x} \geq 0$ since $\hat{G}$, $\widetilde{M}$, and $\hat{v}$ are symmetric. Summing these conditions gives $\textbf{x}^T(\hat{G}+\hat{v})\widetilde{M}(\hat{G}+\hat{v})\textbf{x} \geq 0$ where we note that $(\hat{G}+\hat{v})$ is a diagonal matrix with positive, non-zero entries along the diagonal. Since $\widetilde{M}$ is positive semidefinite, the product will also be positive semi-definite and so the system is linearly stable to all perturbations around this uniform steady state.
 
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{figures/
+    \caption{Caption}
+    \label{fig:phase_sep_scheme}
+\end{figure}
+
 \subsection{Fast Dynamics}
 In deriving the stability condition for the minimal active mixture, we note that the eigenvalues of a $2\times2$ matrix can be given in terms of its trace, $T$ and determinant, $D$, as $\lambda_{\pm} = \frac{1}{2}(T \pm \sqrt{T+4D})$. Alternatively we can make the assumption of fast substrate and product dynamics in comparison to the enzyme dynamics. Since the enzymes are expected to be much larger than the product and substrate, we expect that they may also move much slower and that the product and substrate equilibrate much more quickly. This suggest we can write $\dot{\delta\phi_S}=0$ and thus we find a relationship between  $\delta\phi_S$ and $\delta\phi_E$. This gives 
 \begin{equation}
