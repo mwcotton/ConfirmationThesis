@@ -13,9 +13,9 @@
 
 \section{Introduction}
 
-Aggregation and compartmentalisation within the cellular environment has been observed in a variety of contexts\cite{weber_drops_2021}. Droplet-like compartments can form reactors for certain cellular processes\cite{nott_phase_2015} or buffer noise in the cellular environment\cite{klosin_phase_2020} and aggregation of the $\alpha$-synuclein protein has strong links to the development of Parkinson's Disease\cite{tong_loss_2010}. Understanding the physical processes surrounding this phase separation and aggregation is nessecary to develop techniques to prevent or encourage this formation and may also identify further downstream consequences and effects.
+Lipid mixtures can show phase coexistence, even with as little as two phospholipids and a cholesterol component \cite{feigenson_phase_2009}. Model cell membranes, made of these mixtures, result in regions of a liquid ordered and liquid disordered phase,` or a gel phase, depending on the lipid composition. Again, depending on the specific lipid properties the resulting domains can either form macroscopic or nanoscopic domains of each phase. The different phases also exhibit a conformational change in the hydrophobic chains and the neighbouring lipid tails tend to be in the same state. This is a key cooperative effect in causing the phase transition and theoretical descriptions of the equilibrium distributions of the lipids can explain the phase behaviour \cite{wolff_thermodynamic_2011}. In these model systems, the amount of lipid is conserved, however in vivo, local lipid composition actually does change due to membrane recycling and as a result of the activity of enzymes which catalyse lipid synthesis and breakdown.
 
-A variety of both equilibrium and non-equilibrium mechanisms have been studied that can cause phase separation\cite{li_non-equilibrium_2020,weber_drops_2021}. Recently, the role chemical activity between the constituent components of a system have been explored and a rich phenomena beyond simple phase separation or aggregation can be observed \cite{agudo-canalejo_active_2019}. A potential limitation of these models may be their relevance to the exact values of system parameters which may not be found in the natural world. Conversely, enzymatic activity is ubiquitous and arguably necessary in living systems and an interesting question is whether this abundant activity can be a mechanism to cause such phase separation and aggregation.
+Theoretical models describing the physics of of liquid-liquid phase separation have developed significantly in recent years, partly driven by the observation of membraneless organelles in vivo \cite{shin_liquid_2017}. A key development in the field has been to add non-equilibrium effects into descriptions of phase transitions including, actively propelled particles \cite{cates_motility-induced_2015}, phoretic transport effects \cite{agudo-canalejo_active_2019} and changes in chemical composition \cite{weber_drops_2021, li_non-equilibrium_2020}. This chapter brings together ideas from non-equilibrium phase transitions and develops a minimal model to describe an active mixture containing an enzyme component.
 
 \section{Equilibrium Phase Separation}
 
@@ -201,7 +201,7 @@ where $\varepsilon_i$ is the enthalpy of component $i$. Importantly, we do not i
     \mu_i = e_i + \log\phi_i + 1 \quad \text{and so} \quad \nabla\mu_i = \frac{1}{\phi_i}\nabla\phi_i
     \label{eq:chempot}
 \end{equation}
-which drive the conserved dynamics of Model B. Fo the mobilities we assume the common form where $M_{ij} = -\beta D_{ij}\phi_i\phi_j$ for $i \neq j$ and $\beta \equiv (k_\mathrm{B}T)^{-1}$. The mobility constraints imply $M_{jj}= - \sum_{i\neq j} M_{ij}$ and $v_j D_{ij} = v_i D_{ji}$ \cite{KRAMER1984473, kehr_mobility_1989, mao_designing_2020, bo_stochastic_2021}. The transport coefficients $D_{ij}$ determine the rate at which the components respond to local effective concentration gradients and exchange positions, and as such are inherently related to the phenomena of diffusiophoresis, cross-diffusion and Maxwell-Stefan diffusion \cite{suppmat}.
+which drive the conserved dynamics of Model B. For the mobilities we assume the common form where $M_{ij} = -\beta D_{ij}\phi_i\phi_j$ for $i \neq j$ and $\beta \equiv (k_\mathrm{B}T)^{-1}$. The mobility constraints imply $M_{jj}= - \sum_{i\neq j} M_{ij}$ and $v_j D_{ij} = v_i D_{ji}$ \cite{KRAMER1984473, kehr_mobility_1989, mao_designing_2020, bo_stochastic_2021}. The transport coefficients $D_{ij}$ determine the rate at which the components respond to local effective concentration gradients and exchange positions, and as such are inherently related to the phenomena of diffusiophoresis, cross-diffusion and Maxwell-Stefan diffusion \cite{suppmat}.
 
 We make the model active by allowing non-equilibrium (fuelled) conversion between two components, substrate (S) and product (P), catalyzed by an enzyme (E). This can be described by the reaction E+S+F $\rightleftharpoons$ E+P+W, where F and W represent fuel and waste molecules, respectively. We do not model the dynamics of the fuel and waste here, but assume that the system is in contact with a reservoir that maintains constant chemical potentials, $\muf$ and $\muw$, and define $\Delta\mu \equiv \muf-\muw$. The catalysed reaction converts substrate to product with rate $\rcat$ and we also model the spontaneous reaction (does not require enzyme) which converts substrate to product at rate $\rspo$ (note that these contributions might be negative as this flux is always expressed in the direction $S \rightarrow P$). Evaluating equations (\ref{eq:sponrate}) and (\ref{eq:enzrate}) with the chemical potential from equation (\ref{eq:chempot}) gives
 \begin{align}
@@ -213,219 +213,205 @@ where $\Delta e = e_S - e_P$. The rate constants here have been scaled to better
 
 Combining the conserved and non-conserved dynamics and defining $R\equiv\rspo+\rcat$ results in the evolution equations for the three-component system
 \begin{align}
-    \dot{\phie} &= \bm{\nabla} \cdot \big(\Mee\bm{\nabla}\mue + \Mes\bm{\nabla}\mus + \Mep\bm{\nabla}\mup\big), \label{evoE}\\
-    \dot{\phis} &= \bm{\nabla} \cdot \big(\Mse\bm{\nabla}\mue + \Mss\bm{\nabla}\mus + \Msp\bm{\nabla}\mup\big) - R, \label{evoS}\\
-    \dot{\phip} &= \bm{\nabla} \cdot \big(\Mpe\bm{\nabla}\mue + \Mps\bm{\nabla}\mus + \Mpp\bm{\nabla}\mup\big) + R. \label{evoP}
+    \dot{\phie} &= \bm{\nabla} \cdot \big(\Mee\bm{\nabla}\mue + \Mes\bm{\nabla}\mus + \Mep\bm{\nabla}\mup\big), \label{eq:evoE}\\
+    \dot{\phis} &= \bm{\nabla} \cdot \big(\Mse\bm{\nabla}\mue + \Mss\bm{\nabla}\mus + \Msp\bm{\nabla}\mup\big) - R, \label{eq:evoS}\\
+    \dot{\phip} &= \bm{\nabla} \cdot \big(\Mpe\bm{\nabla}\mue + \Mps\bm{\nabla}\mus + \Mpp\bm{\nabla}\mup\big) + R. \label{eq:evoP}
 \end{align}
 
 \section{Catalysis Induced Phase Separation}
 \subsection{Stability of the Homogeneous Steady State}
-The minimal active mixture described by equations (\ref{evoE})-(\ref{evoP}) can be seen to have a uniform steady state solution when $R=0$. All other terms describing the evolution from gradients in the chemical potentials vanish for a homogeneous system and solving for $R=0$ yields the stationary state with
+The minimal model in equations (\ref{eq:evoE})--(\ref{eq:evoP}) have a homogeneous steady-state solution when $R=0$. Since the enzyme component is conserved in the system we can define $\phie^*$ as the average enzyme volume fraction in the initialisation of a system, such that the total volume of enzyme component in the system is $V \times \phie^*$. For any $\phie^*$, solving $R=0$ gives steady state volume fraction for the substrate and product components
 \begin{align}
-    \phi_S^* = \alpha\frac{(k_{cat}\phi_E^*-k_{spo})}{k_{cat}\phi_E^*(e^{\Delta e + \Delta\mu}+1) - k_{spo}(\text{exp} (\Delta e)+1)} \label{sstar}
+    \phis^* &= \phisp^*\frac{\kspo + \kcat\phie^*e^{-\beta(\Delta \varepsilon + \Delta\mu)}}{\kspo + \kcat\phie^*e^{-\beta (\Delta \varepsilon + \Delta\mu)}+\kspo e^{\beta \Delta \varepsilon} + \kcat\phie^*}
+    \label{sstar}
     \\
-    \phi_P^* = \alpha\frac{(k_{cat}\phi_E^*\text{exp} (\Delta e + \Delta\mu) - k_{spo}(\text{exp} (\Delta e))}{k_{cat}\phi_E^*(\text{exp} (\Delta e + \Delta\mu)+1) - k_{spo}\text{exp} (\Delta e+1)} 
+    \phip^* &= \phisp^*\frac{\kspo e^{\beta \Delta \varepsilon} + \kcat\phie^*}{\kspo + \kcat\phie^*e^{-\beta (\Delta \varepsilon + \Delta\mu)}+\kspo e^{\beta \Delta \varepsilon} + \kcat\phie^*}
     \label{pstar}
 \end{align}
-where the star indicates that these quantities are at $R=0$ and $\alpha$ is the total amount of product and substrate in the system $\alpha = \phi_S^*+\phi_P^*$ and for the minimal mixture case, $\alpha = 1-\phi_E^*$. We consider a small perturbation from this uniform steady state $\phi_i \rightarrow \phi_i^* + \delta\phi_i$ giving $\mu_i \rightarrow \mu_i^* + \delta\mu_i$. Equation (\ref{chempots}) gives $\delta\mu = \frac{\delta\phi_i}{\phi_i^*}$ and so $\nabla\mu_i = \frac{1}{\phi_i^*}\nabla\delta\phi_i$ (both to first order) and also define $M^*_{ij} = M_{ij}(\phi_E^*, \phi_S^*, \phi_P^*)$. Finally, expand $R$ around the $R=0$ solution, to give $\delta R = R_E\delta\phi_E+R_S\delta\phi_S-R_P\delta\phi_P$ (where the signs are chosen such that all $R_i \geq 0$).
+with $\phisp^*=1-\phie^*$, which is the average volume fraction of the substrate and product combined $(\phisp^*=\phis^*+\phip^*)$ and is also conserved.
+
+\todo{start of supmat}
+
+We can study the linear stability of this homogeneous steady-state by considering a small perturbation $\phi_i(\bm{r},t) = \phi_i^* + \delta\phi_i(\bm{r}, t)$, giving $\mu_i(\bm{r},t) = \mu_i^* + \delta\mu_i(\bm{r},t)$ and define mobilities at the homogeneous steady state $M^*_{ij} = M_{ij}(\phie^*, \phis^*, \phip^*)$. To first order in the perturbation $\delta\mu(\bm{r},t) = \frac{\delta\phi_i(\bm{r},t)}{\phi_i^*}$ and thus $\bm{\nabla}\mu_i(\bm{r},t) = \frac{1}{\phi_i^*}\bm{\nabla}\delta\phi_i(\bm{r},t)$. Additionally, define how the reaction rate changes under a small change in $\phi_i$ to be $R_i$, such that $R = \Rs \delta \phis - \Rp \delta \phip + \Ree \delta \phie$ where the sign changes for the product component to keep $\Rp > 0$. This gives
 \begin{align}
-    R_E &= k_{cat}[\phi_S^*-\phi_P^*e^{(\Delta e + \Delta \mu)}] = \alpha\frac{k_{cat}k_{spo}(1-e^{\Delta \mu})}{k_{spo}+k_{cat}\phi_E^*e^{-(\Delta e + \Delta \mu)}+k_{spo}e^{\Delta e}+k_{cat}\phi_E^*}\\
-    R_S &= k_{spo}e^{\Delta e} + k_{cat}\phi_E^*\\
-    R_P &= k_{spo} + k_{cat}\phi_E^*e^{-(\Delta e+\Delta \mu)}
+    \Rs &\equiv \kspo e^{\beta \Delta \varepsilon} + \kcat\phie^* \\
+    \Rp &\equiv \kspo + \kcat\phie^*e^{-\beta (\Delta \varepsilon+\Delta \mu)} \\
+    \Ree &\equiv k_\mathrm{cat} [ \phis^* - \phip^* e^{-\beta (\Delta \varepsilon + \Delta \mu)}] = \phi^*_\mathrm{s+p} \frac{k_\mathrm{cat} k_\mathrm{spo} (1-e^{-\beta \Delta \mu})}{k_\mathrm{spo} + k_\mathrm{cat} \phie^* e^{-\beta (\Delta \varepsilon + \Delta \mu)} + k_\mathrm{spo} e^{\beta \Delta \varepsilon} + k_\mathrm{cat} \phie^* }.
 \end{align}
-
-We consider perturbations from this steady state of the form $\delta\phi_i = |\delta\phi_i| e^{i\textbf{q}\cdot\textbf{r}}$ and the resulting linear response of the system can be written as
-
+The governing equations for the perturbations $\delta\phi_i (\bm{q},t) $ in Fourier space are found as follows\\
 \noindent
 \makebox[\textwidth]{\parbox{1.3\textwidth}{%
 \begin{equation}
 \begin{pmatrix}
-\dot{\delta\phi_E}\\
-\dot{\delta\phi_S}\\
-\dot{\delta\phi_P}\\
+\dot{\delta\phie}\\
+\dot{\delta\phis}\\
+\dot{\delta\phip}\\
 \end{pmatrix} =
 \underbrace{
 \begin{pmatrix}
-(M_{SE}^*+M_{PE}^*)\frac{\textbf{q}^2}{\phi_E^*} & -M_{SE}^*\frac{v_E}{v_S}\frac{\textbf{q}^2}{\phi_S^*} & -M_{PE}^*\frac{v_E}{v_P}\frac{\textbf{q}^2}{\phi_P^*}\\
--M_{SE}^*\frac{\textbf{q}^2}{\phi_E^*} - R_E & \big(M_{SP}^* + M_{SE}^*\frac{v_E}{v_S}\big)\frac{\textbf{q}^2}{\phi_S^*} - R_S & -M_{SP}^*\frac{\textbf{q}^2}{\phi_P^*} + R_P\\
--M_{PE}^*\frac{\textbf{q}^2}{\phi_E^*}  + R_E & -M_{SP}^*\frac{\textbf{q}^2}{\phi_S^*} + R_S & \big(M_{PE}^*\frac{v_E}{v_P}+M_{SP}^*\big)\frac{\textbf{q}^2}{\phi_P^*} - R_P\\
+(\Mse^*+\Mpe^*)\frac{\bm{q}^2}{\phie^*} & -\Mse^*\frac{\ve}{\vs}\frac{\bm{q}^2}{\phis^*} & -\Mpe^*\frac{\ve}{\vs}\frac{\bm{q}^2}{\phip^*}\\
+-\Mse^*\frac{\bm{q}^2}{\phie^*} - \Ree  & \big(\Msp^* + \Mse^*\frac{\ve}{\vs}\big)\frac{\bm{q}^2}{\phis^*} - \Rs  & -\Msp^*\frac{\bm{q}^2}{\phip^*} + \Rp \\
+-\Mpe^*\frac{\bm{q}^2}{\phie^*}  + \Ree  & -\Msp^*\frac{\bm{q}^2}{\phis^*} + \Rs  & \big(\Mpe^*\frac{\ve}{\vs}+\Msp^*\big)\frac{\bm{q}^2}{\phip^*} - \Rp \\
 \end{pmatrix}
-}_{C}
+}_{\cal C}
 \begin{pmatrix}
-\delta\phi_E\\
-\delta\phi_S\\
-\delta\phi_P\\
-\end{pmatrix}
+\delta\phie\\
+\delta\phis\\
+\delta\phip\\
+\end{pmatrix}.
 \end{equation}}}
-where we can explicitly see the incompressibility being imposed as the columns of $C$ sum to zero
-\begin{equation}
-    \sum_i\dot{\delta\phi_i} = \sum_{i,j}C_{ij}\delta\phi_j = \sum_{j}0\times\delta\phi_j = 0
-\end{equation}
-which allows one of the components to be eliminated. As an example, set $\delta\phi_P = -\delta\phi_E - \delta\phi_S$ and thus we can define a $2\times2$ matrix, $C'$ describing the evolution where we subtract the last column of the other two, i.e. $C'_{ij} = C_{ij} - C_{i3}$ for $i, j \in {1, 2}$, giving
+In this formulation, we can explicitly see the incompressibility being imposed as the columns of $\cal C$ sum to zero.
+We now eliminate one of the components, e.g. $\delta\phip = -\delta\phie - \delta\phis$, and define a $2\times2$ matrix, $\cal K$, describing the evolution of the remaining components. This is obtained from $\cal C$ by subtracting the last column from the other two (i.e. ${\cal K}_{ij} = {\cal C}_{ij} - {\cal C}_{i3}$ for $i, j \in {1, 2}$), giving
+\newline
 \noindent
 \makebox[\textwidth]{\parbox{1.3\textwidth}{%
 \begin{equation}
 \begin{pmatrix}
-\dot{\delta\phi_E}\\
-\dot{\delta\phi_S}\\
+\dot{\delta\phie}\\
+\dot{\delta\phis}\\
 \end{pmatrix} =
 \underbrace{
 \begin{pmatrix}
-(M_{SE}^*+M_{PE}^*)\frac{\textbf{q}^2}{\phi_E^*} +M_{PE}^*\frac{v_E}{v_P}\frac{\textbf{q}^2}{\phi_P^*}& -M_{SE}^*\frac{v_E}{v_S}\frac{\textbf{q}^2}{\phi_S^*} + M_{PE}^*\frac{v_E}{v_P}\frac{\textbf{q}^2}{\phi_P^*}\\
--M_{SE}^*\frac{\textbf{q}^2}{\phi_E^*} - R_E + M_{SP}^*\frac{\textbf{q}^2}{\phi_P^*} - R_P & \big(M_{SP}^* + M_{SE}^*\frac{v_E}{v_S}\big)\frac{\textbf{q}^2}{\phi_S^*} - R_S + M_{SP}^*\frac{\textbf{q}^2}{\phi_P^*} - R_P\\
+(\Mse^*+\Mpe^*)\frac{\bm{q}^2}{\phie^*} +\Mpe^*\frac{\ve}{\vs}\frac{\bm{q}^2}{\phip^*}& -\Mse^*\frac{\ve}{\vs}\frac{\bm{q}^2}{\phis^*} + \Mpe^*\frac{\ve}{\vs}\frac{\bm{q}^2}{\phip^*}\\
+-\Mse^*\frac{\bm{q}^2}{\phie^*} - \Ree  + \Msp^*\frac{\bm{q}^2}{\phip^*} - \Rp  & \big(\Msp^* + \Mse^*\frac{\ve}{\vs}\big)\frac{\bm{q}^2}{\phis^*} - \Rs  + \Msp^*\frac{\bm{q}^2}{\phip^*} - \Rp \\
 \end{pmatrix}
-}_{C'}
+}_{\cal K}
 \begin{pmatrix}
-\delta\phi_E\\
-\delta\phi_S\\
-\end{pmatrix}
+\delta\phie\\
+\delta\phis\\
+\end{pmatrix}.
 \end{equation}}}
-The eigenvalues of $C'$ determine the stability of the steady state. The system is stable if and only if all of $C'$'s eigenvalues are negative. Since $C'_{1,1}$ and $C'_{2,2}$ are always negative (from the Onsager constraints and the non-negativity of $R_i$), $\text{tr}(C') < 0$ and there is therefore one positive eigenvalue if $\det(C')<0$. The instability condition then becomes
+The eigenvalues of ${\cal K}$ determine the stability of the steady state. The system is stable if and only if all eigenvalues of ${\cal K}$ are negative. The Onsager relations and the non-negativity of $R_i$ mean ${\cal K}_{1,1}$ and ${\cal K}_{2,2}$ are always negative, so $\text{tr}({\cal K}) < 0$ and there is therefore one positive eigenvalue if $\det({\cal K})<0$. The instability condition then becomes
 \begin{equation}
 \begin{split}
-    \Bigg((M_{SE}^*+M_{PE}^*)&\frac{\textbf{q}^2}{\phi_E^*} + M_{PE}^*\frac{v_E}{v_P}\frac{\textbf{q}^2}{\phi_P^*}\Bigg)\Bigg(\big(M_{SP}^* + M_{SE}^*\frac{v_E}{v_S}\big)\frac{\textbf{q}^2}{\phi_S^*} - R_S + M_{SP}^*\frac{\textbf{q}^2}{\phi_P^*} - R_P\Bigg) \\
-    &< \Bigg(-M_{SE}^*\frac{v_E}{v_S}\frac{\textbf{q}^2}{\phi_S^*} + M_{PE}^*\frac{v_E}{v_P}\frac{\textbf{q}^2}{\phi_P^*}\Bigg)\Bigg(-M_{SE}^*\frac{\textbf{q}^2}{\phi_E^*} - R_E + M_{SP}^*\frac{\textbf{q}^2}{\phi_P^*} - R_P\Bigg)
+    \Bigg((\Mse^*+\Mpe^*)&\frac{\bm{q}^2}{\phie^*} + \Mpe^*\frac{\ve}{\vs}\frac{\bm{q}^2}{\phip^*}\Bigg)\Bigg(\big(\Msp^* + \Mse^*\frac{\ve}{\vs}\big)\frac{\bm{q}^2}{\phis^*} - \Rs  + \Msp^*\frac{\bm{q}^2}{\phip^*} - \Rp \Bigg) \\
+    &< \Bigg(-\Mse^*\frac{\ve}{\vs}\frac{\bm{q}^2}{\phis^*} + \Mpe^*\frac{\ve}{\vs}\frac{\bm{q}^2}{\phip^*}\Bigg)\Bigg(-\Mse^*\frac{\bm{q}^2}{\phie^*} - \Ree  + \Msp^*\frac{\bm{q}^2}{\phip^*} - \Rp \Bigg).
 \end{split}
 \label{hi_ord_ins}
 \end{equation}
-For very large values of $\textbf{q}$, we expect the system to be stable as in this regime the evolution is dominated by diffusive effects. When $\textbf{q} \rightarrow 0$ the system should be at the critical stability as this corresponds to a uniform change in the $\phi_i$s. As such, since this condition only depends on $\textbf{q}^2$ and $\textbf{q}^4$ the instability is satisfied if and only if it is satisfied for very small $\textbf{q}^2$. With this is mind we take equation (\ref{hi_ord_ins}) to first order in $\textbf{q}^2$ which gives
+When $\bm{q}$ is very large, we expect the system to be stable as in this regime the evolution is dominated by diffusive relaxation. For $\bm{q} = 0$, the system is at critical stability due to global conservation, as this corresponds to a uniform change in $\phi_i$. As such, since this condition only depends on $\bm{q}^2$ and $\bm{q}^4$, the instability is satisfied if and only if it is satisfied for very small $\bm{q}^2$. With this in mind we take Eq. (\ref{hi_ord_ins}) to order $\sim\bm{q}^2$ which gives
 \begin{align}
-    \frac{1}{v_E\phi_E^*}+\frac{1}{v_P(1-\phi_E^*)} < \frac{R_E}{v_P(1-\phi_E^*)}\bigg(\frac{\gamma_P}{R_S}-\frac{\gamma_S}{R_P}\bigg)
+    \frac{1}{\ve\phie^*}+\frac{1}{\vs(1-\phie^*)} < \frac{\Ree }{\vs(1-\phie^*)}\bigg(\frac{\gamma_\mathrm{p}}{\Rs }-\frac{\gamma_\mathrm{s}}{\Rp }\bigg)
     \label{eq_form_cond}
 \end{align}
 where we have defined
 \begin{equation}
-    \gamma_S \equiv \frac{M_{SE}^*}{M_{SE}^*+M_{PE}^*} \quad \text{   and    } \quad \gamma_P \equiv \frac{M_{PE}^*}{M_{SE}^*+M_{PE}^*}
+    \gamma_\mathrm{s} \equiv \frac{\Mse^*}{\Mse^*+\Mpe^*} \quad \text{   and    } \quad \gamma_\mathrm{p} \equiv \frac{\Mpe^*}{\Mse^*+\Mpe^*}.
 \end{equation}
-Remembering that $R_E \propto (e^{\Delta\mu} - 1)$ we see that for $\Delta\mu=0$, $R_E = 0$ and the instability cannot be satisfied at equilibrium. This condition can also be written to constrain the relative volumes in the system
+This condition can also be written to constrain the relative volumes in the system
 \begin{equation}
-    \frac{v_P}{v_E} < \frac{\phi_E^*}{1-\phi_E^*}\Bigg(R_E\bigg(\frac{\gamma_P}{R_S}-\frac{\gamma_S}{R_P}\bigg) - 1\Bigg)
+    \frac{\vs}{\ve} < \frac{\phie^*}{1-\phie^*}\Bigg[\Ree \bigg(\frac{\gamma_\mathrm{p}}{\Rs }-\frac{\gamma_\mathrm{s}}{\Rp }\bigg) - 1\Bigg],
     \label{vol_ins}
 \end{equation}
-We can assume a form for $M_{SE} = -D_{SE}\phi_E\phi_S$ and $M_{PE} = -D_{PE}\phi_E\phi_P$ which results in
+which shows that the instability is favoured by larger enzymes, the biologically relevant case. With the common choice of mobilities ($\Mes = -\beta \Dse\phie\phis$ and $\Mpe = -\beta \Dpe\phie\phip$) the instability becomes
 \begin{equation}
-    \frac{1}{v_E\phi_E^*}+\frac{1}{v_P(1-\phi_E^*)} < \frac{R_E}{v_P(1-\phi_E^*)}\frac{D_{PE}-D_{SE}}{D_{PE}R_S+D_{SE}R_P}
+    \frac{1}{\ve\phie^*}+\frac{1}{\vs(1-\phie^*)} < \frac{\Ree }{\vs(1-\phie^*)}\frac{\Dpe-\Dse}{\Dpe\Rs +\Dse\Rp }. \label{eq:inst}
 \end{equation}
-\begin{equation}
-\begin{split}
-\text{RHS} &= \frac{k_{cat}k_{spo}(1-e^{-\Delta\mu})}{v_P(k_{spo}+k_{cat}\phi_E^*e^{-(\Delta e+\Delta\mu)}+k_{spo}e^{\Delta e}+k_{cat}\phi_E^*)} \\ 
-& \quad \quad \times \frac{D_{PE}-D_{SE}}{D_{PE}(k_{spo}e^{\Delta e}+k_{cat}\phi_E^*)+D_{SE}(k_{spo}+k_{cat}\phi_E^*e^{-(\Delta e+\Delta\mu)})}
-\end{split}
-\end{equation}
-In calculating this condition we eliminated the product component from the system and determined the stability from considering the other two components. Alternatively, we could have eliminated either of the other components and require the same negative eigenvalues stability condition, which give the same result. A quick check for eliminating the substrate instead can be seen by noticing the expression is invariant under $S, P \rightarrow P, S$ and $R_E \rightarrow -R_E$, which is the same difference between the second and third rows of $C'$. Prior work often imposes incompressibility by eliminating one of the components and using $\phi_i = 1-\sum_{j,j\neqi}\phi_j$. This can be an effective equilibrium description, but when the approach to equilibrium and dynamics and considered, the correct choices for mobilities must also be constructed to impose the incompressibility naturally.
+In calculating this condition, we eliminated the product component from the system and determined the stability by considering the other two components. Eliminating either of the other components gives the same result.
 
-Larger $D_{PE}-D_{SE}$ makes the system more unstable. This can be understood, as $D_{PE}$ is a measure of how quickly the product component moves to regions of higher enzyme concentration. Since the enzyme allows for more product, this creates a feedback where the product moves to product faster than the substrate and this makes the system unstable. This preferential attraction must overcome the diffusive behaviour of the system to drive the instability. Equation (\ref{vol_ins}) also shows the stability depends on the ratio of $\frac{v_S}{v_E}$. The system is more unstable for much larger enzyme sizes compared to the substrate and product which is a convenient result since, as previously discussed, enzymes are often significantly larger than the substrate or products involved in the corresponding reaction. A similar size dependence can be seen in colloidal systems. Depletion forces arise from a particle of  intermediate size (between the size of the solvent and colloids) having an increased available volume to occupy when the colloids aggregate, even from simple hard sphere interactions. As a consequence there is an osmotic pressure driving this aggregation of the colloids\cite{jones2002soft}. In this system, it is less obvious how aggregation will increase the volume for the components to occupy and it is unclear how similar the effect would be to these depletion interactions. Additionally, we only have two particle sizes in this model with no intermediate size and hard sphere interactions are not modelled within the lattice framework that motivated the form of the free energy, equation (\ref{f}). The volume terms in the free energy cancel when deriving the evolution equations for the system, equations (\ref{evoE}) to (\ref{evoP}), and only appear as a consequence of the forms of the mobility, potentially suggesting another size dependent mechanism for the instability.
+Since the left hand side of (\ref{eq:inst}) is always positive, an instability is possible only if the right hand side is positive as well. The sign of the right hand side is controlled by that of $(1-e^{-\beta\Delta \mu})(\Dpe-\Dse)$, which has several implications. First, an equilibrium system with $\Delta\mu=0$ is always stable, as expected from equilibrium theory of a multicomponent mixture with no interactions. Second, for a catalytic reaction favouring product formation with $\Delta \mu>0$, an instability is possible only if $\Dpe>\Dse$. Third, if $\Dpe=\Dse$ the system is always stable. Intuitively, the instability arises from an enzyme rich region locally producing a higher concentration of product ($\Delta \mu > 0$) and creating a gradient of the product concentration. Due to the unequal response of the enzyme to gradients of substrate and product when $\Dpe>\Dse$, the enzyme will preferentiall move up the product gradient towards the enzyme rich region, resulting in effective enzyme-enzyme attractive interactions and further aggregation. Figure \todo{fig} summarises this mechanism.
 
-\subsection{Stability of a Multi-Component Non-Interacting System}
+\subsection{Numerical Simulation}
 
-Equation (\ref{eq_form_cond}) shows that for the minimal model the equilibrium system, $\Delta\mu=0$, is stable. It can also be shown that a general $N$-component incompressible fluid without chemical interactions is stable. We assume that the chemical potentials follow a non-interacting Flory-Huggins free energy (equation (\ref{chempots})) and assume Model B noise free dynamics, we find perturbations around the uniform steady state (the $*$ state) to behave as
-
-\begin{equation}
-    \dot{\delta\phi_i} = \sum_j M_{ij}^*\frac{\nabla^2\delta\phi_j}{\phi_j^*} = \sum_j\Bigg( M_{ij}^*\frac{1}{\phi_j^*}\times-\textbf{q}^2\delta\phi_j\Bigg)
-\end{equation}
-where we consider perturbations of the form $\delta\phi_i = |\delta\phi_i|e^{i\textbf{q}\cdot \textbf{r}}$. This system can be described considering the vector of perturbations $\overrightarrow{\delta\phi}=(\delta\phi_1, \delta\phi_2, ..., \delta\phi_N)^T$ to give
-\begin{equation}
-    \dot{\overrightarrow{\delta\phi}} &=-\textbf{q}^2 \underbrace{\text{diag}\big(v_1, ..., v_N\big)}_{\hat{v}}\:\widetilde{M}\: \underbrace{\text{diag}\big(\phi_1^{-1}, ..., \phi_N^{-1}\big)}_{\hat{G}}\overrightarrow{\delta\phi}
-\end{equation}
-where $\widetilde{M}$ is known to be positive semi-definite from Onsager reciprocal relations and we have defined $\hat{v} = \text{diag}(v_1, v_2, ...v_N)$ and $\hat{G} = \text{diag}(\phi_1^{-1}, ..., \phi_N^{-1})$. This system is not unstable if and only if all of the eigenvalues of the matrix $\hat{v}\widetilde{M}\hat{G}$ are non-negative, which is equivalent to $\textbf{x}^T\hat{v}\widetilde{M}\hat{G}\textbf{x} \geq 0$ and $\textbf{x}^T\hat{G}\widetilde{M}\hat{v}\textbf{x} \geq 0$ since $\hat{G}$, $\widetilde{M}$, and $\hat{v}$ are symmetric. Summing these conditions gives $\textbf{x}^T(\hat{G}+\hat{v})\widetilde{M}(\hat{G}+\hat{v})\textbf{x} \geq 0$ where we note that $(\hat{G}+\hat{v})$ is a diagonal matrix with positive, non-zero entries along the diagonal. Since $\widetilde{M}$ is positive semidefinite, the product will also be positive semi-definite and so the system is linearly stable to all perturbations around this uniform steady state.
+Numerical solution of the evolution equations (\ref{eq:evoE})--(\ref{eq:evoP}) confirms the existence of this instability. We initialize a 1D system
+with small number-conserving random variations around $\phi_i^*$. When the system is unstable, regions of high and low enzyme concentrations develop spontaneously [see Fig.~\ref{fig:bino_spino}(c)] and coarsen over time, ultimately resulting in two distinct phase-separated domains. Moreover, varying the amount of enzyme in the system only changes the relative size of the high and low concentration domains, without affecting the concentration values in the two domains, which suggests the existence of a binodal line, as in equilibrium phase separation. We observed this behavior for all parameters which we simulated ($\kcat/\kspo\approx 1 \text{--} 100$, $\ve/\vs\approx 2 \text{--} 100$, $-\Delta \varepsilon\approx 5 \text{--} 30 k_{\rm B} T$, $\Delta \mu\approx5 \text{--} 50k_{\rm B} T$,  $\Dpe/\Dse\approx1 \text{--} 100$). The observation of macroscopic phase separation, rather than pattern formation or microphase separation, is further supported by the linear stability analysis showing an instability at the largest wavelengths ($q^2 \to 0$), rather than at finite wavelengths. We also note that studies of two-component mass-conserving reaction-diffusion systems, which have significant parallels to the model studied here \cite{suppmat}, have shown that these systems exhibit uninterrupted coarsening leading to macrophase separation at long times \cite{brauns2020phase,brauns2021wavelength}.
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{figures/
+    \includegraphics[width=\textwidth]{figures/CIPSnumeric.pdf}
     \caption{Caption}
     \label{fig:phase_sep_scheme}
 \end{figure}
 
-\subsection{Fast Dynamics}
-In deriving the stability condition for the minimal active mixture, we note that the eigenvalues of a $2\times2$ matrix can be given in terms of its trace, $T$ and determinant, $D$, as $\lambda_{\pm} = \frac{1}{2}(T \pm \sqrt{T+4D})$. Alternatively we can make the assumption of fast substrate and product dynamics in comparison to the enzyme dynamics. Since the enzymes are expected to be much larger than the product and substrate, we expect that they may also move much slower and that the product and substrate equilibrate much more quickly. This suggest we can write $\dot{\delta\phi_S}=0$ and thus we find a relationship between  $\delta\phi_S$ and $\delta\phi_E$. This gives 
-\begin{equation}
-    \dot{\delta\phi_S} &= C'_{21}\delta\phi_E + C'_{22}\delta\phi_S = 0 \implies \delta\phi_S &= -\frac{C'_{21}}{C'_{22}}\delta\phi_E \implies \dot{\delta\phi_E} = C'_{11}\delta\phi_E  - C'_{12}\frac{C'_{21}}{C'_{22}}\delta\phi_E
-\end{equation}
-and the instability condition then becomes
-\begin{equation}As an example we consider the three component (E, S, P), minimal active mixture. Due to the incompressibility condition, we have $v_S=v_P$ and so we can write the mobility matrix as
-\begin{equation}
-M = 
-\begin{pmatrix}
-M_{EE} & M_{ES} & M_{EP}\\
-M_{SE} & M_{SS} & M_{SP}\\
-M_{PE} & M_{PS} & M_{PP}\\
-\end{pmatrix}
-=
-\begin{pmatrix}
--(M_{SE}+M_{PE}) & M_{SE}\frac{v_E}{v_S} & M_{PE}\frac{v_E}{v_P}\\
-M_{SE} & -(M_{SE}\frac{v_E}{v_S}+M_{SP}) & M_{SP}\\
-M_{PE} & M_{SP} & -(M_{PE}\frac{v_E}{v_P}+M_{SP})\\
-\end{pmatrix}
-\label{ESP_mob}
-\end{equation}
-The free mobilities to be defined here are $M_{SE}$, $M_{PE}$, and $M_{SP}$, which in general can be a function of $\phi_E$, $\phi_S$, and $\phi_P$.
+A quick check for eliminating the substrate instead can be seen by noticing the expression is invariant under $S, P \rightarrow P, S$ and $R_E \rightarrow -R_E$, which is the same difference between the second and third rows of $C'$. Prior work often imposes incompressibility by eliminating one of the components and using $\phi_i = 1-\sum_{j,j\neqi}\phi_j$. This can be useful when eliminating a solvent component, but in dense systems such as this three component mixture all components need to be kept on an equal footing to see the coupling between responses to gradients as a consequence of the incompressibility.
 
+\subsection{Stability of a four-component system}
 
-which we can find directly for a non interacting system described by equation (\ref{f}) to be
+An additional solvent component (e.g. cholesterol in a lipid mixture) can be added to the system similarly to the enzyme component, with conserved dynamics and no reaction terms. Following a similar procedure as for the no-solvent case, we can expand around a steady state where we now have $\phisp^* \neq 1 - \phi^*_\mathrm{E}$ but $\phiw^* = 1 - \phisp^* - \phi^*_\mathrm{E}$. We can eliminate the solvent volume fraction to give a $3\times3$ matrix describing the evolution of E, S, and P volume fractions
 \begin{equation}
-    \mu_i = e_i + \log\phi_i + 1 \quad \text{and so} \quad \nabla\mu_i = \frac{1}{\phi_i}\nabla\phi_i.
-    \label{chempots}
+    (\dot{\delta\phie}, \dot{\delta\phis}, \dot{\delta\phip})^T = {\cal K}_{\rm w}(\delta\phie, \delta\phis, \delta\phip)^T    
 \end{equation}
-
-    C'_{11} - C'_{12}\frac{C'_{21}}{C'_{22}} > 0.
-\end{equation}
-Looking at the form of $C'_{22}$, in the small $\textbf{q}$ limit, $C'_{22}=-(R_S+R_P) < 0 $, which gives
-\begin{equation}
-    C'_{11}C'_{22}&-C'_{21}C'_{12} < 0 \\
-\end{equation}
-which is that $\det[C'] < 0$ as noted before by considering the eigenvalues. We subsequently use this slow enzyme assumption when dealing with enzymes and other interacting, fast components.
-\subsection{Wet System}
-An additional solvent component (e.g. water) can be added to the system similarly to the other components, with no reaction terms. Following a similar procedure as for the dry (no solvent) case, we can expand around a steady state where we now have $\alpha \neq 1 - \phi^*_E$ but $\phi_W^* = 1 - \alpha - \phi^*_E$. We can eliminate the solvent volume fraction to give a $3\times3$ matrix describing the evolution of E, S, and P volume fractions; $(\dot{\delta\phi_E}, \dot{\delta\phi_S}, \dot{\delta\phi_P})^T = C'_W(\delta\phi_E, \delta\phi_S, \delta\phi_P)^T$ with
+with
+\newline
 \noindent
 \makebox[\textwidth]{\parbox{1.3\textwidth}{%
 \begin{equation}
-    C_W = 
+   {\cal K}_{\rm w} = 
 \begin{tiny}
 \begin{pmatrix}
-(M_{SE}^*+M_{PE}^*+M_{WE}^*)\frac{\textbf{q}^2}{\phi_E^*}+M_{WE}^*\frac{v_E}{v_W}\frac{\textbf{q}^2}{\phi_W^*} & -M_{SE}^*\frac{v_E}{v_S}\frac{\textbf{q}^2}{\phi_S^*}+M_{WE}^*\frac{v_E}{v_W}\frac{\textbf{q}^2}{\phi_W^*} & -M_{PE}^*\frac{v_E}{v_P}\frac{\textbf{q}^2}{\phi_P^*}+M_{WE}^*\frac{v_E}{v_W}\frac{\textbf{q}^2}{\phi_W^*}\\
--M_{SE}^*\frac{\textbf{q}^2}{\phi_E^*}-R_E+M_{WS}^*\frac{v_S}{v_W}\frac{\textbf{q}^2}{\phi_W^*} & (M_{SE}^*\frac{v_E}{v_S}+M_{SP}^*+M_{WS}^*)\frac{\textbf{q}^2}{\phi_S^*}-R_S +M_{WS}^*\frac{v_S}{v_W}\frac{\textbf{q}^2}{\phi_W^*}& -M_{SP}^*\frac{\textbf{q}^2}{\phi_P^*}+R_P+M_{WS}^*\frac{v_S}{v_W}\frac{\textbf{q}^2}{\phi_W^*}\\
--M_{PE}^*\frac{\textbf{q}^2}{\phi_E^*}+R_E+M_{WP}^*\frac{v_P}{v_W}\frac{\textbf{q}^2}{\phi_W^*} & -M_{SP}^*\frac{\textbf{q}^2}{\phi_S^*}+R_S+M_{WP}^*\frac{v_P}{v_W}\frac{\textbf{q}^2}{\phi_W^*} & (M_{PE}^*\frac{v_E}{v_P}+M_{SP}^*+M_{WP}^*)\frac{\textbf{q}^2}{\phi_P^*}-R_P+M_{WP}^*\frac{v_P}{v_W}\frac{\textbf{q}^2}{\phi_W^*}\\
+(\Mse^*+\Mpe^*+\Mwe^*)\frac{\bm{q}^2}{\phie^*}+\Mwe^*\frac{\ve}{\vw}\frac{\bm{q}^2}{\phiw^*} & -\Mse^*\frac{\ve}{\vs}\frac{\bm{q}^2}{\phis^*}+\Mwe^*\frac{\ve}{\vw}\frac{\bm{q}^2}{\phiw^*} & -\Mpe^*\frac{\ve}{\vs}\frac{\bm{q}^2}{\phip^*}+\Mwe^*\frac{\ve}{\vw}\frac{\bm{q}^2}{\phiw^*}\\
+-\Mse^*\frac{\bm{q}^2}{\phie^*}-\Ree +\Mws^*\frac{\vs}{\vw}\frac{\bm{q}^2}{\phiw^*} & (\Mse^*\frac{\ve}{\vs}+\Msp^*+\Mws^*)\frac{\bm{q}^2}{\phis^*}-\Rs  +\Mws^*\frac{\vs}{\vw}\frac{\bm{q}^2}{\phiw^*}& -\Msp^*\frac{\bm{q}^2}{\phip^*}+\Rp +\Mws^*\frac{\vs}{\vw}\frac{\bm{q}^2}{\phiw^*}\\
+-\Mpe^*\frac{\bm{q}^2}{\phie^*}+\Ree +\Mwp^*\frac{\vs}{\vw}\frac{\bm{q}^2}{\phiw^*} & -\Msp^*\frac{\bm{q}^2}{\phis^*}+\Rs +\Mwp^*\frac{\vs}{\vw}\frac{\bm{q}^2}{\phiw^*} & (\Mpe^*\frac{\ve}{\vs}+\Msp^*+\Mwp^*)\frac{\bm{q}^2}{\phip^*}-\Rp +\Mwp^*\frac{\vs}{\vw}\frac{\bm{q}^2}{\phiw^*}\\
 \end{pmatrix}
 \end{tiny}
 \end{equation}
 }}
 
-We again can assume that the substrate and product dynamics are fast in comparison to the enzyme. Setting $\dot{\delta\phi_S}=\dot{\delta\phi_P}=0$ gives
+We now assume that the substrate and product dynamics are fast in comparison to the enzyme. Setting $\dot{\delta\phis}=\dot{\delta\phip}=0$ gives
 \begin{equation}
-    \dot{\delta\phi_E} = (C'_W^{-1})_{1, 1}\delta\phi_E
+    \dot{\delta\phie} = ({\cal K}_{\rm w}^{-1})_{1, 1}\delta\phie
 \end{equation}
-and so the stability condition becomes
+and so the system is unstable when
 \begin{equation}
-    (C'_W^{-1})_{1, 1} = \frac{(C'_W)_{2, 2}(C'_W)_{3, 3}-(C'_W)_{2, 3}(C'_W)_{3, 2}}{\det(C'_W)} \geq 0
+    ({\cal K}_{\rm w}^{-1})_{1, 1} = \frac{({\cal K}_{\rm w})_{2, 2}({\cal K}_{\rm w})_{3, 3}-({\cal K}_{\rm w})_{2, 3}({\cal K}_{\rm w})_{3, 2}}{\det({\cal K}_{\rm w})} \geq 0.
     \label{solvstab}
 \end{equation}
-The numerator of equation (\ref{solvstab}) is, to order $\textbf{q}^2$
+The numerator of (\ref{solvstab}) is, to order $\bm{q}^2$,
 \begin{equation}
-    \textbf{q}^2\Bigg[-R_P\frac{M_{SE}^*\frac{V_E}{V_S}+M_{WS}^*}{\phi_S^*}-R_S\frac{M_{PE}^*\frac{V_E}{V_S}+M_{WP}^*}{\phi_P^*}-\frac{v_P}{v_W\phi_W^*}\big(R_S+R_P\big)\big(M_{WS}^*+M_{WP}^*\big)\Bigg]
+    \bm{q}^2\Bigg[-\Rp \frac{\Mse^*\frac{\ve}{\vs}+\Mws^*}{\phis^*}-\Rs \frac{\Mpe^*\frac{\ve}{\vs}+\Mwp^*}{\phip^*}-\frac{\vs}{\vw\phiw^*}\big(\Rs +\Rp \big)\big(\Mws^*+\Mwp^*\big)\Bigg].
     \label{solvnum}
 \end{equation}
-We know that $(M_{SE}+M_{PE}+M_{WE})<0$ from the Onsager positivity conditions and for the common choice of mobilities, $M_{ij}<0$ for $i \neq j$. Therefore, we assume that expression (\ref{solvnum}) is positive and that stability is determined simply by the sign of the determinant. An equivalent interpretation is that we naturally have all negative eigenvalues and thus a negative determinant changing sign when one of the eigenvalues changes sign, since the determinant is equal to the product of the eigenvalues.
-
-The determinant of $C_W'$ has many terms and even when truncated to order $\textbf{q}^2$ it is not obvious how to interpret the resulting expression. A particular observation is that in the low/no solvent limit ($\frac{1}{\phi_W}$ is very large) and assuming the $M_{ij}$s are the same size we get
-
+With the common choice of mobilities, $M_{ij}<0$ for $i \neq j$, and $R_i \geq 0$, the expression (\ref{solvnum}) is positive and the instability condition is simply
 \begin{equation}
-\begin{split}
-    \det(C'_W) &= M_{PE}^*\phi_SM'_W\big(\phi_E(R_E-R_S)\frac{v_E}{v_P}-\phi_P(R_P+R_S)\big)  \\
-    &- M_{SE}^*\phi_PM'_W\big(\phi_E(R_E+R_P)\frac{v_E}{v_P}+\phi_S(R_P+R_S)\big) \\
-    &- M_{WE}^*\Bigg(M_{WP}^*\phi_S\big(\phi_E(-R_E+R_S)\frac{v_E}{v_P}+\phi_P(R_P+R_S)) \\
-    &+M_{WS}^*\phi_P\big(\phi_E(R_E+R_P)\frac{v_E}{v_P}+\phi_S(R_P+R_S))\Bigg)
-\end{split}
+    \det({\cal K}_{\rm w}) > 0,
 \end{equation}
-where $M'_W = \frac{v_E}{v_P}M_{WE}^*+M_{WS}^*+M_{WP}^* < 0$. Taking $M_{WE} \rightarrow 0$ results in the same stability condition for the dry system with no solvent. Caution must be taken here though, since if we take Kramer's choice for the mobilities then as $\phi_W \rightarrow 0$ the mobilities will no longer be of the same size. If we view the solvent as having even faster dynamics than the substrate and product then this may still be a valid approximation (since $D_{Wi} \gg D_{Si},D_{Pi}$), however care should be taken here and this stability condition should be further investigated.
+which marks the transition from having all negative eigenvalues to having two negative and one positive eigenvalue. This expression is used to derive the instability (spinodal) line in Fig.~2(d) of the main text.
+
+The determinant of ${\cal{K}}_{\rm w}$ has many terms and even when truncated to order $\bm{q}^2$ it is not a manageable expression. A key observation is that in the low solvent limit ($\phiw \to 0$), and assuming Kramer's form for the mobilities, we recover the no-solvent case, as can be seen in \todo{Fig.~2(d)}.
 
 \subsection{Effective free energy and binodal}
 
-In the macroscopic limit, we expect the substrate-product equilibrium in the bulk of each phase to be governed by the reaction terms that act locally, rather than by spatial diffusion. This implies that the substrate and product concentrations are enslaved to the enzyme concentration by $\phis \approx \phis^*(\phie)$ and $\phip \approx \phip^*(\phie)$, with the functions defined in (\ref{sstar}). Substituting these expressions into (\ref{evoE}), we can recast the dynamics of the enzyme as $\dot{\phie}\approx \bm{\nabla} \cdot (\Mee\bm{\nabla}\mu_\mathrm{eff})$ with an effective chemical potential for the enzyme
+In the macroscopic limit, we expect the substrate-product equilibrium in the bulk of each phase to be governed by the reaction terms that act locally, rather than by spatial diffusion. This implies that the substrate and product concentrations are enslaved to the enzyme concentration by $\phis \approx \phis^*(\phie)$ and $\phip \approx \phip^*(\phie)$, with the functions defined in (\ref{sstar}) and (\ref{pstar}). The system and its dynamics can now be described entirely as a function of the enzyme volume fraction $\phie$. All volume fractions, chemical potentials and mobilities describing the system are enslaved to $\phie$. As such equation (\ref{eq:evoE}) now becomes
+\begin{equation}
+    \dot{\phie} = \bm{\nabla} \cdot \left(\left(\Mee\frac{\mathrm{d}\mue}{\mathrm{d}\phie} + \Mes\frac{\mathrm{d}\mus}{\mathrm{d}\phie} + \Mep\frac{\mathrm{d}\mup}{\mathrm{d}\phie}\right)\bm{\nabla}\phie\right)
+\end{equation}
+We can recast the dynamics of the enzyme as $\dot{\phie}\approx \bm{\nabla} \cdot (\Mee\bm{\nabla}\mu_\mathrm{eff})$ with an effective chemical potential for the enzyme that satisfies
+\begin{equation}
+    \bm{\nabla}\mu_\mathrm{eff} = \left(\frac{\text{d}\mue}{\text{d}\phie} + \frac{\Mes}{\Mee}\frac{\text{d}\mus}{\text{d}\phie} + \frac{\Mep}{\Mee}\frac{\text{d}\mup}{\text{d}\phie}\right)\bm{\nabla}\phie.
+\end{equation}
+This means that by direct integration of the term in brackets with respect to $\phie$ we can calculate an effective chemical potential for the limit of fast reactions in the system. For the minimal model used here this integral can be evaluated exactly to give
 \begin{equation}
     \frac{\mu_\mathrm{eff}(\phie)}{k_{\rm B} T} =  \log \phie - \frac{\ve}{\vs} \log[\Dse \phis^* (\phie) + \Dpe \phip^*(\phie)].
 \end{equation}
-We can also identify an effective free energy density $f_\mathrm{eff}(\phie)$, such that $\mu_\mathrm{eff}=\ve\frac{\mathrm{d} f_\mathrm{eff}}{\mathrm{d} \phie}$, which can be explicitly calculated by direct integration \cite{suppmat}. 
+We can also identify an effective free energy density $f_\mathrm{eff}(\phie)$, such that $\mu_\mathrm{eff}=\ve\frac{\mathrm{d} f_\mathrm{eff}}{\mathrm{d} \phie}$, which can be explicitly calculated by direct integration to give
+\begin{equation}
+\begin{split}
+    \frac{f_\mathrm{eff}(\phie)}{k_{\rm B} T} &= \frac{1}{\vp}\frac{\kspo}{\kcat}\Bigg(\frac{1+e^{\beta \Delta \varepsilon}}{1+e^{-\beta (\Delta \varepsilon + \Delta \mu)}}\log\left[\frac{\kcat}{\kspo}\phie + e^{\beta (\Delta \varepsilon + \Delta \mu)}(1+e^{\beta \Delta \varepsilon} + \frac{\kcat}{\kspo}\phie)\right] \\
+    -& \frac{\Dse+\Dpe e^{\beta \Delta \varepsilon}}{\Dpe+\Dse e^{-\beta (\Delta \varepsilon + \Delta \mu)}}\log\Big[\Dse\frac{\kcat}{\kspo}\phie + e^{\beta (\Delta \varepsilon + \Delta \mu)}(\Dse+\Dpe e^{\beta \Delta \varepsilon} + \Dpe \frac{\kcat}{\kspo}\phie)\Big]\Bigg) \\
+    +&\left(\frac{1}{\vp}-\frac{1}{\ve}\right)\phie + \frac{1}{\vp}\log[1-\phie] + \phie\bigg(\frac{1}{\ve}\log\phie - \frac{1}{\vp} \log[\Dse\phis^*(\phie)+\Dpe\phip^*(\phie)]\bigg).
+\end{split}
+\end{equation}
+
+Since $\mu_\mathrm{eff}$ can be determined up to a constant term, $f_\mathrm{eff}$ can be determined up to addition of an affine function in $\phie$. The effective dynamics $\dot{\phie}\approx \bm{\nabla} \cdot (\Mee\bm{\nabla}\mu_\mathrm{eff})$, with $\mu_\mathrm{eff}=\ve f'_\mathrm{eff}(\phie)$, drive the system towards a state that minimises the total effective free energy, under the constraints that the amount of enzyme and the volume of the system are conserved. Consequently, if the effective free energy is a good description of the system, the two phases the system forms should be predicted using the common tangent construction on the effective free energy.
+
+In particular, the effective free energy of a system that has phase separated into two phases, with volumes $V^{(1)}$ and $V^{(2)}$, and enzyme concentrations $\phie^{(1)}$ and $\phie^{(2)}$, is given by $F_\mathrm{eff}=f_\mathrm{eff}(\phie^{(1)})V^{(1)}+f_\mathrm{eff}(\phie^{(2)})V^{(2)}$. This must be minimized while keeping a constraint on the amount of enzyme, $(\phie^{(1)}V^{(1)}+\phie^{(2)}V^{(2)})/\ve$, and the volume of the system, $V^{(1)}+V^{(2)}$. Using Lagrange multipliers for these two constraints which we denote (for reasons that will immediately become obvious) as $\mu_\mathrm{eff}$ and $p_\mathrm{eff}$, we must therefore minimize the function
+\begin{equation}
+    \mathcal{F}=f_\mathrm{eff}(\phie^{(1)})V^{(1)}+f_\mathrm{eff}(\phie^{(2)})V^{(2)} - \mu_\mathrm{eff} \frac{1}{\ve} \left( \phie^{(1)}V^{(1)}+\phie^{(2)}V^{(2)} \right) + p_\mathrm{eff} \left( V^{(1)}+V^{(2)} \right)
+\end{equation}
+relative to $\phie^{(i)}$ and $V^{(i)}$ for $i=1,2$. From $\partial \mathcal{F}/\partial\phie^{(i)}=0$, we obtain the condition
+\begin{equation}
+    \ve f'_\mathrm{eff}(\phie^{(1)}) = \mu_\mathrm{eff} = \ve f'_\mathrm{eff}(\phie^{(2)}) ,\label{eq:equalmu}
+\end{equation}
+whereas from $\partial \mathcal{F}/\partial V^{(i)}=0$, we obtain the condition
+\begin{equation}
+     f'_\mathrm{eff}(\phie^{(1)})\phie^{(1)} - f_\mathrm{eff}(\phie^{(1)}) = p_\mathrm{eff} = f'_\mathrm{eff}(\phie^{(2)})\phie^{(2)} - f_\mathrm{eff}(\phie^{(2)}). \label{eq:equalp}
+\end{equation}
+
+Eqs.~\ref{eq:equalmu} and \ref{eq:equalp} respectively correspond to the equal slope and equal intercept conditions in the graphical common tangent construction, and are used to obtain the analytical prediction for the binodal lines in Figs. 2(a) and (b) of the main text. Eqs.~\ref{eq:equalmu} and \ref{eq:equalp} could also be interpreted as saying that the two phases must have equal effective chemical potential $\mu_\mathrm{eff} = \ve f'_\mathrm{eff}(\phie)$, and equal effective thermodynamic pressure $p_\mathrm{eff}=f'_\mathrm{eff}(\phie)\phie - f_\mathrm{eff}(\phie)$. However, it is important to note that in reality we are dealing with a nonequilibrium system, and moreover the effective quantities above were only obtained in the limit of fast reactions. In particular, as in other nonequilibrium systems \cite{wittkowski2014scalar}, the thermodynamic pressure $p_\mathrm{eff}$ may not necessarily coincide with the mechanical pressure exerted by the system on the walls of its container.
+
 By employing the common-tangent construction in unstable cases, we can identify two coexisting phases and define the binodal lines, which show good agreement with our numerical results and meet the spinodal line at a critical point; see Fig.~\ref{fig:bino_spino}(a,b).
+
+
 
 \subsection{Enzymatic Autoregulation}
 
