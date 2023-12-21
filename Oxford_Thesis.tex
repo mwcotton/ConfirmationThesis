@@ -36,12 +36,12 @@
 % generating a PDF to send to the printer!
 
 % This adds a "DRAFT" footer to every normal page.  (The first page of each chapter is not a "normal" page.)
-\fancyfoot[C]{\emph{DRAFT Printed on \today}}  
+% \fancyfoot[C]{\emph{DRAFT Printed on \today}} 
 
 % This highlights (in blue) corrections marked with (for words) \mccorrect{blah} or (for whole
 % paragraphs) \begin{mccorrection} . . . \end{mccorrection}.  This can be useful for sending a PDF of
 % your corrected thesis to your examiners for review.  Turn it off, and the blue disappears.
-\correctionstrue
+% \correctionstrue
 
 
 %%%%% BIBLIOGRAPHY SETUP
@@ -59,17 +59,23 @@
 %\usepackage[style=authoryear, sorting=nyt, backend=biber, maxcitenames=2, useprefix, doi=false, isbn=false]{biblatex}
 %\newcommand*{\bibtitle}{Works Cited}
 
+% command to get rid of lines containing URL
+% If you want to edit the file in place without creating a temporary file, you can use the sed command:
+
+% bash
+% Copy code
+% sed -i '/url/d' inputfile.txt
+% This command will delete all lines that contain the string 'url' from inputfile.txt without creating a new file. Again, be cautious when using the -i (in-place) option with sed, as it directly modifies the input file.
+
 % This makes the bibliography left-aligned (not 'justified') and slightly smaller font.
 \renewcommand*{\bibfont}{\raggedright\small}
 
 % Change this to the name of your .bib file (usually exported from a citation manager like Zotero or EndNote).
-\addbibresource{references.bib}
+\addbibresource{references_noURL.bib}
 
 
 % Uncomment this if you want equation numbers per section (2.3.12), instead of per chapter (2.18):
 %\numberwithin{equation}{subsection}
-
-
 
 %%%%% THESIS / TITLE PAGE INFORMATION
 % Everybody needs to complete the following:
@@ -88,7 +94,7 @@
 % Your full degree name.  (But remember that DPhils aren't "in" anything.  They're just DPhils.)
 \degree{Doctor of Philosophy}
 % Term and year of submission, or date if your board requires (eg most masters)
-\degreedate{Trinity 2023}
+\degreedate{Trinity 2024}
 
 
 %%%%% YOUR OWN PERSONAL MACROS
@@ -148,6 +154,7 @@
 \newcommand{\vw}[0]{v_{\mathrm{w}}}
 
 \newcommand{\ex}[1]{\mathrm{e}^{#1}}
+\newcommand{\kb}[0]{k_{\rm B}}
 
 % To make text superscripts shortcuts
 	\renewcommand{\th}{\textsuperscript{th}} % ex: I won 4\th place
@@ -275,8 +282,8 @@
 
 \setlength{\baselineskip}{0pt} % JEM: Single-space References
 
-{\renewcommand*\MakeUppercase[1]{#1}%
-\printbibliography[heading=bibintoc,title={\bibtitle}]}
-
+% {\renewcommand*\MakeUppercase[1]{#1}%
+% \printbibliography[heading=bibintoc,title={\bibtitle}]}
+\printbibliography[heading=bibintoc,title={\bibtitle}]
 
 \end{document}
