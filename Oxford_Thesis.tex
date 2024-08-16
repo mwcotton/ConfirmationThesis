@@ -55,6 +55,7 @@
 \usepackage[style=numeric-comp, sorting=none, backend=biber, doi=false, isbn=false]{biblatex}
 \newcommand*{\bibtitle}{References}
 \usepackage{bm}% bold math
+\usepackage{mhchem}
 % The humanities-type option: author-year in-text citation with an alphabetical works cited.
 %\usepackage[style=authoryear, sorting=nyt, backend=biber, maxcitenames=2, useprefix, doi=false, isbn=false]{biblatex}
 %\newcommand*{\bibtitle}{Works Cited}
@@ -71,15 +72,16 @@
 \renewcommand*{\bibfont}{\raggedright\small}
 
 % Change this to the name of your .bib file (usually exported from a citation manager like Zotero or EndNote).
-\addbibresource{references_noURL.bib}
-
+% \addbibresource{references_noURL.bib}
+\addbibresource{references.bib}
 
 % Uncomment this if you want equation numbers per section (2.3.12), instead of per chapter (2.18):
 %\numberwithin{equation}{subsection}
 
 %%%%% THESIS / TITLE PAGE INFORMATION
 % Everybody needs to complete the following:
-\title{Patterns and Structures on Biological Membranes}
+% \title{Patterns and Structures on Biological Membranes}
+\title{Models of Protein Organisation}
 \author{Matthew W Cotton}
 \college{University College}
 
@@ -101,61 +103,6 @@
 % This is a good place to dump your own LaTeX macros as they come up.
 \newcommand{\todo}[1]{{\color{red} [#1]}}
 
-% From the CIPS paper
-
-\newcommand{\kcat}[0]{k_{\mathrm{cat}}}
-\newcommand{\kspo}[0]{k_{\mathrm{spo}}}
-\newcommand{\rcat}[0]{r_{\mathrm{cat}}}
-\newcommand{\rspo}[0]{r_{\mathrm{spo}}}
-
-\newcommand{\Rs}[0]{R_\mathrm{s}}
-\newcommand{\Rp}[0]{R_\mathrm{p}}
-\newcommand{\Ree}[0]{R_\mathrm{e}}
-
-\newcommand{\phie}[0]{\phi_{\mathrm{e}}}
-\newcommand{\phis}[0]{\phi_{\mathrm{s}}}
-\newcommand{\phip}[0]{\phi_{\mathrm{p}}}
-\newcommand{\phisp}[0]{\phi_{\mathrm{s+p}}}
-\newcommand{\phiw}[0]{\phi_{\mathrm{w}}}
-
-\newcommand{\mue}[0]{\mu_{\mathrm{e}}}
-\newcommand{\muf}[0]{\mu_{\mathrm{f}}}
-\newcommand{\mus}[0]{\mu_{\mathrm{s}}}
-\newcommand{\mup}[0]{\mu_{\mathrm{p}}}
-\newcommand{\muw}[0]{\mu_{\mathrm{w}}}
-
-\newcommand{\Des}[0]{D_{\mathrm{es}}}
-\newcommand{\Dse}[0]{D_{\mathrm{se}}}
-\newcommand{\Dep}[0]{D_{\mathrm{ep}}}
-\newcommand{\Dpe}[0]{D_{\mathrm{pe}}}
-\newcommand{\Dsp}[0]{D_{\mathrm{sp}}}
-\newcommand{\Dps}[0]{D_{\mathrm{ps}}}
-\newcommand{\Dew}[0]{D_{\mathrm{ew}}}
-\newcommand{\Dsw}[0]{D_{\mathrm{sw}}}
-\newcommand{\Dpw}[0]{D_{\mathrm{pw}}}
-
-\newcommand{\Mee}[0]{M_{\mathrm{ee}}}
-\newcommand{\Mes}[0]{M_{\mathrm{es}}}
-\newcommand{\Mep}[0]{M_{\mathrm{ep}}}
-\newcommand{\Mse}[0]{M_{\mathrm{se}}}
-\newcommand{\Mss}[0]{M_{\mathrm{ss}}}
-\newcommand{\Msp}[0]{M_{\mathrm{sp}}}
-\newcommand{\Mpe}[0]{M_{\mathrm{pe}}}
-\newcommand{\Mps}[0]{M_{\mathrm{ps}}}
-\newcommand{\Mpp}[0]{M_{\mathrm{pp}}}
-\newcommand{\Mwp}[0]{M_{\mathrm{wp}}}
-\newcommand{\Mws}[0]{M_{\mathrm{ws}}}
-\newcommand{\Mwe}[0]{M_{\mathrm{we}}}
-
-
-\newcommand{\vp}[0]{v_{\mathrm{p}}}
-\newcommand{\vs}[0]{v_{\mathrm{s}}}
-\newcommand{\ve}[0]{v_{\mathrm{e}}}
-\newcommand{\vw}[0]{v_{\mathrm{w}}}
-
-\newcommand{\ex}[1]{\mathrm{e}^{#1}}
-\newcommand{\kb}[0]{k_{\rm B}}
-
 % To make text superscripts shortcuts
 	\renewcommand{\th}{\textsuperscript{th}} % ex: I won 4\th place
 	\newcommand{\nd}{\textsuperscript{nd}}
@@ -169,9 +116,9 @@
 
 %%%%% CHOOSE YOUR LINE SPACING HERE
 % This is the official option.  Use it for your submission copy and library copy:
-\setlength{\textbaselineskip}{22pt plus2pt}
+% \setlength{\textbaselineskip}{22pt plus2pt}
 % This is closer spacing (about 1.5-spaced) that you might prefer for your personal copies:
-%\setlength{\textbaselineskip}{18pt plus2pt minus1pt}
+\setlength{\textbaselineskip}{18pt plus2pt minus1pt}
 
 % You can set the spacing here for the roman-numbered pages (acknowledgements, table of contents, etc.)
 \setlength{\frontmatterbaselineskip}{17pt plus1pt minus1pt}
@@ -259,9 +206,9 @@
 % Add or remove any chapters you'd like here, by file name (excluding '.tex'):
 \flushbottom
 \include{text/ch1-intro}
-\include{text/ch2-elastic}
-\include{text/ch3-cips}
-\include{text/ch4-coupled}
+\include{text/ch2-cips}
+\include{text/ch3-elastic}
+\include{text/ch4-aggregation}
 \include{text/ch5-conc}
 
 %% APPENDICES %% 

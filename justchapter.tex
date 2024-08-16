@@ -1,0 +1,29 @@
+\documentclass[a4paper,nobind]{ociamthesis} 
+\usepackage[style=numeric-comp, sorting=none, backend=biber, doi=false, isbn=false]{biblatex}
+\newcommand*{\bibtitle}{References}
+\usepackage{bm}% bold math
+\usepackage{mhchem}
+
+% \addbibresource{references_noURL.bib}
+\addbibresource{references.bib}
+\newcommand{\todo}[1]{{\color{red} [#1]}}
+% To make text superscripts shortcuts
+	\renewcommand{\th}{\textsuperscript{th}} % ex: I won 4\th place
+	\newcommand{\nd}{\textsuperscript{nd}}
+	\renewcommand{\st}{\textsuperscript{st}}
+	\newcommand{\rd}{\textsuperscript{rd}}
+\begin{document}
+
+\tableofcontents
+
+\setlength{\textbaselineskip}{22pt plus2pt}
+\setlength{\textbaselineskip}{18pt plus2pt minus1pt}
+\setlength{\frontmatterbaselineskip}{17pt plus1pt minus1pt}
+\setlength{\baselineskip}{\textbaselineskip}
+\flushbottom
+\include{text/ch1-intro}
+% \include{text/ch2-cips}
+% \include{text/ch3-elastic}
+% \include{text/ch4-aggregation}
+% \include{text/ch5-conc}
+\end{document}
