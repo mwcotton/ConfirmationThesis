@@ -1,10 +1,10 @@
 \newcommand{\nc}[0]{n_{\mathrm{c}}}
 \newcommand{\todo}[1]{{\color{red} [#1]}}
 
-\chapter{\label{ch:4-aggregation}Protein Aggregation in Diseases}
+\chapter{\label{ch:4-aggregation}\chaggregation}
 
 \minitoc
-\newpage
+% \newpage
 
 \section{Background}
 
@@ -40,7 +40,7 @@ There are multiple processes that can convert single protein monomers into order
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/aggProcesses.pdf}
+    \includegraphics[width=0.8\textwidth]{figures/4-agg-figs/aggProcesses.pdf}
     \caption{Aggregation Processes.}
     \label{fig:4-phase_sep_scheme}
 \end{figure}
@@ -83,7 +83,7 @@ Standard numerical solvers can integrate this closed system of equations to dete
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/invitroDemo.pdf}
+    \includegraphics[width=0.8\textwidth]{figures/4-agg-figs/invitroDemo.pdf}
     \caption{Fitting in vitro aggregation data. The rate constants have been fit globally. We set $\nc=2$, $n_2=2$ and fit $k_on k_2=5.60\times10^{16}$ and $k_on k_n=9.992\times10^{8}$}. Fitting has been done using \textit{AmyloFit} software \cite{meisl_molecular_2016}. Data taken from \cite{cohen_proliferation_2013}.
     \label{fig:4-invitro}
 \end{figure}
@@ -95,38 +95,35 @@ Standard numerical solvers can integrate this closed system of equations to dete
 The aggregation curves in test tube experiments are well understood by the reaction kinetics, but lack many crucial features of the development of neurodegenerative disease in living systems. Specifically, the model in (\ref{eq:4-Mvitro})-(\ref{eq:4-mvitro}) does recapitulate the discrete seeding transition, observed recovery of mice following treatment, or explain why the disease typically occurs in later life. These observations and the contradiction with the in vitro model are outlined below.
 
 \subsubsection{Discrete seeding transition to disease}
-Readig Miller et al... (also check the 27-29 refs in there!)
-also (6) (from reading the discussion)
 
-The onset of 
+In some model systems of neurodegenerative diseases, aggregation is only observed when the tissue or cells are seeded \cite{miller_tau_2021, tuck_cholesterol_2022}. For example, pathological aggregates are only observed in hippocampal slice cultures from P301S tau transgenic mice when the system is exposed to a high concentration of preformed assemblies at some earlier time (seeding) \cite{miller_tau_2021}. Small doses of tau assemblies do not increase aggregate concentration when compared to an unseeded system. However, for large doses of tau assemblies, the observed aggregate concentration was increased (and further increased when the dose was increased again). This phenomena is well established \cite{jucker_propagation_2018} and has been used to develop reporter lines assays to determine the presence of aggregates.\todo{cite the reporter}
 
-In some model systems of neurodegenerative diseases, aggregation is only observed when the tissue or cells are seeded. That is, pathological aggregates are only observed when a small amount of aggregates are injected into the system at soem earlier time. The resulting aggregate concentration is typically at a much higher concentration than the injected seed however no aggregates are observed when there is no seeding.
+The in vitro dynamics cannot explain this phenomena. The in vitro early time aggregation is dominated by an exponential growth, from the secondary nucleation process, $M(t) = M_0\exp(k_2 m_0^{n_2}t)$ where $M_0$ is the aggregate population at time $t=0$. Thus, addition of a seeding mass of aggregates, $M_S$, would correspond to shifting the aggregation process in time, but would not cause this transition between a stable and unstable system at some non-zero seeding.
 
-At early time in the in vitro dynamics, the aggreagtes proliferate exponentially. Thus, an injection of seed concentration acts to speed up this aggreagation process and can lead to much highe concntrations. However, this cannot describe the situation in all systems, as the . Additionally, when the seed concentration is varied, this exponential hypothesis would predict that the observed aggregate
+% At early time in the in vitro dynamics, the aggreagtes proliferate exponentially. Thus, an injection of seed concentration acts to speed up this aggreagation process and can lead to much highe concntrations. However, this cannot describe the situation in all systems, as the . Additionally, when the seed concentration is varied, this exponential hypothesis would predict that the observed aggregate
 
 
-An existing hypothesis surrounding the onset of diseases from protein aggregation are built around the early time exponential growth of the disease. Specifically, that 
-The exponential growth hypothesis predicts that aggregate mass increases exponentially in time
-\begin{equation}
-    M(t) = S\exp{\kappa t}
-\end{equation}
-where $S$ is the aggregate mass at time $t=0$. In a seeded system, we typically expect the seeded aggregate mass to be much greater than the natural mass of aggregates and so we approximate $S$ as the mass of seeds.
+% An existing hypothesis surrounding the onset of diseases from protein aggregation are built around the early time exponential growth of the disease. Specifically, that 
+% The exponential growth hypothesis predicts that aggregate mass increases exponentially in time
+% \begin{equation}
+%     M(t) = S\exp{\kappa t}
+% \end{equation}
+% where $S$ is the aggregate mass at time $t=0$. In a seeded system, we typically expect the seeded aggregate mass to be much greater than the natural mass of aggregates and so we approximate $S$ as the mass of seeds.
 
-Consider three identical systems, seeded with different initial concentrations of the aggregated proteins; $S_1$, $S_2$, and $S_3$. The systems will aggregate and at some threshold, $M_D$, we will detect the aggregates in the cell. The exponential growth hypothesis can be used to identify growth rates. We identify the first time that aggregates are seen at as $t_i$ for a system seeded with $S_i$ aggregates. Then the growth rate, $\lambda$, is given by
-\begin{equation}
-    \lambda = \frac{\ln(S_1)-\ln(S_2)}{t_2-t_1}
-\end{equation}
-Therefore an experiment that does not satisfy this
-
+% Consider three identical systems, seeded with different initial concentrations of the aggregated proteins; $S_1$, $S_2$, and $S_3$. The systems will aggregate and at some threshold, $M_D$, we will detect the aggregates in the cell. The exponential growth hypothesis can be used to identify growth rates. We identify the first time that aggregates are seen at as $t_i$ for a system seeded with $S_i$ aggregates. Then the growth rate, $\lambda$, is given by
+% \begin{equation}
+%     \lambda = \frac{\ln(S_1)-\ln(S_2)}{t_2-t_1}
+% \end{equation}
+% Therefore an experiment that does not satisfy this
 \subsubsection{Explaining and Informing Treatments}
 
 Currently the leading therapeutics for neurodegenerative diseases are based on immune therapies, such as monoclonal antibody therapies. In these treatments, antibodies bind to pathological fibrils to either disrupt the toxicity, or identify the structures for destruction via immune processes \cite{wisniewski_immunotherapeutic_2015, berg_biochemistry_2002}. \todo{list some current therapies?} These processes do not occur in test tubes and so cannot be described or explored by in vitro models.
 
-More recently, short, synthetic, single-stranded DNA or RNA molecules, called antisense oligonucleotides (ASOs) are being explored as therapeutic candidates to treat NDDs \cite{rinaldi_antisense_2018}. The ASOs bind to target mRNA and thus limit transcription, reducing the expression of the aggregating monomer protein. In multiple studies, injections of ASOs were able to reduce the monomeric protein and this led to reduction and even removal of aggregates in the brain \cite{cole_-synuclein_nodate, devos_tau_2017, mummery_tau-targeting_2023}. These studies demonstrate the enormous clinical potential of ASOs that target tau and $\alpha$-synuclein, two aggregating proteins associated with PD and AD. This presents a major opportunity to develop effective treatments for NDDs.
+More recently, short, synthetic, single-stranded DNA or RNA molecules, called antisense oligonucleotides (ASOs) are being explored as therapeutic candidates to treat NDDs \cite{rinaldi_antisense_2018}. The ASOs bind to target mRNA and thus limit transcription, reducing the expression of the aggregating monomer protein. In multiple studies, injections of ASOs were able to reduce the monomeric protein and this led to reduction and even removal of aggregates in the brain \cite{cole_-synuclein_2021, devos_tau_2017, mummery_tau-targeting_2023}. These studies demonstrate the enormous clinical potential of ASOs that target tau and $\alpha$-synuclein, two aggregating proteins associated with PD and AD. This presents a major opportunity to develop effective treatments for NDDs.
 
-However, in order to realise these therapeutic opportunities, it is necessary to understand the different processes that affect the development of the disease in living cells and tissues. Test tube experiments show an inevitable conversion of monomer into aggregates, and cannot recapitulate the behaviour responsible for the reduction of aggregates and associated recovery of brain function in treated mice \cite{cole_-synuclein_nodate}. Furthermore, developing a quantitative theory that can describe the onset and progression of disease will resolve the size of effects required for an intervention to have a meaningful change in prognosis.
+However, in order to realise these therapeutic opportunities, it is necessary to understand the different processes that affect the development of the disease in living cells and tissues. Test tube experiments show an inevitable conversion of monomer into aggregates, and cannot recapitulate the behaviour responsible for the reduction of aggregates and associated recovery of brain function in treated mice \cite{cole_-synuclein_2021}. Furthermore, developing a quantitative theory that can describe the onset and progression of disease will resolve the size of effects required for an intervention to have a meaningful change in prognosis.
 
-\subsubsection{Long timescale in disease}
+\subsubsection{Long timescale in disease}\label{subsubsec:onsetage}
 
 Test tube aggregation kinetics provide estimations for typical aggregation parameters and timescales. Typical aggregation experiments, such as those shown in Figure \ref{fig:4-invitro}, approach completion after around 10 hours, and have a doubling time of around an hour during the early exponential growth phase \cite{meisl_mechanistic_2022}. However, this understanding does not translate to the onset of disease in human populations. Around one in ten adults over the age of 65 have AD, increasing to four in every ten adults over 95 \cite{hou_ageing_2019}. This late age of onset is also seen for PD and ALS, with only $4\%$ of PD cases being under the age of 50 and the incidence increasing by a factor of $5$–$10$ from cases in their fifties to eighties \cite{van_den_eeden_incidence_2003, poewe_parkinson_2017}. This disparity of five orders of magnitude (one hour to one decade) clearly shows that something is missing from the current mechanistic models mapping in vitro protein aggregation kinetics onto the development of disease. In this chapter I will identify processes that are missing in vitro and develop a model to include all of these competing mechanisms. I will then demonstrate how these models can explain previously inexplicable observations and the consequences for the design of rational therapeutics.
 
@@ -251,7 +248,7 @@ Moving from the master equation to the moment description of the kinetics, we ha
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/propClearSummary.pdf}
+    \includegraphics[width=0.8\textwidth]{figures/4-agg-figs/propClearSummary.pdf}
     \caption{Comparison of the different descriptions of the system, its flow and stability.}
     \label{fig:4-steadyConstClear}
 \end{figure}
@@ -292,7 +289,7 @@ Evaluating the sums to determine $M$, $P$ and $p_{\nc}$, gives the same pair of 
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/confusingNumericRegion.pdf}
+    \includegraphics[width=0.8\textwidth]{figures/4-agg-figs/confusingNumericRegion.pdf}
     \caption{Comparison of the different descriptions of the system, its flow and stability.}
     \label{fig:4-steadyMM}
 \end{figure}
@@ -312,7 +309,7 @@ Along with $\text{d}m_0/\text{d}t=0$ this defines a reduced model that captures 
 
 % \begin{figure}
 %     \centering
-%     \includegraphics[width=0.8\textwidth]{figures/flowConstClear_nocol.pdf}
+%     \includegraphics[width=0.8\textwidth]{figures/4-agg-figs/flowConstClear_nocol.pdf}
 %     \caption{Flow for const clear.}
 %     \label{fig:4-flowConstClear}
 % \end{figure}
@@ -326,20 +323,20 @@ Typically, we expect $k_2 m_0^{n_2} \ll k_\text{on} m_0$ and thus $\bar{l} = m_0
 % The transition from unbounded growth to a finite steady state mass gives an expression for the critical clearance of a system. Alternatively, this transition can occur for a constant clearance that approaches a steady state if the monomer concentration is low, but grows unbound if the monomer concentration is high. Plotting the steady state mass, $M^*$, against the monomer concentration shows this transition. A system initialised with a total mass below the steady state mass, $M_0 < M^*$ will increase to $M^*$ and a system with $M_0 > M^*$ will decrease to $M^*$. When $M^*$ does not exist then the mass increasess without bound. To visualise this we assume that the number concentration is enslaved to the mass distribution, to give $P=M/\bar{l}$ even when the system has not equilibrated. This reduces the dynamics to be a function of $M$ and $m_0$ only and gives a two-dimensional phase plane of the system in this space and visualise the flows, as show in \todo{figure}. The app
 \begin{figure}
     \centering
-    \includegraphics[width=0.95\textwidth]{figures/reduced_nocol.pdf}
+    \includegraphics[width=0.95\textwidth]{figures/4-agg-figs/reduced_nocol.pdf}
     \caption{Flow for MM P.}
     \label{fig:4-flowMM_P}
 \end{figure}
 
 \subsubsection{Bound Clearance}
 
-Similarly for the case of a bounded clearance, we reduce the model to a two parameter description by setting $\bar{l} = \sqrt{2 k_\text{on}/k_2 m_0}$ and $P=M/\bar{l}$. The fixed points of this reduced system are now quadratic in $M$ and this gives two steady states when $m_0$ is low and no steady states when $m_0$ is high. This reduced model captures the key features of the full model, with the existence of a stable and unstable fixed point and a critical monomer concentration. However, the exact value at which this bifurcation occurs is different in the full and reduced models. This is due to the approximation for $\bar{l}$ being accurate for large steady state mass is large, which is the upper branch of the stability line at low monomer concentration. Fig \todo{which fig} shows that the two models agree in this region.
+Similarly for the case of a bounded clearance, we reduce the model to a two parameter description by assuming a value of the  $\bar{l} = \sqrt{2 k_\text{on}/k_2 m_0}$ and $P=M/\bar{l}$.\todo{this is the eigenvalue of the exponentially growing mode!} The fixed points of this reduced system are now quadratic in $M$ and this gives two steady states when $m_0$ is low and no steady states when $m_0$ is high. This reduced model captures the key features of the full model, with the existence of a stable and unstable fixed point and a critical monomer concentration. However, the exact value at which this bifurcation occurs is different in the full and reduced models. This is due to the approximation for $\bar{l}$ being accurate for large steady state mass is large, which is the upper branch of the stability line at low monomer concentration. Fig \todo{which fig} shows that the two models agree in this region.
 
 The fate of the system now depends on both the monomer concentration and the aggregate mass. The system is only stable, and therefore healthy, if both the monomer concentration and aggregate mass is low. Intuitively this dependence on the aggregate mass makes sense. If there are more aggregates (number and mass) in the system, then the rates of secondary nucleation and elongation will increase. When the aggregate clearance rate is high enough to out compete these effects then the aggregate mass/number is reduced and approaches a steady state value where the production of aggregates and clearance rates are balanced. For very large aggregate mass/number, the production rates of aggregates continue to increase with increasing aggregate mass/number, however for physically realistic models of clearance mechanisms the removal rate of aggregates will begin to saturate and at some point will no longer be able to balance the aggregate production/elongation rates, leading to runaway aggregation.
 
 % \begin{figure}
 %     \centering
-%     \includegraphics[width=0.8\textwidth]{figures/flowMM_nocol.pdf}
+%     \includegraphics[width=0.8\textwidth]{figures/4-agg-figs/flowMM_nocol.pdf}
 %     \caption{Flow for MM P.}
 %     \label{fig:4-flowMM_P}
 % \end{figure}
@@ -354,18 +351,19 @@ We expect that the complex regulation of living systems will result in multiple 
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.95\textwidth]{figures/generalisingReduced_nocol.pdf}
+    \includegraphics[width=0.95\textwidth]{figures/4-agg-figs/generalisingReduced_nocol.pdf}
     \caption{General reduced dynamics.}
     \label{fig:4-generalReduced}
 \end{figure}
 
-\subsection{Exponential Growth in unphysical}
+\subsection{Exponential Growth is Unphysical}
 
 The exponential growth of the aggregate mass is labelled as the disease state. For a cell of finite volume and resources the exponential growth can only occur for finite time before other factors reduce the rate of growth. To describe this, we can modify the reduced model in equation \ref{eq:4-reducedMM} and introduce a correction to the secondary nucleation. As the aggregate concentration increases, multiple aggregates may touch or overlap in space and thus prevent this overlapping region of the aggregate surface from acting as a catalyst for secondary nucleation. We expect the overlapping region to increase like $M^2$ and so the aggregation kinetics with this corrected aggregate surface becomes
 \begin{equation}
 \frac{\text{d}M}{\text{d}t}= \nc k_n m_0^{\nc} + n_2 k_2 m_0^{n_2} (M- \rho M^2) + 2 k_\text{on} m_0 M/\bar{l} - \frac{\lambda_M M}{K_M+M/\bar{l}}
 \end{equation}
 where $\rho$ is the overlap constant. Figure \ref{fig:4-generalReduced} \todo{some panel} shows the reduced dynamics as before, however there is now a hysteresis loop. For very low monomer concentration there is only one steady state as the clearance mechanisms grow faster than the secondary nucleation and the steady state is determined by the balance of primary nucleation and clearance. For intermediate monomer concentrations, there is a region where the secondary nucleation dominates, as before, however additionally for larger aggregate mass the crowding effects prevent further increase in aggregate mass and there is a third steady state that is stable with large aggregate mass. For even larger values of aggregate mass, the system undergoes the same bifurcation as before for low values of the aggregate mass, but this large aggregate mass steady state persists and is attracting everywhere. Phenomenological, we interpret this exactly as before, however now the aggregate mass in the diseased state is bound at some very high aggregate mass, which is more physical. Despite being bound, we expect that this large aggregate mass will still be toxic and thus is associated with the same pathology.
+
 
 The models of aggregation considered so far assume constant monomer concentration in the cell, motivated by cellular homeostasis maintaining regulating this concentration. When the aggregate mass is large in the system the rate of aggregation will become increasingly fast and at some point will be on the same timescales as the regulation of monomer and so we cannot model the monomer as constant. An alternative is to assume the aggregation kinetics are much faster than the expression of the monomer and so the total protein in the system, $M_{tot} = M + m_0$ is constant. Assuming the MM-like clearance mechanism, the rate of change of aggregate mass is still given by equation (\ref{eq:4-reducedMM}) and substituting $m_0=M_{tot}-M$, so that $\dot{M}=-\dot{m_0}$. Physically, this corresponds to clearance mechanisms converting the aggregated mass back into monomer to conserve total protein. The dynamics of the new reduced model can be seen in a phase plane of $M$ and $M_{tot}$, this is shown in \todo{a panel of} Figure \ref{fig:4-generalReduced}.
 
@@ -411,7 +409,7 @@ reduced model works really well here! just set the $P=M/lbar$ with thee lbar fro
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.9\textwidth]{figures/numinus1sidebyside.pdf}
+    \includegraphics[width=0.9\textwidth]{figures/4-agg-figs/numinus1sidebyside.pdf}
     \caption{Length Dependent Clearance}
     \label{fig:4-numinus1}
 \end{figure}
@@ -430,20 +428,35 @@ The delay before this transition occurs depends on the value of $m_0$ of a cell 
 
 AD has a high heritability, suggesting there is a genetic component that can cause predisposition to development of the disease in a wide range of adults \cite{bellenguez_genetics_2020}. Genome-wide association studies correlate AD with a variety of gene sets, with the main implications being associations with amyloid/tau and microglia \cite{bellenguez_new_2022}. As discussed, changes in the quantity and quality of monomer protein expression can increase susceptibility to disease. The microglia are cells that support immune function and endocytosis with the brain, directly affecting the clearance mechanisms. These genetic studies do not provide mechanistic insight into the causes of disease, but rather suggest where to look. It is encouraging that two major features that determined the transition to disease in the model developed here, the monomer concentration and clearance mechanisms, were also identified as risk factors in human populations. Despite this currently being a very broad association, quantifying the rate parameters and the effects of mutations will hopefully make major strides towards understand and preventing the onset of the disease in humans.
 
-AD has a reported higher prevalence in individuals with Down Syndrome (DS) \cite{head_aging_2012, zigman_alzheimers_2007}. Although harder to diagnose due to other \todo{impairements}, upto $55\%$ of DS adults aged 40-49 years may be clinically demented and almost all adults with DS over the age of 40 years have neuropatholigcal changes, for example $\beta$-amyloid (A$\beta$) \todo{AB vs BA?} plaques and neurofibrillary tangles, that would lead to a diagnosis of AD \cite{zigman_alzheimers_2007}. Alongside affecting immune responses, the additional copy of chromosome 21 (which is the genetic basis of DS) increases the expression of amyloid precursor protein \cite{head_aging_2012, rumble_amyloid_1989}. The gene coding for amyloid precursor protein is on the long arm of chromosome 21 and so the trisomy can lead to overexpression of this gene and an increased concentration of the aggregating monomer. However, the mechanistic cause of this correlation has not been understood previously. This work gives a mechanistic grounding that explains the early age of AD onset in adults with DS. The increased protein expression moves the cells and tissues closer to the critical point  in Figure \ref{fig:4-flowMM_P}. As such, a smaller reduction in the clearance rate can trigger the transition to disease, resulting in an earlier age of onset.
+AD has a reported higher prevalence in individuals with Down Syndrome (DS) \cite{head_aging_2012, zigman_alzheimers_2007}. Although harder to diagnose due to other \todo{impairements}, upto $55\%$ of DS adults aged 40-49 years may be clinically demented and almost all adults with DS over the age of 40 years have neuropatholigcal changes, for example $\beta$-amyloid (A$\beta$) \todo{AB vs BA?} plaques and neurofibrillary tangles, that would lead to a diagnosis of AD \cite{zigman_alzheimers_2007}. AD is more prevalent and has an earlier onset in adults with DS (for comparison see Section \ref{subsubsec:onsetage}). Alongside affecting immune responses, the additional copy of chromosome 21 (which is the genetic basis of DS) increases the expression of amyloid precursor protein \cite{head_aging_2012, rumble_amyloid_1989}. The gene coding for amyloid precursor protein is on the long arm of chromosome 21 and so the trisomy can lead to overexpression of this gene and an increased concentration of the aggregating monomer. However, the mechanistic cause of this correlation has not been understood previously. This work gives a mechanistic grounding that explains the early age of AD onset in adults with DS. The increased protein expression moves the cells and tissues closer to the critical point  in Figure \ref{fig:4-flowMM_P}. As such, a smaller reduction in the clearance rate can trigger the transition to disease, resulting in an earlier age of onset.
 
 \subsection{Rational Therapeutic Design}
 
-In addition to explaining the onset of disease, understanding the mechanisms governing neurodegenerative diseases is essential in the rational design of therapeutics. 
-\begin{itemize}
-    \item Recently therapeutics that increase the clearance of aggregates have started to be liscenced
-    \item Not super effective, but our model predicts they could be useful as prevention, since there is a hystersis
-    \item Could combine with monomer reducing therapies
-    \item Understanding of how ASOs might be acting
-\end{itemize}
+\todo{Discuss currently available therapeutics}
 
+In addition to explaining the onset of disease, understanding the mechanisms governing neurodegenerative diseases is essential in the rational design of therapeutics. In the kinetic framework discussed here, an effective therapy will transition cells or tissues from the unstable to stable regions and ensure the stability of the aggregate mass in the future.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/4-agg-figs/therapyScheme.pdf}
+    \caption{Examples of therapeutic schemes.}
+    \label{fig:4-therapyscheme}
+\end{figure}
+
+The immunotherapy treatments currently under development focus on increasing the clearance mechanisms in the brain. This will shift the balance of aggregation and removal, moving the transition boundary and increasing the area of the stable region. However, since the system will begin proliferating aggregates as soon as it becomes unstable, then the efficacy of the response will depend on how soon any intervention is made after the system become unstable. At early times after the transition, the system will still be close to the stable region, however at later times after more aggregation it will be further from the transition boundary so that the increased clearance does not return the system to being stable. This situation is shown in the second row of Figure \ref{fig:4-therapyscheme}. The best time to take immunotherapy treatments would be before the transition to the unstable region, however it is hard to identify exactly when individuals would become at risk and so hard to design a resource effective treatment strategy at the population level. Furthermore, increasing the population taking medication that may not as susceptible to the onset of disease will also alter the calculation of risks associate side effects of the treatment.
+
+An alternative therapeutic strategy is to develop monomer-reducing therapies, for example ASO-like treatments, or \todo{CHARM system?}. Reducing the monomer concentration can cause an unstable system to cross the transition boundary and return to being stable. The aggregates will then be cleared more quickly than they are produced and the aggregate mass will return to the low stable concentration. However, after some time, the effects of the monomer therapy will reduce and the monomer concentration will return to its original value, once again transitioning into the unstable region so that the aggregates proliferate. This situation is shown in the third row of Figure \ref{fig:4-therapyscheme}. Repeated monomer therapies that act to keep the monomer concentration at some reduced value could keep the system stable, however repeated exposure to ASOs can become toxic \todo{etc etc} and if the protein monomer is functional then reducing its concentration could affect the healthy function of the cell.
+
+An alternative therapeutic strategy that this theory predicts could be a combination therapy of both immunotherapy and monomer reducing therapy. Reducing the monomer ensures an initial transition to the stable region and the subsequent immunotherapy ensures that the system remains in this stable region in the longer term. The final row of Figure \ref{fig:4-therapyscheme} demonstrates how this process will lead to longer term stability. This type of combination therapy would overcome the challenges associated each treatement indivudally, however the exact \todo{need to know the exact sizes of effects etc.}
 
 \section{Summary and Conclusions}
+
+
+oligomeric proteins reduce transit time between by dissassembling, diffuse more quickly and then reasssembling \cite{agudo-canalejo_cooperatively_2020}
+
+This chapter presents a theory for the kinetics of neurodegenerative diseases that can explain different aspects of the disease into one unified theory. This combines all existing phenomena into one model that 
+
+Unfieid theory, difference regions for different diseases
 
 Could be oligomers that actually cause the disease, but as shown in the first few sections aggregates of all lengths will increase together linearly.
 

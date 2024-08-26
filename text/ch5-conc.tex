@@ -4,53 +4,66 @@
 
 \newpage
 
-\section{Reaction networks and controllers}
+% \section{Summary of Thesis}
+\section{The Investigated Protein Organisation}
 
-Recently, an experimental technique to lower non-functional prion proteins in the brain.
-Harnesses the endogenous DNA methylation machinery
-kinetically tuned self-silencing approach.
+In this thesis, I have explored a variety of physical forces and processes that act to organise proteins. The spirit of these models was not to develop extremely high fidelity simulations, but to construct minimal models that can predict or explain phenomena of protein organisation. A brief summary of the distinct chapters and suggestions for future work are outlined below.
 
-antisenseoligonucleotides require chronicc dosing
-Epigenetic silencing
-Challenges include reducing the toxicity of editing tools and delivering them to cells without compromising their potency
+\subsection{\chcips}
 
-the framework can be combined with other tags etc, it's small enough to be built on
+\subsubsection{Summary}
+Classically, the physics of liquid-liquid phase separation is built around the equilibrium interactions between different components. However, in this chapter I showed that purely non-equilbrium chemical reactions can drive the formation of two distinct phases in a fluid mixture. I developed a thermodynamically consistent, minimal model of an active mixture comprised of an enzyme, a substrate and a product component. When the enzyme permits a driven reaction that acts to convert substrate to product it can generate a locally increased product concentration compared to regions with no enzyme. This generates a gradient in the composition of the mixture and subsequently concentration fluxes. When the enzyme responds differently to gradients in the substrate versus the product, the gradients can cause net enzyme fluxes towards regions of increased enzyme concentration and generate effective enzyme-enzyme interactions that induce phase separation. I call this mechanism \textit{catalysis induced phase separation} The formation of these phases reduces the overall reaction rate due to the enzyme and so automatically provides a feedback on the reaction rate that we call \textit{autoregulation}.
 
-CRISPRoff, but with delivery
+\subsubsection{Future Work}
 
-ctivate components of DNA methyltransferases
+The model developed in this chapter was deliberately minimal to explore the onset of the phase separation. Immediate next steps are therefore to generalise the model and identify the situations in which this mechanism of phase separation is relevant. For example, adding equilibrium interactions back into the model and understanding how the non-equilibrium effects interplay with the equilibrium interactions presents interesting and biologically relevant research. Another generalisation is to consider model with aditional reaction components, building up to a catalysed reaction networks. This will likely increase the complexity of the emergent phenomena and potentially give rise to new feedback mechanisms between the reactions. I argued in this chapter that catalysis induced phase separation will be relevant for many biological systems, however it would be exciting to prove this with experimental observations, or build a synthetic system that undergoes this instability. Since experimental systems often have more complexity than the theoretical minimal models, it will likely be useful to understand the generalisations of the effect before searching for experimental validation.
 
-validates my model, safer epigentic silencing is exciting for other disease, but just adds to the toolbox of reaction networks we can build up from controlling expression.
+\subsection{\chelastic}
 
-(john biggins liquid crystal elastomers is very cool)
+\subsubsection{Summary}
+The focus of this chapter was the investigation of how curvature inducing inclusions organise, through an interaction mediated by an elastic biological membrane. I derived that for well-separated, small inclusions, the many-body interaction between multiple inclusions is the sum of the two-body potential and I derived the form of this interaction potential. This interaction fundamentally changes when the curvature-inducing inclusions are not radially symmetric by the emergence a well defined minimum separation compared to strong repulsion at all separations. However in addition to altering the direction of the force, the anisotropy affects the formation of aggregates of many inclusions, as the pair interaction can be frustrated by other inclusions. As such the equilibrium arrangement of groups of inclusions are polygonal lattices.
 
-one can heat or cool all of the lioquid crysal elastomers for shape froming
+\subsubsection{Future Work}
 
+In this chapter, I broke the symmetry in the system by including a quadrupole mode on the contact angle imposed on the edge of the inclusion. An additional symmetry breaking could be to consider the interaction of curvature inducing inclusions on some background curved membrane, potentially caused by bilayer asymmetry or other cellular structures such microtubules or synthetic supports. It makes sense that in system with both global membrane asymmetry and local inclusion anisotropy that the axis of maximum curvature of the inclusions would align with the maximum curvature on the membrane to minimise energy. When multiple inclusions interact the system would have to trade off the mismatch between the inclusion-inclusion alignment and the membrane-inclusion alignment. Additionally, using the interaction potential derived we could investigate the different structures formed by inclusions with different anisotropy, for example considering two distinct inclusions species.
 
-(e.g. Thomas Michaels)
+\subsection{\chaggregation}
 
-Seen a lot of research around controlling reaction rates via phase separation, but these things haven't been built yet.
-
-Partitioning vs slow moving (mobility)
-
-Well mixed models etc.
-
-(Fluid structure interactions, e.g. Kirigami Sophie)
-
-(Mechanical neaural netowrk - Vishal Patil)
-
-()
-
-\section{Dump}
-
-The intersection between lipids and aggregations,
-proteins that form cured aggregates
-modelling bilayer folds as aggregates (i.e. can grow/shrink + diffusion)
+\subsubsection{Summary}
+Understanding the onset and development on neurodegenerative diseases is necessary to design rational therapeutics and treatment plans. In this chapter I developed a kinetic model of the aggregation process that unifies different diseases of aggregating proteins and can explain and predict all existing experimental observations. My innovation was to introduce a bounding effect on the clearance of aggregates from a system, which is a physically realistic constraint. The model predicts that the relevant factors describing the disease are the monomer concentration, the aggregate mass concentration and the clearance rate. Current therapies work by affecting the clearance rate, but in fact combination therapies that include a transient reduction in the monomer concentration may be significantly more effective in returning the system to a steady state. Crucially this model is robust even when the exact functional form of the clearance or aggregation kinetics are varied.
 
 
+\subsubsection{Future Work}
 
-LLPSxAggregation... https://www.alzforum.org/news/research-news/do-tau-fibrils-form-droplets
+The major focus on future work in this area should be to experimentally determine rates of the different aggregation processes. The desired rates are in vivo rates which are harder to probe experimentally compared to test tube reactions, as so there are additional constraints to keep cells and tissues alive, or connected to other organs. However, these rates can be constrained by indirect observations, such as studying the length distributions of the aggregates in cell lysate. As clinical trails continue to progress, more data regarding the onset of disease and the effect of interventions will become available which again can help to provide bounds on the different rate parameters in vivo. From a theoretical perspective, this model should be connected to multiscale models of aggregation processes across different cells, such as models describing the spread of aggregates in tissues and ultimately to include this model in larger network models that describe the spread of the disease through different regions of the brain.
 
+\section{The Interplay of Protein Organisation}
 
+Proteins interact in a myriad of different ways and during my DPhil I have studied a some specific examples of protein organisation. Of course there are other ways that proteins can interact, leading to function, for example, hydrodynamic coupling between enzymes can cause enhanced activity \cite{agudo-canalejo_synchronization_2021, chatzittofi_topological_2024} or the binding between discorded proteins can be modulated by depletion effects \cite{zosel_depletion_2020, asakura_interaction_1954}. In addition to these distinct different mechanisms of protein organisation, the different modes of organisation can also interplay! Even within the subset of systems studied in this thesis, there is emerging work looking at the intersection and overlap of these modes of organisation. Examples of these are listed below.
 
-Protein engineering and enzyme tuning done at the level of the protein, but not at the level of the interactions etc.
+\subsection{Membranes and Condensates in Aggregation}
+
+In Chapter \ref{ch:4-aggregation} I outlined the basic processes of protein aggregation relevant to the onset of neurodegenerative diseases. However, the rates and functional form of these mechanisms are affected by the cellular environments. One particular example is the interplay between lipid membranes and aggregation. Lipid vesicles were reported to enhance primary nucleation by three orders of magnitude, \cite{galvagnion_lipid_2015} however recent work that explored the molecular mechanisms describing this enhancement found that lipids were additionally increasing the elongation rates of aggregates \cite{dear_molecular_2024-1}. Additionally, this work identifies that air-water or plat-water interfaces, interfaces that are common in all in vitro experiments, can alter the kinetics of aggregation and thus care should be taken in drawing conclusions from these assays. Beyond simply affecting aggregation rates, tau aggregates have also been observed tethered to membranes in vesicles \cite{fowler_tau_2023}. This could be linked to the formation of the aggregates, but could also be connected to how they are localised to extracellular vesicles. Extracellular vesicles are believed to be involved with aggregate clearance, or transmission to other neurons. Understand this aggregate-membrane tethering interaction could provide more insight on these proceses.
+
+Droplets, formed by liquid-liquid phase separation, have been implicated in the formation of pathological aggregates. The formation of aggregates is enhanced in protein-rich droplets \cite{molliex_phase_2015}. Tau protein (a candidate monomer protein in AD) can form small condensates via liquid-liquid phase separation that subsequently mature into pathological aggregates that can act as seeds and further proliferate disease. \cite{soeda_intracellular_2024} The pathway to the formation of aggregates in disease relevant proteins demonstrates the importance of understanding how the liquid condensates can affect the kinetics of aggregation and theoretical studies have start to explore this phenomena. Liquid droplets that sequester aggregates can affect aggregation processes in broadly two ways. Firstly, the different environment and rheology of droplets can affect rates of aggregation \cite{ponisch_aggregation_2023} and secondly, partitioning the aggregates/monomers to have an enhanced concentration inside/outside the droplet can alter the net aggregate growth rate. \cite{weber_spatial_2019} Furthermore, interactions between other aggregates of different lengths could themselves support the formation of liquid droplets. \cite{bartolucci_interplay_2023} In addition to affecting the aggregation, droplets could also affect the efficacy of therapeutics which would also be affected by the different droplet environment and by partitioning. These mechanisms will all affect the kinetics of aggregation, however it will be useful to understand if this will simply alter the rates in existing models of aggregation or if this interplay could lead to fundamentally different phenomena. 
+
+\subsection{Phase Separated Curved Domains}
+
+The role of membranes and their interplay with phase separated droplets has also been an exciting area of research, through wetting and remodelling of vesicle membranes by liquid droplets \cite{mangiarotti_wetting_2023}. Furthermore, phase separation actually in biological membranes has been observed, even in membrane models with as little as two phospholipids and a cholesterol component \cite{elson_phase_2010}. Lipid-lipid and lipid-cholesterol interactions can drive the well mixed system to form these separate domains \cite{feigenson_phase_2009} and models of phase separating systems can predict the phase behaviour \cite{wolff_thermodynamic_2011}. However in these model systems the amount of lipid is conserved and, in vivo, local lipid composition actually changes due to membrane recycling and as a result of the activity of enzymes which catalyse lipid synthesis and breakdown \cite{feigenson_phase_2009}. The catalysis induced phase separation in Chapter \ref{ch:2-cips} may also be relevant in the plane of membranes.
+
+Exploring the phase behaviour of membranes also provides an exciting system that couples curvature and phase. Patterns of stripes or spots, can form in membranes when the curvature and interactions of different components and bilayer asymmetry are considered \cite{yu_pattern_2023}. Flipases and flopases are enzymes that move lipid across the bilayer. \cite{alberts_molecular_2008} Driving their action with a fuel could generate gradients in curvature in the membrane, akin to the concentration gradients in Chapter \ref{ch:2-cips}. I predict that this could generate an instability similar to catalysis induced phase separation. An alternative idea could be embedded components in the membrane that can undergo significant conformational changes, such as switchable lipids \cite{phan_switchable_2023}. An enzyme that changes the conformation of these components could then generate effective interactions between the conformations via the curvature mismatch and elastic effects. Again this could present a new avenue to pursue functional pattern formation on membranes.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{figures/5-conc-figs/DALLEharness.png}
+    \caption{DALL-E interpretation of \textit{A realistic and photorealistic panoramic view of a futuristic world where protein organization has been harnessed to develop effective medicines and innovative synthetic biology}.}
+    \label{fig:5-harness}
+\end{figure}
+
+\section{The Importance of Protein Organisation}
+
+It is essential to understand protein organisation to design medicines for diseases caused by pathological protein organisation, and these therapies can take advantage of the relationship between emergent protein structures and the broader \textit{in vivo} environment. The interplay of these processes do not only have medicinal potential, but also potential in engineering smart synthetic biological systems (perhaps moving us closer to the imagined utopia in Figure \ref{fig:5-harness}). Proteins can react and interact to carry out basic computation, or to regulate expressions of other proteins. However the majority of work to date is limited to assuming well mixed systems, or if there is patterning and spatial heterogeneity it is at the level of the cell or synthetic vesicles \cite{JORIN}. Spatial organisation at the level of protein presents a design space that can couple structure and function much more directly and develop tight feedback and control. The autoregulation presented in Chapter \ref{ch:2-cips} is a good example of this automatic control. Active droplets have also been predicted to buffer noise in fluctuating concentrations \cite{kirschbaum_controlling_2021}, generate oscillatory metabolic cycles \cite{ouazan-reboul_self-organization_2023}, or even as a reaction crucible to speed up reactions \cite{wang_liquidliquid_2021}. These phenomena are already quite diverse, even for just this one mechanism of protein organisation where the different functional effects depend on the biophysical regime. Unifying these different interactions into a framework, such as the language of control, might help to support more system level design and ultimately the manufacture of controllable protein systems.
+
+% The physics of these systems and mechanistic modelling remain central to research in this area. Recent studies have used AI etc. to determine the dynamics, but doesnt really give advice about coupleing them, or general downstream effects etc. Also need to determine whats important in each system (tbf AI could probable help with this). However more crucailly, in these cases the question is quite spceific. Here we cant quite do this, the question is less obvious...
+
+% What we can do is solve more sepcific question... reaction networks - Vincent + Antonis. But coupling everything together will give the best results...

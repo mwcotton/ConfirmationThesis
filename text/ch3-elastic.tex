@@ -1,27 +1,6 @@
-\chapter{\label{ch:2-elastic}Membrane Mediated Elastic Interactions} 
+\chapter{\label{ch:2-elastic}\chelastic} 
 
 \minitoc
-
-% \section{Introduction}
-% \section{Background}
-% \subsection{Helfrich Hamiltonian}
-% \subsection{Monge Parameterisation}
-% \subsection{Dynamics}
-% \section{Calculating the Membrane Interaction Energy}
-% \subsection{Features of the Interaction Potential}
-% \section{Rings, Lines and Lattices}
-% \subsection{Rings}
-% \subsection{Lines}
-% \subsubsection{Infinite Lines}
-% \subsubsection{Finite Lines}
-% \subsection{General Configurations}
-% \subsubsection{Forms a graph}
-% \section{Sensing and Scaffolding}
-% \section{Quadrupole Interactions}
-% \section{Uniform Expansion}
-% \subsection{Effective Super Pairs}
-% \section{Comment on Continuum Models}
-% \section{Membrane Tubules and Future Work}
 
 \section{Introduction}
 
@@ -41,7 +20,7 @@ However these top-down density field models do not specify any details of the me
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=12cm]{elastic_figs/threeinc_scheme.pdf}
+\includegraphics[width=12cm]{figures/3-elastic-figs/threeinc_scheme.pdf}
 \caption{Example of three inclusions embedded in an elastic membrane and the resulting membrane shape from two different angles. The inclusions can interact via the elastic mediate membrane forces.}
 \label{fig:overview}
 \end{figure}
@@ -56,7 +35,7 @@ and $\phi$ is the angular position on the edge of the inclusion (there is no ter
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=12cm]{elastic_figs/conttil.png}
+\includegraphics[width=12cm]{figures/3-elastic-figs/conttil.png}
 \caption{Contact angle induced by a circular inclusion. The top scheme shows a cross section of the inclusion. The bottom two surface plots show the membrane response locally to an anisotropic inclusion, where the arrow indicates the orientation.}
 \end{figure}
 
@@ -315,8 +294,8 @@ We also define $\alpha_i$ as
 where the factor $\epsilon$ is equivalent to rescaling $h$. The anisotropy of the inclusion is defined as $\omega_i=\alpha_i^{(2)}/\alpha_i^{(0)}$ and we will consider the distinguished limit of strong anisotropy and strong tension: $\omega_i=\mathcal{O}(1)$ and $\mu=\mathcal{O}(1)$ as $\epsilon\rightarrow 0$. In this regime inclusion separations larger than the non-dimensionalised distance, $R > 1$, are tension dominated.
 \begin{figure}[h]
 \centering
-% \includegraphics[width=12cm]{elastic_figs/setup.pdf}
-\includegraphics[width=12cm]{elastic_figs/boundary_shade.pdf}
+% \includegraphics[width=12cm]{figures/3-elastic-figs/setup.pdf}
+\includegraphics[width=12cm]{figures/3-elastic-figs/boundary_shade.pdf}
 \caption{Parameterisation of the membrane elastic problem. The example shows the distribution of four inclusions where the inner coordinate system around the $i\text{th}$ inclusions is shown and the parameters describing the relative location of the $j\text{th}$ inlcusion are also shown. All angles are measured clockwise from the x-axis.}
 \label{fig:setup}
 \end{figure}
@@ -543,19 +522,19 @@ When the anisotropy is non-zero and less than a critical value, $\omega_C\approx
 % For larger $\omega$ there is no longer an equilibrium separation, and the two inclusions will continue to attract to each other indefinitely. If we hold the inclusions at a fixed separation, $R$, then we can explore how the energy changes as we rotate each inclusion. If we restrict the angles of the inclusions so that $\psi_1=\psi_2$, there is a bifurcation in the equilibrium, \textit{zero torque}, solutions as we increase $R$. The inclusions are symmetric under a rotation of $\pi$ radians and we can also see this in the symmetry of $\psi_i \rightarrow \psi_i + \pi$ in the interaction potential.
 % \begin{figure}[h]
 % \centering
-% \includegraphics[width=12cm]{elastic_figs/Epi2pi2_mod.pdf}
+% \includegraphics[width=12cm]{figures/3-elastic-figs/Epi2pi2_mod.pdf}
 % \caption{Two body strong-strong interaction. This is the regime we focus on. The maximum $\bar{E}$ defines the $\tilde{R}$ and the stable equilibrium at $R^*$ is shown in the inset.}
 % \label{fig:ss}
 % \end{figure}
 \begin{figure}[h]
 \centering
-\includegraphics[width=12cm]{elastic_figs/Epi2pi2_multiple_w.pdf}
+\includegraphics[width=12cm]{figures/3-elastic-figs/Epi2pi2_multiple_w.pdf}
 \caption{Two body strong-strong interaction. This is the regime we focus on. The maximum $\bar{E}$ defines the $\tilde{R}$ and the stable equilibrium at $R^*$ is shown in the inset.}
 \label{fig:ss}
 \end{figure}
 \begin{figure}[h]
 \centering
-\includegraphics[width=12cm]{elastic_figs/bifucation_di_energy.pdf}
+\includegraphics[width=12cm]{figures/3-elastic-figs/bifucation_di_energy.pdf}
 \caption{Bifurcation diagram showing how the existence of equilibrium solutions depends the anisotropy parameter, $\omega$. The two colours are the $\tilde{R}$ and $R^*$ equilibria.}
 \label{fig:Rbifur}
 \end{figure}
@@ -592,7 +571,7 @@ where rather than summing over all pairs we just note the $n$-fold rotational sy
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=14cm]{elastic_figs/n_rings.pdf}
+\includegraphics[width=14cm]{figures/3-elastic-figs/n_rings.pdf}
 \caption{Radial and tangential setup for rings of $n=2,5,12$.}
 \label{fig:polys2ring}
 \end{figure}
@@ -601,7 +580,7 @@ For a ring of $n$ inclusions, there is some edge length, $l_e(n)$ that minimises
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=15cm]{elastic_figs/polys_multiple_w.pdf}
+\includegraphics[width=15cm]{figures/3-elastic-figs/polys_multiple_w.pdf}
 \caption{Equilibrium inclusion to inclusion separation for inclusions with $\omega=0.1$. Both the radial and tangential configurations are shown. The radial configuration all have $\psi^R_i=2\pi i/n$, compared to the tangential case of $\psi^T_i=2\pi i/n+\pi/2$. \todo{Haven't been able to figure out the $\omega=0.2, \psi=0$ doesn't line up.}}
 \label{fig:Efnl}
 \end{figure}
@@ -619,21 +598,21 @@ The Hessian, $\mathbf{H}$, is a $3n\times3n$ matrix and for larger numbers of in
 
 % \begin{figure}[h]
 % \centering
-% \includegraphics[width=12cm]{elastic_figs/ring20sized2.pdf}
+% \includegraphics[width=12cm]{figures/3-elastic-figs/ring20sized2.pdf}
 % \caption{Interaction energy for a ring of $n=20$ inclusions. The energy is plotted as the inclusion separation and alternating mode perturbation are varied.}
 % \label{fig:ring20}
 % \end{figure}
 \notyet{
 \begin{figure}[h!]
 \centering
-\includegraphics[width=15cm]{elastic_figs/energy_line_vs_6_tight.pdf}
+\includegraphics[width=15cm]{figures/3-elastic-figs/energy_line_vs_6_tight.pdf}
 \caption{Interaction energy per inclusion for an infinite line inclusions and for a ring of $n=6$ inclusions. The energy is plotted as the inclusion separation and alternating mode perturbation are varied.}
 \label{fig:lineenergy}
 \end{figure}
 }
 \begin{figure}[h!]
 \centering
-\includegraphics[width=12cm]{elastic_figs/streams.pdf}
+\includegraphics[width=12cm]{figures/3-elastic-figs/streams.pdf}
 \caption{Stream plot showing gradient descent for a ring of inclusions in the reduced paramter space of the alternating angular modes at various inclusion-to-inclusion separations. Shown for n=[], $\omega=0.1$ and the key featrures are the same for $\omega=0.2$.}
 \label{fig:ring_stream}
 \end{figure}
@@ -649,7 +628,7 @@ Fig. \ref{fig:ring_stream} shows the gradient descent flow of a ring of inclusio
 % \end{equation}
 % \begin{figure}[h]
 % \centering
-% \includegraphics[width=12cm]{elastic_figs/ring20lower.pdf}
+% \includegraphics[width=12cm]{figures/3-elastic-figs/ring20lower.pdf}
 % \caption{Interaction energy for a ring of $n=20$ inclusions at closer separations. The energy is plotted as the inclusion separation and alternating mode perturbation are varied.}
 % \label{fig:ring20lower}
 % \end{figure}
@@ -699,7 +678,7 @@ which simplifies to
 and which we can plot, analogously to Fig. \ref{fig:ring20}. The energy profile for the line is shown in Fig. \ref{fig:lineenergy}.
 % \begin{figure}[h]
 % \centering
-% \includegraphics[width=12cm]{elastic_figs/line_anti.pdf}
+% \includegraphics[width=12cm]{figures/3-elastic-figs/line_anti.pdf}
 % \caption{Interaction energy per inclusion for an infinite line inclusions. The energy is plotted as the inclusion separation and alternating mode perturbation are varied.}
 % \label{fig:lineenergy}
 % \end{figure}
@@ -729,7 +708,7 @@ To visualise the structure of the aggregates, we construct a graph and associate
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=12cm]{elastic_figs/autoLatticeEgs100slope.pdf}
+\includegraphics[width=12cm]{figures/3-elastic-figs/autoLatticeEgs100slope.pdf}
 \caption{Sample Lattice Figs}
 \end{figure}
 
@@ -743,7 +722,7 @@ Fig. \ref{fig:latemerg} demonstrates the formation of the lattice from a random 
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=15cm]{elastic_figs/different_starts_sample.pdf}
+\includegraphics[width=15cm]{figures/3-elastic-figs/different_starts_sample.pdf}
 \caption{Examples of the different lattice structures formed from different initial mean nearest neighbours configurations. }
 \end{figure}
 
@@ -769,7 +748,7 @@ Also tried other schemes, but they dont really work , lots of time due to the sy
     
 \begin{figure}[h]
 \centering
-\includegraphics[width=12cm]{elastic_figs/barriersScheme.pdf}
+\includegraphics[width=12cm]{figures/3-elastic-figs/barriersScheme.pdf}
 \caption{"Pop out" transition between two configurations.}
 \label{fig:popout}
 \end{figure}

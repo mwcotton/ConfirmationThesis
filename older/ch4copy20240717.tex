@@ -1,0 +1,480 @@
+\newcommand{\nc}[0]{n_{\mathrm{c}}}
+\newcommand{\todo}[1]{{\color{red} [#1]}}
+
+\chapter{\label{ch:4-aggregation}Protein Aggregation in Diseases}
+
+\minitoc
+\newpage
+
+\section{Background}
+
+\subsection{Protein Aggregates in Disease}
+
+\section{Aggregation Kinetics in vitro}
+
+There are multiple processes that can convert single protein monomers into ordered aggregates. We model these aggregates as 1D chains of the monomer protein which can vary in length and describe an aggregate of length $i$ as $\mathcal{A}_i$, and the concentration of aggregates of size $i$ is given by $p_i$. We describe the monomers as $\mathcal{M}$ and the monomer concentration as $m$. There are typically three distinct mechanisms that can form new aggregates:
+\begin{itemize}
+    \item \textbf{Primary Nucleation} is the spontaneous conversion of $\nc$ monomers into an aggregate of length of $\nc$: $\nc\mathcal{M} \rightarrow \mathcal{A}_{\nc}$. Using mass action, we expect the rate of this reaction to be $k_n m^{\nc}$ where $k_n$ is the rate constant for this process. We expect that $\nc$ is set by the energy dependence on aggregate length and so $\nc$ is constant and all aggregates smaller than $\nc$ are unstable and subsequently ignored.
+    \item \textbf{Secondary Nucleation} is the conversion of $n_2$ monomers into an aggregate of length of $n_2$ occurring on the surface of existing aggregates: $n_2 \mathcal{M} + \mathcal{A}_{i} \rightarrow \mathcal{A}_{n_2} + \mathcal{A}_{i}$. This reaction occurs uniformly over the surface (i.e. length) of all existing aggregates and so we expect the rate to be proportional to the total length of aggregates, $\sum i p_i$. The reaction rate then becomes $k_2 m^{n_2}(\sum i p_i)$ where $k_2$ is the rate constant for secondary nucleation.
+    \item \textbf{Fragmentation} is the splitting of a longer aggregate into two smaller aggregates: $\mathcal{A}_{i+j} \rightarrow \mathcal{A}_{i} + \mathcal{A}_{j}$. Again, we assume that fracturing occurs uniformly over every bond between monomers, so that for an aggregate of size $i$, there are $i-1$ bonds that could fracture. The rate for a specific bond to fracture will be some constant rate, $k_{-}$, however the overall fracture rate of aggregates of size $i$ will be $k_{-}(i-1)p_i$. When an aggregate fractures it two new smaller aggregates and so increases the number of aggregates.
+\end{itemize}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/aggProcesses.pdf}
+    \caption{Aggregation Processes.}
+    \label{fig:phase_sep_scheme}
+\end{figure}
+
+\noindent Additionally, aggregates changes size via the addition or removal of a monomer protein on the end of an aggregate, we describe this process as:
+\begin{itemize}
+    \item \textbf{Elongation} The addition of a monomer onto an existing aggregate: $\mathcal{M} + \mathcal{A}_{i} \rightarrow \mathcal{A}_{i+1}$. This happens at rate $2 k_+ m \sum p_i$
+    \item \textbf{Depolymerisation} The dissociation of a monomer from an existing aggregate: $\mathcal{A}_{i} \rightarrow \mathcal{M} + \mathcal{A}_{i-1}$. This happens at rate $2 k_{off} \sum p_i$
+\end{itemize}
+
+This gives the master equation
+\begin{equation}
+\begin{split}
+    \frac{\text{d}p_i}{\text{d}t} &= \delta_{i, n_C}k_n m^{n_C} + \delta_{i, n_2} k_2 m^{n_2} \left(\sum_{j=\nc}^{\infty} j p_j\right) + 2k_+ m (p_{i-1}-p_i) \\
+    & + 2k_{off} (p_{i+1}-p_i) - k_{-}(i-1)p_i + 2k_{-}\left(\sum_{j=i+1}^{\infty}p_j\right).
+    \end{split}
+    \label{eq:pi_evolution}
+\end{equation}
+In general, this infinite system of coupled ordinary differential equations is hard to solve. Strategies to numerically integrate the system involve truncating the series of $p_i$s and introducing some boundary conditions in the length space, e.g. introducing an absorbing boundary by setting the population of very larger aggregates to be zero.
+(note the 2 in the fragmentation term. Can count from either end, except for the split into $\mathcal{A}_{2i}\rightarrow2\mathcal{A}_i$), however then we are making two new aggregates of the same size, so it works!)
+\todo{Justifiy ingnoring fragmentation/why it can be written as in Georg's thesis?}
+
+Experimental methods \todo{such as...} often measure the total mass of bound protein, that is
+\begin{equation}
+    M = \sum_{i=\nc}^{\infty}i p_i.
+\end{equation}
+This defines the second moment of the $p_i$ distribution and we can also define the first moment, $P$, as 
+\begin{equation}
+    P = \sum_{i=\nc}^{\infty} p_i.
+\end{equation}
+which is simply the number of aggregates. Summing over the master equation (or differentiating $M$), we can find the evolution of these moments from the master equation and \todo{for the no fragmentation case} we find that these form a closed system of equations
+\begin{align}
+    \frac{\text{d}M}{\text{d}t} &= 2 k_+m P + \nc k_n m^{\nc}+ k_2 m^{n_2} M, \label{eq:Mvitro} \\
+    \frac{\text{d}P}{\text{d}t} &= k_n m_0^{n_c}+k_2 m^{n_2} M. \label{eq:Pvitro}
+\end{align}
+To fully close the system we also need to consider the monomer concentration. In test tube experiments, there is a fixed quantity of monomer that is converted into aggregates. The total protein in an experiment is constant, $M_{total} = M + m$, so that $\dot{m}=-\dot{M}$. For completeness we write this explicitly as 
+\begin{equation}
+    \frac{\text{d}m}{\text{d}t} = -2 k_+m P - 2k_n m^{n_c} - 2k_2 m^{n_2} M. \label{eq:mvitro}
+\end{equation}
+Standard numerical solvers can intergrate this close systems to equations to determine the \textit{aggregation curve} that describes the transition from monomer to aggregate. Fitting this solution to aggregation data shows an extremely good fit and can be used to determine the rate constants of aggregation, e.g. $k_+$, $k_2$ etc.
+
+\todo{an example of the curve? ask georg for data?}
+
+Typical aggregation curves have an initial slow increase in aggregate concentration that then rapidly accelerates due to the secondary nucleation process until all the monomer is aggregated. The secondary nucleation step is autocatalytic as aggregates speed up the formation of more aggregates leaeding to a postive feedback and fast transition from mostly monomer to mostly aggregate.\todo{Discussion of scaling, typical length, etc., could actually also plot M/P, but just generally could have a bit more discussion here.}
+
+\subsection{Failure to Recapitulate Disease}
+
+The aggregation curves in test tube experiments are well understood by the reaction kinetics, but lack many crucial features of the development of neurodegenerative disease in living systems. Specifically, the model in (\ref{eq:Mvitro})-(\ref{eq:mvitro}) does recapitulate the discrete seeding transition, observed recovery of mice following treatment, or explain why the disease typically occurs in later life. These observations and the contradiction with the in vitro model are outlined below.
+
+\subsubsection{Discrete seeding transition to disease}
+
+
+The exponential growth hypothesis predicts that aggregate mass increases exponentially in time
+\begin{equation}
+    M(t) = S\exp{\lambda t}
+\end{equation}
+where $S$ is the aggregtae mass at time $t=0$. In a seeded system, we typically expect the seeded aggregate mass to be much greater than the natural mass of aggregates and so we approximate $S$ as the mass of seeds.
+
+Consider three identical systems, seeded with different initial concentrations of the aggregated proteins; $S_1$, $S_2$, and $S_3$. The systems will aggregate and at some threshold, $M_D$, we will detect the aggregates in the cell. The exponential growth hypothesis can be used to identify growth rates. We identify the first time that aggregates are seen at as $t_i$ for a system seeded with $S_i$ aggregates. Then the growth rate, $\lambda$, is given by
+\begin{equation}
+    \lambda = \frac{\ln(S_1)-\ln(S_2)}{t_2-t_1}
+\end{equation}
+Therefore an experiment that does not satisfy this
+
+\subsubsection{Recovery of mice following ASO treatment}
+
+\subsubsection{Long timescale in disease}
+
+\section{Aggregation Kinetics in vivo}
+
+In living systems, there are additional processes in the `life cycle' of a protein. Specifically, how proteins are manufactured and removed. Many proteins that aggregate during disease are functional, for example \todo{specifics}. As such, we expect the concentration of these proteins will be maintained as part of homeostasis and thus in vivo the monomer concentration in constant, $m(t)=m_0$. In order to maintain the monomer concentration precisely, the cellular production and removal will need to be much faster than the aggregation kinetics and thus we write this as
+\begin{equation}
+    \frac{\text{d}m}{\text{d}t} = \epsilon^{-1}\left( \gamma - \lambda_1 m \right) + \text{aggregation kinetics}
+    \label{eq:minvivo}
+\end{equation}
+where $\gamma$ and $\lambda_1$ are scaled rate constants for production and removal of the monomer respectively and $\epsilon$ is a small parameter that separates the timescales. The leading order solution to (\ref{eq:minvivo}) is $m=\gamma/\lambda_1$ which sets $m_0$. In the subsequent analysis we only consider this leading order behaviour. A full solution as an expansion of $\epsilon$ could be explored, however the leading order behaviour is sufficient to capture key features of the disease.
+
+In living systems aggregates can also be removed via active processes in the cells or surrounding tissue. Examples of such processes include \todo{give examples}. This changes the master equation to
+\begin{equation}
+\begin{split}
+    \frac{\text{d}p_i}{\text{d}t} &= \delta_{i, n_C}k_n m^{n_C} + \delta_{i, n_2} k_2 m^{n_2} \left(\sum_{j=\nc}^{\infty} j p_j\right) + 2k_+ m (p_{i-1}-p_i) + 2k_{off} (p_{i+1}-p_i) - \lambda_i(p_i),
+    \end{split}
+    \label{eq:pi_cleared}
+\end{equation}
+where $\lambda_i(p_i)$ is the clearance rate for aggregates of each size.
+
+\todo{What is the diseased state? i.e. unbound aggregate growth}
+
+\subsection{Unbounded Clearance}
+
+The exact mechanisms of clearance and their kinetics remain unknown in many living systems. In the spirit of Occam's (or informally OCIAM's) razor we begin by considering the simplest kinetics: the clearance rate is proportional to the number of aggregates and independent of size $\lambda_i(p_i)=\lambda_C \times p_i$. The moment equations now define a linear system, since $m=m_0$ is constant, and so we can define $\textbf{q}=(P, M)^\text{T}$ and the evolution of the system becomes
+\begin{equation}
+    \dot{\textbf{q}} =
+    \underbrace{\left(
+    \begin{array}{cc}
+    -\lambda_C & k_2 m_0^{n_2} \\
+    2 k_+m_0 & n_2 k_2 m_0^{n_2}-\lambda_C  \\
+    \end{array}
+    \right)}
+    _{\textbf{A}}
+    \textbf{q}
+    +
+    \underbrace{\left(
+    \begin{array}{c}
+    k_n m_0^{\nc} \\
+    \nc k_n m_0^{\nc} \\
+    \end{array}
+    \right)}
+    _{\textbf{b}}
+    \label{eq:momentEvomatform}
+\end{equation}
+where the dot indicates the time derivative and we've defined the matrix $\textbf{A}$ and vector ${\textbf{b}}$ in the equation. The solution is 
+\begin{equation}
+    \textbf{q} = -\textbf{A}^{-1}\textbf{b}+\left(\textbf{q}_0+\textbf{A}^{-1}\textbf{b}\right)e^{\textbf{A}t}
+    \label{eq:momentSolvematform}
+\end{equation}
+where $\textbf{q}_0$ is a vector of the initial aggregate number and aggregate mass concentration. The steady state behaviour is determined by the eigenvalues of $\textbf{A}$, which are
+\begin{equation}
+    \nu_{\pm} = \frac{1}{2} \left(k_2 m_0^{n_2} n2 \pm \sqrt{8 k_p m_0 k_2 m_0^{n_2} + \left(n_2 k_2 m_0^{n_2}\right)^2} - 2 \lambda_c \right).
+    \label{eq:A_eig}
+\end{equation}
+The systems always has $\nu_{-} \leq 0$, however the sign of $\nu_+$ depends on the the clearance constant, $\lambda_c$. If $\nu_+>0$, then the system has no steady state and both the mass and number of aggregates has unbound growth. For $\nu_+<0$ then there exists a steady state solution for $t\rightarrow\infty$, $\textbf{q}_\infty = -\textbf{A}^{-1}\textbf{b}$. Given a set of rate constants we can therefore define a \textit{critical clearance}, $\lambda_{\text{crit}}$, that determines whether the aggregation will be bound. Solving equation (\ref{eq:A_eig}) for $\nu_+=0$ gives
+\begin{equation}
+    \lambda_{\text{crit}} = \frac{1}{2} \left(k_2 m_0^{n_2} n_2 + \sqrt{8 k_p m_0 k_2 m_0^{n_2} + \left(n_2 k_2 m_0^{n_2}\right)^2}\right)
+\end{equation}
+\todo{check this critical value} so that the mass of aggregates grows exponentially for $\lambda<\lambda_C$, or approaches the steady state for $\lambda>\lambda_C$. Alternatively, we could fix the clearance rate and determine the maximum monomer concentration, $m_0$, that leads to a steady state solution. The stability condition is cubic in $m_0$ but \todo{for this system} gives one positive critical monomer concentration $m_0^{(crit)}$, above which the system has unbound aggregation and below which the aggregate mass approaches a steady state.
+\begin{equation}
+    -2 k_2 k_+ m_0^{n2+1} - n_2 k_2 \lambda m_0^{n2+1} +\lambda^2 = 0
+\end{equation}
+This is a useful perspective as the new treatment thechnologies, such as ASO/CHARM treatments can vary $m_0$ as a therapeutic strategy, however currently no theoretical description exists to capture this.
+
+At the steady state, $\textbf{q}$ is constant, and so we can determine the average aggregate length as the ratio of the aggregate mass and aggregate number, $\bar{l}=P/M$. At the steady state this will be constant
+\begin{equation}
+    \bar{l}^* = \frac{M^*}{P^*} = \frac{2 k_+ m_0 + \nc \lambda_C}{\lambda_C+(\nc-n_2)k_2 m_0^{n_2}}.
+    \label{eq:lbarConstClear}
+\end{equation}
+
+LINEAR CLEARACNCE APPROXIMATION FOR THE BOTTOM LINE! - NON LINEAR FOR THE UPPER LINE.
+\subsubsection{Exactly Solving the Full Linear System}
+
+When the system clears aggregates at a linear rate we can calculate the steady state aggregate length distribution as well as the time evolution of an arbitrary number of moments of this distribution.
+
+It is also possible to find $p_i$ for the steady state. Assume $n_c=n_2$. In steady state the concentration of each aggregate size is in detailed balance so for the smallest aggregates, of length $n_c$, we have
+\begin{equation}
+    k_n m_0^{\nc} + k_2 m_0^{\nc} M - 2 k_+ m_0 p_{\nc} - \lambda p_{\nc} = 0
+    \label{mpnc2}
+\end{equation}
+and detailed balance for all aggregates of other lengths gives
+\begin{equation}
+    (2k_+ m_0 + \lambda)p_{i+1} = 2k_+ m_0 p_i.
+\end{equation}
+This is solved by
+\begin{equation}
+    p_i = \alpha^{\nc-i} p_{\nc}\quad\text{ with }\quad\alpha=\frac{2k_+ m_0}{2k_+ m_0 + \lambda}
+\end{equation}
+and so we get another equation connecting $M$ and $p_{\nc}$, that is
+\begin{equation}
+    M = \sum_{i=\nc}^{\infty}i\alpha^{\nc-i} p_{\nc} = p_{\nc}\left( \frac{(\lambda +2k_p m_0) (2 k_+ m_0 + \lambda  \nc)}{\lambda^2} \right).
+    \label{mpnc2}
+\end{equation}
+Combining equations (\ref{mpnc1}) and (\ref{mpnc2}) gives the same $M$ as before and 
+\begin{equation}
+    p_{\nc} = \frac{\lambda^2 k_n m_0^{\nc} }{(2 k_+ m_0+\lambda \nc) \left(\lambda ^2-k_2 m_0^{\nc} (2 k_+ m_0+\lambda  \nc)\right)}.
+\end{equation}
+Additionally, we can determine the time full evolution of any initial distribution in the moment space. Since this is a linear system, the we can take an arbitrary number of moments. Define
+\begin{equation}
+    Q^{N} = \sum_{\nc}^\infty i^N p_i
+\end{equation}
+which has the time evolution
+\begin{equation}
+\begin{split}
+    \frac{\text{d}Q^{N}}{\text{d}t} &= \sum_{\nc}^\infty i^N \left( \delta_{i, n_C}k_n m^{n_C} + \delta_{i, n_2} k_2 m^{n_2} M + 2k_+ m (p_{i-1}-p_i) + 2k_{off} (p_{i+1}-p_i) - \lambda_C p_i \right) \\
+    \frac{\text{d}Q^{N}}{\text{d}t} &= \sum_{\nc}^\infty i^N \left( \delta_{i, n_C}k_n m^{n_C} + \delta_{i, n_2} k_2 m^{n_2} M + 2k_+ m (p_{i-1}-p_i) - \lambda_C p_i \right) \\
+    &=n_C^N k_n m^{n_C} + n_2^N k_2 m^{n_2} M + \sum_{\tau=0}^{N-1} 2k_+ m \binom{N}{\tau} Q^{\tau} - \lambda_C Q^{N}.
+\end{split}
+\end{equation}
+Since the evolution of a moment only depends on itself, or moments of lower order moments, we can still solve the system equation (\ref{eq:momentEvomatform}).
+\todo{need to watch the bound for the $k_{off}$ term!}
+can we use this to determine the last populated aggregate size? how would this affect the distribution (probably not, but could be a fun estimate). i.e. once the concentration is on the scale of Avogadro's number, then we will start to not have aggregates - nice!
+
+To solve the full systems numerically.... We can verify these numerics using these exact solutions.
+
+\subsubsection{Reduced Model}
+
+When the aggregate clearance and other rates are prescribed, the system and its dynamics are determined by three variables, $M$, $P$ and $m_0$, where $m_0$ is unaffected by the aggregation kinetics, however we keep this as a system variable to explore the role of monomer reducing therapies.
+
+The fate of a system determines whether a cell is \textit{healthy} or \textit{diseased} with unbound growth describing the diseased state and a finite steady state for healthy cells. In the three parameter description, this will be entirely determined by the monomer concentration. We can further reduce the system to a two parameter description by prescribing the average length of the aggregates, $\bar{l}$. Choosing the steady state value, $\bar{l}^*=M^*/P^*$ (equation (\ref{eq:lbarConstClear})) is an obvious choice as this exactly recovers the steady state. This average length assumption collapses the two dimensional $M-P$ plane onto a line and Figure \todo{ref} shows that the dynamics along the line nicely capture the flow towards the fixed point. With this assumption, the moment equation for $M$ becomes
+\begin{equation}
+    \frac{\text{d}M}{\text{d}t}= \nc k_n m_0^{\nc} + n_2 k_2 m_0^{n_2} M + 2 k_+ m_0 M/\bar{l}^* - \lambda M.
+\end{equation}
+This reduced system is now described by two variables, $m_0$ and $M$, and along with $\text{d}m_0/\text{d}t=0$ this gives the dynamics for the system. The stability of the system occurs naturally from the flow $M-P$ plane.
+
+There isn't an obvious intuition for the form of this average length. For a system at equilibrium, we would expect the average length to be
+\begin{equation}
+    \bar{l} = \sqrt{\frac{\text{growth rate}}{\text{aggregate production rate}}} = \sqrt{\frac{2 k_p}{k_2 m_0}}
+\end{equation}
+\todo{actually why do we think this?} \todo{this was EXACTLY what we wanted}
+
+
+The transition from unbounded growth to a finite steady state mass gives an expression for the critical clearance of a system. Alternatively, this transition can occur for a constant clearance that approaches a steady state if the monomer concentration is low, but grows unbound if the monomer concentration is high. Plotting the steady state mass, $M^*$, against the monomer concentration shows this transition. A system initialised with a total mass below the steady state mass, $M_0 < M^*$ will increase to $M^*$ and a system with $M_0 > M^*$ will decrease to $M^*$. When $M^*$ does not exist then the mass increasess without bound. To visualise this we assume that the number concentration is enslaved to the mass distribution, to give $P=M/\bar{l}$ even when the system has not equilibrated. This reduces the dynamics to be a function of $M$ and $m_0$ only and gives a two-dimensional phase plane of the system in this space and visualise the flows, as show in \todo{figure}. The app
+
+\subsection{Bounded Clearance}
+
+In order to recapitulate these observed different experimental observations, we introduce a clearance that is dependent on the aggregate mass in the system $M$. We might expect that the ability of the brain to clear pathological aggregates will be reduced when there are more aggregates, this could be a due to the reduced clearance capacity from the toxic aggregates damaging the tissue, a limited clearance capacity within the brain, or, as we will assume, that the clearance mechanism has enzymatic-like rate kinetics.
+Phagocytosis, where specialised phagocytes come into direct contact with and engulf foreign substances, \todo{probably expect this to be microglia actually}. We thus have a population of phagocytes, $P$, that will bind to the aggregates and clear them from the system. We can describe the process of how aggregates $A_i$ of size $i$, are cleared from the system by some concentration of phagocytes, $[E]$, namely
+\begin{equation}
+        \ce{A_i + E <=>[$k_i^+$][$k_i^-$] C_i ->[$k^{cat}_i$] E + Clearance Products} \label{eq:MM}
+\end{equation}
+where $k_+$ and $k_-$ are the binding and unbinding rates of the aggregate and clearance enzyme component and $k^{cat}_i$ is the catalytic rate constant. The clearance enzyme binds to an aggregate of size $A_i$ to form a complex $C_i$ which can either dissociate or be broken down and cleared. \todo{A proxy for other types of mechanisms.}
+
+This setup is similar to the Michaelis–Menten (MM) description for reactions kinetics, however here we have a series of series of different sized aggregates that all compete for the same enzyme component. We assume that the total enzyme component in the system is constant, $E_{Total} = E + \sum_i C_i$, and that the enzyme-aggregate binding is at equilibrium for all lengths of aggregate, $k_i^+ [E] [A_i] = k_i^- [C_i]$. These expressions give
+\begin{equation}
+    [C_i] = E_{Total}\frac{k_i^+}{k_i^+}\left(\frac{[A_i]}{1+\sum_j[A_j]\frac{k_j^+}{k_j^+}}\right)
+\end{equation}
+assuming constant total enzyme, $E_{Total} = E + \sum_i C_i$ gives the removal rate of an aggregate of  We can determine the rate by initally solving thee 
+For a set of substrates, $A_i$, the rate of turnover of aggregates of size $i$ is given by
+\begin{equation}
+    v_i = k_i^{cat}[C_j] = \frac{k_i^{cat}[E][A_i]\frac{k_i^+}{k_i^- + k^{cat}_i}}{1+\sum_j[A_j]\frac{k_j^+}{k_j^- + k^{cat}_j}} = \frac{k_i^{cat}[E][A_i]/K_{m,i}}{1+\sum_j\frac{[A_j]}{K_{m,j}}}
+\end{equation}
+where we define an MM-like constant, $K_{M, i}$, for aggregates of each size. We begin by assuming that rates are constant for each aggregate: $k_i^+=k^+$, $k_i^-=k^-$, $k_i^{cat}=k^{cat}$ and so $K_{M, i} = K_{M}$. At the level of the mass distribution, the clearance now becomes
+\begin{equation}
+    \lambda(M, m_0) = \sum_i i\times v_i = \frac{k^{cat}[E]\sum_i i [A_i]/K_{m}}{1+\sum_j\frac{[A_j]}{K_{m}}} = \frac{k^{cat}[E]M/K_{m}}{1+\frac{P}{K_{m}}} = \frac{k^{cat}[E]\bar{l}M}{\bar{l}K_{m} + M} = \frac{\bar{\lambda}(m_0)M}{C(m_0) + M}
+\end{equation}
+where we have used the average length to transform between aggregate mass and aggregate number as well as defining $\bar{\lambda}(m_0) = k^{cat}[E]\bar{l}$ and $C(m_0)=\bar{l}K_{m}$. Putting everything back into equation \eqref{eq:M_evolution_first} gives
+\begin{equation}
+    \frac{\text{d}M}{\text{d}t} = 2 k_+m_0 M/\bar{l}+2k_n m_0^{n_c}+2k_2\sigma(m_0)M-\frac{\bar{\lambda}(m_0)M}{C(m_0) + M}.
+\label{eq:M_evolution}
+\end{equation}
+
+\subsection{Dump}
+
+We assume that there is some kind of catalytic reaction that dominates the clearance. There is another species that binds to the aggregates and then undergoes a reaction to clear the species. We write this as
+\begin{equation}
+        \ce{a_i + E <=>[$k_i^+$][$k_i^-$] EC_i ->[$C_i$] E + Clearance Products}. \label{eq:MM}
+\end{equation}
+For an enzymatic reaction with only one species, this system gives the familiar Michaelis-Menten (MM) reaction rates. For more than one species, when we have rates independent of aggregate size, $k_i^+ = k^+$, $k_i^- = k^-$, and $k^{cat}_i = C$, then we can simply sum the expressions and recover the one species MM setup. The system is solved, by assuming the distribution of enzyme is at steady state, i.e. that the rates of conversion of unbound enzyme to bound enzyme in complexes are equal. This means that for any aggregate size, $i$, we have
+\begin{equation}
+    k_i^+[a_i][E] = k_i^-[EC_i]+k^{cat}_i[EC_i]
+\end{equation}
+where $[E]$ is the unbounded enzyme concentration and since there conserved total enzyme in the system, $[E_{tot}]=[E] + \sum_i [EC_i]$ we can substitute for the free enzyme and write
+\begin{equation}
+    k_i^+[a_i][E_{tot}] = (k_i^-+k^{cat}_i)[EC_i]+k_i^+[a_i]\sum_j[EC_j]
+\end{equation}
+which must be true at steady state for all $i$. As a matrix equation for aggregates upto size, N, this gives
+\begin{equation}
+    \underbrace{
+    \begin{pmatrix}
+    (k_1^-+k^{cat}_1)+k_1^+[a_1] & k_1^+[a_1] & k_1^+[a_1] & \hdots & k_1^+[a_1]\\
+    k_2^+[a_2] & (k_2^-+k^{cat}_2)+k_2^+[a_2] & k_2^+[a_2] & \hdots & k_2^+[a_2]\\
+    \vdots &   & \ddots &  & \vdots \\
+    k_N^+[a_N] & k_N^+[a_N] & k_N^+[a_N] & \hdots & (k_N^-+k^{cat}_N)+k_N^+[a_N]\\
+    \end{pmatrix}
+    }_{\mathcal{K}}
+    \cdot
+    \underbrace{
+    \begin{pmatrix}
+    [EC_1]\\
+    [EC_2]\\
+    \vdots\\
+    [EC_N]\\
+    \end{pmatrix}
+    }_{\mathbf{C}}
+    =
+    [E_{tot}]
+    \underbrace{
+    \begin{pmatrix}
+    k_1^+[a_1]\\
+    k_2^+[a_2]\\
+    \vdots\\
+    k_N^+[a_N]\\
+    \end{pmatrix}
+    }_{\mathbf{k}}.
+\end{equation}
+We can find $\mathbf{C}=[E_{tot}]\mathcal{K}^{-1}\mathbf{k}$ and the steady state enzyme distribution. The crucial step is to solve for $\mathcal{K}^{-1}\mathbf{k}$. We claims that this gives (for $[E_{tot}]=1$)
+\begin{equation}
+    [EC_j] = \mathbf{C}_j = (\mathcal{K}^{-1}\mathbf{k})_j = \frac{[a_j]/K_{m,j}}{1+\sum_i\frac{[a_i]}{K_{m,i}}} = \frac{[a_j]\frac{k_j^+}{k_j^- + k^{cat}_j}}{1+\sum_i[a_i]\frac{k_i^+}{k_i^- + k^{cat}_i}}
+\end{equation}
+% \begin{subequations}
+% \begin{align}
+%     \ce{ 2S &<=>[$k_1$][$k_2$] 3S } \label{sch1} \\
+%     \ce{ \emptyset &<=>[$k_3$][$k_4$] S } \label{sch2}
+% \end{align}
+% \end{subequations}
+
+\subsection{Coarse Graining Length Dependent Clearance}
+
+\section{Explaining the transitions to disease}
+
+\subsection{General Features of the Stability}
+
+\section{Experimental verification}
+
+
+\section{Detailed Model}
+
+\subsection{Kinetics of Aggregation}
+
+\subsection{The case for discrete transition}
+
+
+\subsubsection{Clearance in the master equation}
+
+
+
+\subsubsection{Asymptotic Limit for many Aggregates}
+
+In the limit of many aggregates, the self-replication rate is very high, such that we expect the critical line to exist where $M \gg 1$ and $m \ll 1$. In this regime, the clearance rate will be near the maximum capacity and so aggregates will be cleared at a constant rate. Additionally, we expect the rate of primary nucleation to scale with the largest exponent of $m_0$ and therefore this term will be negligible, giving
+\begin{equation}
+    \frac{\text{d}M}{\text{d}t} \approx 2 k_+m_0 M/\bar{l}+2k_2\sigma(m_0)M-\bar{\lambda}.
+\end{equation}
+The dominant self replication term now comes from either elongation or secondary nucleation and this will depend on the form of the auto catalysis step.
+
+\subsubsection{Prion-like Kinetics}
+
+We consider the example of prion aggregation. Prion aggregates do no undergo primary nucleation ($k_p = 0$) and they are also not cleared. This gives
+\begin{equation}
+    \frac{\text{d}M}{\text{d}t} = 2 k_+m_0 M/\bar{l}+2k_2\sigma(m_0)M = \alpha M
+\label{eq:M_evolution}
+\end{equation}
+where $\alpha>0$. As such the system is in steady state when there is no aggregate mass $(M=0)$, but the aggregate mass grows exponentially as soon as $M$ is nonzero.
+
+\subsection{Dump from main}
+
+The model described in equation \eqref{eq:M_evolution} includes an overall effective clearance rate, given by $\lambda(M, m_0)$. Previous models of protein aggregation that include clearance often model the system as being able to clear aggregates at a constant rate (even if they include aggregate length dependence). However, for systems with many aggregates this is not possible on \todo{a molecular level}. Here, we incorporate these details into an $m_0$ dependent clearance rate which we justify by assuming that not only the average length, but also the entire the length distribution of aggregates is only a function of the monomer concentration - any increase in $M$ is therefore a proportional increase to the number of aggregates at each length. We also allow the clearance rate to depend on $M$. Similar to catalytic reactions, the removal of aggregates may involve the formation of a \todo{clearance complex} and so these dynamics will follow Michaelis-Menten kinetics. We therefore express the clearance of aggregates as
+\begin{equation}
+    \lambda(M, m_0) = \frac{\bar{\lambda}(m_0)M}{C(m_0) + M}
+    \label{eq:clearance_form}
+\end{equation}
+where $\bar{\lambda}(m_0)$ is the modified clearance velocity and $C(m_0)$ is a Michaelis-like constant \todo{add into appendix the justification for this}.
+
+The sign of $\text{d}M/\text{d}t$ still determines the state of the system, but the form of the clearance rate now allows for the system to change state twice for a given $m_0$ \todo{maybe discuss the linearity of the the system with constant clearance rate}. Setting $\text{d}M/\text{d}t = 0$, gives the boundary between the healthy and diseased state and this is plotted in Figure \ref{fig:seeding}, where we have used the expression from equation \eqref{eq:M_evolution} with the clearance rate in equation \eqref{eq:clearance_form}. The light grey line in Figure \ref{fig:seeding} shows the stability line, if a living system is located to the right of this line, then the system is unstable and the total mass of aggregates increases and the monomer concentration stays constant (an upwards trajectory on the plot). If instead system is located to the left of this line, then the system is in a stable state and the aggregate mass decreases leading to a downwards trajectory onto the stability line. The shape of the stability line means that an addition of seeds into a system can cause the transition from a healthy stable state to an unstable diseased state.
+
+
+\subsection{Enslaved Dynamics}
+We begin from the closed moment equations
+\begin{equation}
+    \frac{\text{d}M}{\text{d}t} = 2 k_+m_0 P+2k_n m_0^{n_c}+2k_2\sigma(m_0)M-\sum_{i=n_2}^{\infty}i\lambda_i (p_i).
+\end{equation}
+\begin{equation}
+    \frac{\text{d}P}{\text{d}t} = k_n m_0^{n_c}+k_2\sigma(m_0)M-\sum_{i=n_2}^{\infty}\lambda_i (p_i).
+\end{equation}
+if we assume that 
+
+At the critical boundary, we have that $\frac{\text{d}M}{\text{d}t}=\frac{\text{d}P}{\text{d}t}=0$. The stability boundary can therefore be calculated by solving these equations. More generally, we can \textit{enslave} the $P$ dynamics by solving $\frac{\text{d}P}{\text{d}t}=0$ to give $P(M, m_0)$. Choosing that the clearance mechanism goes like Michaelis–Menten kinetics in the number of aggregates, $P$
+\begin{equation}
+    \frac{\text{d}P}{\text{d}t} = k_n m_0^{n_c}+k_2\sigma(m_0)M-\frac{\lambda_P P}{K_M + P}=0.
+\end{equation}
+and so we find
+\begin{equation}
+    P^* = \frac{K_M\left(k_n m_0^{n_c}+k_2\sigma(m_0)M\right)}{\lambda_P-k_n m_0^{n_c}-k_2\sigma(m_0)M}.
+\end{equation}
+Additionally, setting $\frac{\text{d}M}{\text{d}t}=0$ defines a cubic equation in $M$ for the exact stability boundary, however one strategy to reduce the dynamics is to set $P=P^*(M, m_0)$ everywhere and explore the phase plane of $M-m_0$. (Probably need to justify this with some numerics).
+
+% \begin{center}
+% \begin{table*}
+% \begin{tabular}{|c|c|c|}
+%  \hline
+%  % 2k_0+2(k_+m_0-k_{off})M/\bar{l}(m_0)+2k_n m_0^{n_c} &+2k_2\sigma(m_0)M-\lambda(M, m_0)
+%  Primary Nucleation & Spontaneous conversion of monomers to a new aggregates. & cell3 \\ 
+%  \hline
+%  Secondary Nucleation & onversion of monomers to a new aggregate catalysed by existing aggregates. & cell6 \\ 
+%  \hline
+%  Elongation & Addition of single monomers to existing aggregates. & 2 \\ 
+%  \hline
+%  Clearance & The removal of monomers and aggregated proteins. & $-\lambda$ \\ 
+%  \hline
+%  \end{tabular}
+% \end{table*}
+% \end{center}
+
+\subsection{Changing the length distribution and make it work}
+
+An alternative to the MM-like clearance rates is to have length dependent clearance rates, such that 
+
+\todo{For this to work there probably need to be increasing length as the aggregate mass increases. (l increases with M)}
+
+\subsubsection{Clearance proportional to aggregate length to a power}
+Assume the clearance rate such that $\lambda_i=\lambda i^{\nu} p_i$ and so we get
+\begin{equation}
+    \frac{\text{d}M}{\text{d}t} = 2 k_+m_0 P+2k_n m_0^{n_c}+2k_2\sigma(m_0)M-\sum_{i=n_2}^{\infty}i\lambda_i (p_i) = 2 k_+m_0 P+2k_n m_0^{n_c}+2k_2\sigma(m_0)M-\lambda \underbrace{\sum_{i=n_2}^{\infty} i^{\nu+1} p_i}_{(\nu+1)^{th} \text{ moment}}
+\end{equation}
+\begin{equation}
+    \frac{\text{d}P}{\text{d}t} = k_n m_0^{n_c}+k_2\sigma(m_0)M-\sum_{i=n_2}^{\infty}\lambda_i (p_i) = k_n m_0^{n_c}+k_2\sigma(m_0)M-\lambda \underbrace{\sum_{i=n_2}^{\infty} i^{\nu} p_i}_{(\nu)^{th} \text{ moment}}.
+\end{equation}
+Additionally, for the say $j^{th}$ moment, we would expect the clearance term to go like $\lambda^{(j)} = \lambda \sum_{i=n_2}^{\infty} i^{\nu+j} p_i$ which depends on the $(\nu+j)^{th}$ moment. This cascade of equations means that the moments do not form a closed system of equations (for $\nu>0$ and as a consequence the system cannot be solved. Assuming a constant average length, $\bar{c}$, we can approximate the solution of the system by taking $\bar{\lambda}_{j}=\lambda\times \bar{c}^{j}$.
+
+\section{Fitting Nucleation Data}
+\section{Fraction aggregated when $\frac{\text{d}m}{\text{d}t} \neq 0$}
+
+Probability to first nucleate at t is
+\begin{equation}
+    p(t) = (\underbrace{1-f(t)}_{\text{prob not to nucleate}})\bar{p}_{nuc}(t)\text{d}t
+\end{equation}
+where prob of nucleation each timestep given no nucleation before then is $\bar{p}_{nuc}(t)$ and probability that nucleation has occurred for $t$ is $f(t)$, i.e. $f(t)$ is the CDF of the PDF $p(t)$ so
+\begin{equation}
+    \frac{\text{d}f}{\text{d}t} = (1-f(t))\bar{p}_{nuc}(t).
+\end{equation}
+Which we can solve with an integrating factor
+\begin{equation}
+    \frac{\text{d}f}{\text{d}t} + f(t)\bar{p}_{nuc}(t) = \bar{p}_{nuc}(t).
+\end{equation}
+\begin{equation}
+    e^{\int^{t}_{0} \bar{p}_{nuc}(t') dt'}\frac{\text{d}f}{\text{d}t} + e^{\int^{t}_{0} \bar{p}_{nuc}(t') dt'}f(t)\bar{p}_{nuc}(t) = \frac{\text{d}}{\text{d}t}\left(e^{\int^{t}_{0} \bar{p}_{nuc}(t') dt'}f(t)\right) = \bar{p}_{nuc}(t)e^{\int^{t}_{0} \bar{p}_{nuc}(t') dt'}
+\end{equation}
+\begin{equation}
+    e^{\int^{t}_{0} \bar{p}_{nuc}(t') dt'}f(t) = \int\bar{p}_{nuc}(t)e^{\int^{t}_{0} \bar{p}_{nuc}(t') dt'}\text{d}t = e^{\int^{t}_{0} \bar{p}_{nuc}(t') dt'} + C_1
+\end{equation}
+\begin{equation}
+    f(t) = 1 + C_1 e^{-\int^{t}_{0} \bar{p}_{nuc}(t') dt'}
+\end{equation}
+and since $f(0)=0$ we get $C_1 = -1$.
+
+If we assume that the nucleation rate is proportional to $m^s$ where $s$ is some reaction order and use $m=C\times t$, where $C$ is the expression rate of monomer, which varies continuously to give the spread in monomer concentration.
+\begin{equation}
+    f(t) = 1 - e^{-\int^{t}_{0} k(C t')^{s} dt'} = 1 - \exp\left(-\frac{k}{s+1}C^{s}t^{s+1}\right)
+\end{equation}
+where $k$ is the constant of proportionality for the expression rate. For each curve, $t$ is known so we therefore fit
+\begin{equation}
+    f(C) = 1 - e^{-\alpha C^s}
+\end{equation}
+for each experiment, with $\alpha=kt^{s+1}/(s+1)$ so that $\ln(\alpha)=(s+1)\ln(t) + \ln(k/(s+1))$.
+\section{Generalising behaviour}
+How general is the phase diagram we have computed above? Lets make some basic assumptions: there are two mechanisms of aggregate production, one that produces aggregates at a constant rate $k_{SS}$ independent of the status of the system ("primary nucleation"), and a feedback mechanism whose rate is proportional to the aggregate concentration initially, but is bounded at a maximum concentration, and has rate $\kappa M (M_{tot}-M)$. This describes a self-replication process, e.g. by secondary nucleation + elongation, but also less direct mechanisms, together with a negative feedback mechanism that results in a bounded overall aggregate concentration. We also introduce a bounded removal mechanism, for which we choose Michaelis Menten form  whose rate is given by $\frac{\lambda M}{C+M}$. This is motivated by the expectation that removal is a first order reaction in aggregates at low aggregate concentration and fact that there is a physical limit to the removal rate at high concentrations. Generally we expect that $C<M_{tot}$, i.e. removal processes start approaching their maximum rate well before the aggregate load is at its maximum possible value. The resulting ODE is then
+\begin{equation}
+    \frac{\text{d}M}{\text{d}t} = k_{SS} + \kappa M (M_{tot}-M) - \frac{\lambda M}{C+M}.
+\end{equation}
+
+Now, to develop a phase diagram as above, we need to make assumptions about the scaling of the rates with monomer concentration. Removal of aggregates, $\lambda$, is likely independent of the monomer concentration (i.e. we assume the removal process does not directly involve monomer). While arguments could be made that the maximum removal rate, $C$, could be dependent on the monomer concentration, we also assume its independence for now. The two remaining rates, $k_{SS}$ and $\kappa$ likely both depend on the monomer concentration. We express this monomer dependence as follows:
+\begin{equation}
+   k_{SS} =  k_{SS} m^{\gamma_p}
+\end{equation}
+and
+\begin{equation}
+   \kappa =  \kappa_0 m^{\gamma_s}
+\end{equation}.
+
+\begin{figure}[h] %
+        \centering
+        \includegraphics[width=0.5\textwidth]{draftfigs/SI_general_phase_dia_max_M.png}
+	\caption{general behaviour robust; label colours properly, dashed ones are with no maximal aggregate concentration; show more different cases, such as primary nucleation dominating, different scalings etc.}
+	\label{fig:SI_general_phase_dia_max_M}
+\end{figure}
+As expected, the behaviour is similar to what is observed in the case of no maximum aggregate concentration when the critical line is far from $M_{tot}$, see Fig.~\ref{fig:SI_general_phase_dia_max_M}. Close to the maximum aggregate concentration $M_{tot}$ however, another attractive critical point emerges. This corresponds to the situation when the aggregation rate is now again reduced so much that it equals the removal rate. This line meets the repulsive critical line at finite monomer concentrations, thus, for monomer concentrations below this value there is only one attractive fixed point, when primary nucleation and removal balance each other. In this regime, the system is fully stable and runaway aggregation cannot be induced even by heavy seeding. Another interesting behaviour emerges as $c$ approaches $M_{tot}$: the repulsive fixed point disappears and the system always settles into at an aggregate concentration fully determined by the monomer concentration. In such a system, seeding plays no role in determining the steady state. However, despite there not being a repulsive fixed point, the change from a low steady state aggregate concentration, to a high steady state aggregate concentration can still occur upon a small change of either monomer concentration or removal rate. 
+
+Beyond this, the general behaviour observed is robust to variations in both the maximal removal rate $c$ and the reaction orders and rates of the aggregation processes.
+
+***also need to explore what happens when there is a length dependence of clearance
+
+\section{}
+\subsection{}
+
+\section{}
+
+\section{Numerical Simulations and Comparison}
+
+\section{Summary and Conclusions}
